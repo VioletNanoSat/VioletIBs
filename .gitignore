@@ -27,3 +27,7 @@
 *.i*86
 *.x86_64
 *.hex
+
+#Random Things I saw on my computer
+*/Debug/*
+*.d
