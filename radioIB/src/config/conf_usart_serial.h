@@ -62,7 +62,7 @@
 
 // Baud Rates for the different USARTS
 #define RADIO_UART_BAUDRATE		115200		///< Radio USART Baud rate
-#define CDHIB_UART_BAUDRATE		115200		///< Fligh Computer USART Baud rate
+#define CDHIB_UART_BAUDRATE		115200		///< CDHIB USART Baud rate
 
 
 #endif /* CONF_USART_SERIAL_H_INCLUDED */
