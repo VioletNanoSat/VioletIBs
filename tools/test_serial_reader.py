@@ -1,18 +1,79 @@
-import serial
-import binascii
-import time
+'''
+Tester for SerialReader.
 
-print 'Testing Module for Serial Reader'
-client = serial.Serial(port='/dev/pts/13',baudrate=9600,parity=serial.PARITY_NONE)
-to_send = 'c005180405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f2021222324c0'
-ascii_str = binascii.unhexlify(to_send)
-print 'Sending: ' + to_send + ' as: ' + ascii_str
-print 'Chunk size should be: ' + str(len(ascii_str))
-try:
-	while 1:
-		ret = client.write(ascii_str)
-		raw_input('')
-except KeyboardInterrupt:
-	client.close()
+This module implements the test case for serially reading data during
+Violet's Simulated Communications test. We spoof a defined packet
+(constructed via the field message) and send it into the serial port
+to which the reader is connected. We then verify the functionality
+of the SerialReader.
 
-print "Exiting"
+@author Akshay Dongaonkar
+@email akd54@cornell.edu
+
+'''
+
+
+
+from serial import *
+from binascii import unhexlify
+from time import sleep
+
+import sys
+
+class SerialReaderTester:
+	'''
+	Creates a new Serial Reader tester given a serial port and message.
+
+	The user can then manually or periodically send the message over
+	the serial port.
+	'''
+	def __init__(self,port,message='c005180304050607c0'):
+		self.server = Serial(
+			port=port,
+			baudrate=9600,
+			parity=PARITY_NONE,
+			bytesize=EIGHTBITS,
+			timeout=1)
+		if len(message) % 2 != 0:
+			print 'Invalid Message'
+			raise ValueError
+		self.message = unhexlify(message)
+		print 'Sending chunks of size {}'.format(len(self.message))
+		print 'Make sure SerialReader has proper chunk value.'
+
+	def send_individually(self):
+		try:
+			while 1:
+				raw_input('Press enter to send message')
+				self.server.write(self.message)
+		except KeyboardInterrupt:
+			pass
+
+	def send_periodically(self,period):
+		pass
+
+
+if __name__ == '__main__':
+	print 'Serial Reader Testing Module'
+
+	# DEFAULT INITIALIZERS
+	port = '/dev/pts/13'
+	message = 'c005180304050607c0'
+
+	if len(sys.argv) > 1:
+		for i in range(1,len(sys.argv)):
+			split = sys.argv[i].split('=')
+			if len(split) > 1:
+				if 'port' in split[0]:
+					port = split[1]
+				elif 'message' in split[0]:
+					message = split[1]
+				else:
+					print 'Unknown arg'
+					raise ValueError
+			else:
+				print 'Unformatted Argument'
+				raise ValueError
+
+	tester = SerialReaderTester(port,message)
+	tester.send_individually()

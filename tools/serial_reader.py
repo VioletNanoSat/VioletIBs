@@ -104,6 +104,9 @@ Testing:
 
 		To experiment further, try changing the chunk_size for the readers and 
 		testers to see which packets come in and out.
+
+@author Akshay Dongaonkar
+@email akd54@cornell.edu
 '''
 
 
@@ -124,9 +127,8 @@ class SerialReader:
 
 	'''
 	colors=['red','green','yellow','blue','magenta','cyan']
-	def __init__(self,port='COM15',baudrate=9600,timeout=1,
-		parity=serial.PARITY_NONE,bytesize=serial.EIGHTBITS,chunk_size=9,
-		link_message=''):
+	def __init__(self,port,chunk_size,link_message,baudrate=9600,timeout=1,
+			parity=serial.PARITY_NONE,bytesize=serial.EIGHTBITS):
 		'''
 		Initializer that creates and open a serial port with described arguments.
 
@@ -136,12 +138,12 @@ class SerialReader:
 
 		Args:
 			port (str): Name of port to read
+			chunk_size: The packet size coming in if constant
+			link_message (string): Describes the link being read
 			baudrate (int, optional): Passed to serial Initializer
 			timeout (int, optional): Passed to serial Initializer
-			parity (?,optional): Passed to serial Initializer
-			bytesize (?,optional): Passed to serial Initializer
-			chunk_size: The packet size coming in if constant
-			link_message (string,optional): Describes the link being read
+			parity (str,optional): Passed to serial Initializer
+			bytesize (str,optional): Passed to serial Initializer
 		'''
 		self.chunk_size = chunk_size
 		if port:
@@ -193,7 +195,7 @@ class SerialReader:
 						print colored(byte_string,prev_color)
 						print colored(entry,current_color)
 						print ''
-						byte_offset = byte_offset + 8 #literally no clue why this shit is 8!!!!
+						byte_offset = byte_offset + 8 # literally no clue why this shit is 8!!!!
 
 					# print colored('ASCII for the G00NS:',current_color)
 					# for entry in [datum[i:i+80] for i in range(0,len(datum),80)]:
@@ -213,8 +215,8 @@ class SerialReader:
 if __name__ == '__main__':
 	print 'Serial Reader Module'
 
-	#DEFAULT INITIALIZERS
-	port 			= '/dev/ttyUSB0'
+	# DEFAULT INITIALIZERS
+	port 			= '/dev/pts/14'
 	baudrate 		= 9600
 	timeout 		= 1
 	parity 			= serial.PARITY_NONE
@@ -222,10 +224,10 @@ if __name__ == '__main__':
 	chunk_size 		= 9
 	link_message 	= 'No message supplied' 
 
+	# Parse System Arguments
 	if len(sys.argv) > 1:
 		for i in range(1,len(sys.argv)):
-			arg = sys.argv[i]
-			split = arg.split("=")
+			split = sys.argv[i].split("=")
 			if len(split) > 1:
 				serial_arg = split[0].lower()
 				serial_val = split[1].lower()
@@ -269,8 +271,9 @@ if __name__ == '__main__':
 					print colored("Unknown arg",'red')
 					raise ValueError
 			else:
-				print colored("Unformatted Commands",'red')
+				print colored("Unformatted Arguments",'red')
 				raise ValueError
-	listener = SerialReader(port,baudrate,timeout,parity,bytesize,chunk_size,link_message)
+	listener = SerialReader(port,chunk_size,link_message,
+		baudrate,timeout,parity,bytesize)
 	listener.serial_read()
 
