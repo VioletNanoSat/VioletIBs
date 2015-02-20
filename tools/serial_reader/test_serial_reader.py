@@ -52,6 +52,14 @@ class SerialReaderTester:
 	def send_periodically(self,period):
 		pass
 
+	def send_variable_length_packets(self,packet_type):
+		if 'vcp' in packet_type:
+			pass
+		elif 'lithium' in packet_type:
+			pass
+		else:
+			print 'Unknown packet type to send. Returning.'
+
 
 if __name__ == '__main__':
 	print 'Serial Reader Testing Module'

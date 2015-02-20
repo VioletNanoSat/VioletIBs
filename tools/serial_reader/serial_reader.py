@@ -159,9 +159,9 @@ class SerialReader:
 		print colored('Connected to: ' + self.reader.portstr,'yellow')
 
 
-	def serial_read(self):
+	def serial_read_fixed_packet_length(self):
 		'''
-		Read, format, and pretty-print all serial data read.
+		Read, format, and pretty-print all serial data read that is chunk_size long.
 
 		To exit serial collection, press Ctrl+c to raise a 
 		KeyboardInterrupt. 
@@ -178,6 +178,8 @@ class SerialReader:
 
 					current_color 	= self.colors[received % len(self.colors)]
 					prev_color 		= self.colors[(received - 1) % len(self.colors)]
+					
+					# Begin pretty print
 					print colored('='*80,current_color)
 					if self.link_message != '':
 						print colored(self.link_message,current_color)
@@ -195,16 +197,21 @@ class SerialReader:
 						print colored(byte_string,prev_color)
 						print colored(entry,current_color)
 						print ''
-						byte_offset = byte_offset + 8 # literally no clue why this shit is 8!!!!
-
-					# print colored('ASCII for the G00NS:',current_color)
-					# for entry in [datum[i:i+80] for i in range(0,len(datum),80)]:
-					# 	print colored(entry,current_color)
+						byte_offset = byte_offset + 8 # literally no clue why this is 8 and not 16, but it works lol!!!!
+					#End pretty print
 
 					print colored('='*80,current_color)
 					print '\n'
 		except KeyboardInterrupt:
 			pass
+
+	def serial_read_variable_packet_length(self,packet_type):
+		if 'vcp' in packet_type:
+			pass
+		elif 'lithium' in packet_type:
+			pass
+		else:
+			print colored('Unknown packet type','red')
 
 	def get_serial_object(self):
 		''' Returns serial object in a closed state '''
@@ -223,6 +230,7 @@ if __name__ == '__main__':
 	bytesize 		= serial.EIGHTBITS
 	chunk_size 		= 9
 	link_message 	= 'No message supplied' 
+	packet_type 	= ''
 
 	# Parse System Arguments
 	if len(sys.argv) > 1:
@@ -264,9 +272,20 @@ if __name__ == '__main__':
 						print colored('Unknown Bytesize','red')
 						raise ValueError
 				elif serial_arg == 'chunk_size':
-					chunk_size = int(serial_val)
+					if 'variable' in serial_val:
+						chunk_size = None
+					else:
+						chunk_size = int(serial_val)
 				elif serial_arg == 'message':
 					link_message = split[1]
+				elif serial_arg == 'packet_type':
+					if 'vcp' in serial_val:
+						packet_type = 'vcp'
+					elif 'lithium' in serial_val:
+						packet_type = 'lithium'
+					else:
+						print colored('Invalid Packet Type','red')
+						raise ValueError 
 				else:
 					print colored("Unknown arg",'red')
 					raise ValueError
@@ -275,5 +294,12 @@ if __name__ == '__main__':
 				raise ValueError
 	listener = SerialReader(port,chunk_size,link_message,
 		baudrate,timeout,parity,bytesize)
-	listener.serial_read()
+	if chunk_size:
+		listener.serial_read_fixed_packet_length()
+	else:
+		if packet_type == '':
+			print colored('Packet Type not specified','red')
+			print colored('If reading variable length packets, please specify packet type')
+		else:
+			listener.serial_read_variable_packet_length(packet_type)
 
