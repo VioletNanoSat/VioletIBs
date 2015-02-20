@@ -29,5 +29,9 @@
 *.hex
 
 #Random Things I saw on my computer
-*/Debug/*
+Debug/
+Debug/*
 *.d
+
+doc/
+doc/*
