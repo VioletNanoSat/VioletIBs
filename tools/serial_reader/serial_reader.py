@@ -231,6 +231,7 @@ if __name__ == '__main__':
 	chunk_size 		= 9
 	link_message 	= 'No message supplied' 
 	packet_type 	= ''
+	windows			= False
 
 	# Parse System Arguments
 	if len(sys.argv) > 1:
@@ -240,7 +241,8 @@ if __name__ == '__main__':
 				serial_arg = split[0].lower()
 				serial_val = split[1].lower()
 				if serial_arg == 'port':
-					port = serial_val
+					port = split[1]
+					print port
 				elif serial_arg == 'baudrate':
 					baudrate = int(serial_val)
 				elif serial_arg == 'timeout':
@@ -285,13 +287,22 @@ if __name__ == '__main__':
 						packet_type = 'lithium'
 					else:
 						print colored('Invalid Packet Type','red')
-						raise ValueError 
+						raise ValueError
+				elif serial_arg == 'windows':
+					if 'true' in serial_val:
+						windows = True 
+					else:
+						windows = False 
 				else:
 					print colored("Unknown arg",'red')
 					raise ValueError
 			else:
 				print colored("Unformatted Arguments",'red')
 				raise ValueError
+
+	if windows:
+		import colorama
+		colorama.init()
 	listener = SerialReader(port,chunk_size,link_message,
 		baudrate,timeout,parity,bytesize)
 	if chunk_size:

@@ -50,7 +50,12 @@ class SerialReaderTester:
 			pass
 
 	def send_periodically(self,period):
-		pass
+		try:
+			while 1:
+				self.server.write(self.message)
+				sleep(period)
+		except KeyboardInterrupt:
+			pass
 
 	def send_variable_length_packets(self,packet_type):
 		if 'vcp' in packet_type:
@@ -84,4 +89,4 @@ if __name__ == '__main__':
 				raise ValueError
 
 	tester = SerialReaderTester(port,message)
-	tester.send_individually()
+	tester.send_periodically(1)
