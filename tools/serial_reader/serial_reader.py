@@ -126,7 +126,14 @@ class SerialReader:
 	for easy debugging.
 
 	'''
+
 	colors=['red','green','yellow','blue','magenta','cyan']
+
+	VCP_ESCAPE 	= chr(0xC0)
+	LI_H 		= chr(0x48)
+	LI_e 		= chr(0x65)
+
+
 	def __init__(self,port,chunk_size,link_message,baudrate=9600,timeout=1,
 			parity=serial.PARITY_NONE,bytesize=serial.EIGHTBITS):
 		'''
@@ -155,8 +162,39 @@ class SerialReader:
 				bytesize=bytesize)
 		else:
 			self.reader = None
-		self.link_message = link_message
+
+		self.link_message 	= link_message
+		self.received 		= 0
 		print colored('Connected to: ' + self.reader.portstr,'yellow')
+
+	def pretty_print(self,datum):
+		self.received = self.received + 1
+
+		current_color 	= self.colors[self.received % len(self.colors)]
+		prev_color 		= self.colors[(self.received - 1) % len(self.colors)]
+		
+		print colored('='*80,current_color)
+		if self.link_message != '':
+			print colored(self.link_message,current_color)
+
+		msg_info = 'Message Size: ' + str(len(datum))+ '. Received: ' + str(self.received)
+		print colored(msg_info,current_color)
+		print ''
+
+		hex_rep = hexlify(datum)
+		hex_to_screen = '0x'+' 0x'.join(a+b for a,b in zip(hex_rep[::2],hex_rep[1::2]))
+		print colored('Message:',current_color)
+		byte_offset = 0
+		for entry in [hex_to_screen[i:i+80] for i in range(0,len(hex_to_screen),80)]:
+			byte_string = ''.join([' {}'.format(byte_offset+i)+' '*(5-len(' {}'.format(byte_offset+i))) for i in range(byte_offset,byte_offset+16)])
+			print colored(byte_string,prev_color)
+			print colored(entry,current_color)
+			print ''
+			byte_offset = byte_offset + 8 # literally no clue why this is 8 and not 16, but it works lol!!!!
+		#End pretty print
+
+		print colored('='*80,current_color)
+		print '\n'
 
 
 	def serial_read_fixed_packet_length(self):
@@ -166,7 +204,6 @@ class SerialReader:
 		To exit serial collection, press Ctrl+c to raise a 
 		KeyboardInterrupt. 
 		'''
-		received = 0
 		print colored('Enter Ctrl+c to exit collection','red')
 		sleep(0.3)
 		print colored('Reading','blue',attrs=['blink'])
@@ -174,44 +211,69 @@ class SerialReader:
 			while 1:
 				datum = self.reader.read(self.chunk_size)
 				if len(datum) > 0:
-					received = received + 1
-
-					current_color 	= self.colors[received % len(self.colors)]
-					prev_color 		= self.colors[(received - 1) % len(self.colors)]
-					
-					# Begin pretty print
-					print colored('='*80,current_color)
-					if self.link_message != '':
-						print colored(self.link_message,current_color)
-
-					msg_info = 'Message Size: ' + str(len(datum))+ '. Received: ' + str(received)
-					print colored(msg_info,current_color)
-					print ''
-
-					hex_rep = hexlify(datum)
-					hex_to_screen = '0x'+' 0x'.join(a+b for a,b in zip(hex_rep[::2],hex_rep[1::2]))
-					print colored('Message:',current_color)
-					byte_offset = 0
-					for entry in [hex_to_screen[i:i+80] for i in range(0,len(hex_to_screen),80)]:
-						byte_string = ''.join([' {}'.format(byte_offset+i)+' '*(5-len(' {}'.format(byte_offset+i))) for i in range(byte_offset,byte_offset+16)])
-						print colored(byte_string,prev_color)
-						print colored(entry,current_color)
-						print ''
-						byte_offset = byte_offset + 8 # literally no clue why this is 8 and not 16, but it works lol!!!!
-					#End pretty print
-
-					print colored('='*80,current_color)
-					print '\n'
+					self.pretty_print(datum)
 		except KeyboardInterrupt:
 			pass
 
 	def serial_read_variable_packet_length(self,packet_type):
-		if 'vcp' in packet_type:
+		try:
+			if 'vcp' in packet_type:
+				while 1:
+					escape = self.reader.read()
+					if escape != self.VCP_ESCAPE:
+						print colored('PACKET DOES NOT START WITH FEND','red')
+						continue
+					packet = [escape]
+					next_byte = None
+					while next_byte != chr(self.VCP_ESCAPE):
+						next_byte = self.reader.read()
+						packet.append(next_byte)
+					datum = ''.join(packet)
+					self.pretty_print(datum)
+			elif 'lithium' in packet_type:
+				while 1:
+					h = self.reader.read()
+					if h != self.LI_H:
+						print colored('Li SYNC H DOES NOT MATCH','red')
+						continue
+					packet = [h]
+
+					e = self.reader.read()
+					if e != self.LI_e:
+						print colored('Li SYNC e DOES NOT MATCH','red')
+						continue
+					packet.append(e)
+
+					li_type = self.reader.read(2)
+					packet.append(li_type)
+
+					size_1 	= self.reader.read()
+					size_2 	= self.reader.read()
+					packet.append(size_1)
+					packet.append(size_2)
+
+					size 	= (ord(size_1) << 8) + ord(size_2)
+
+					chk_a 	= self.reader.read()
+					chk_b 	= self.reader.read()
+					packet.append(chk_a)
+					packet.append(chk_b)
+
+					payload = self.reader.read(size)
+					packet.append(payload)
+
+					payload_chk_a = self.reader.read()
+					payload_chk_b = self.reader.read()
+					packet.append(payload_chk_a)
+					packet.append(payload_chk_b)
+
+					datum = ''.join(packet)
+					self.pretty_print(datum)
+
+			else:
+				print colored('Unknown packet type','red')
+		except KeyboardInterrupt:
 			pass
-		elif 'lithium' in packet_type:
-			pass
-		else:
-			print colored('Unknown packet type','red')
 
 	def get_serial_object(self):
 		''' Returns serial object in a closed state '''
@@ -225,7 +287,7 @@ if __name__ == '__main__':
 	# DEFAULT INITIALIZERS
 	port 			= '/dev/pts/14'
 	baudrate 		= 9600
-	timeout 		= 1
+	timeout 		= 5
 	parity 			= serial.PARITY_NONE
 	bytesize 		= serial.EIGHTBITS
 	chunk_size 		= 9
@@ -303,14 +365,17 @@ if __name__ == '__main__':
 	if windows:
 		import colorama
 		colorama.init()
+
+
 	listener = SerialReader(port,chunk_size,link_message,
 		baudrate,timeout,parity,bytesize)
+
 	if chunk_size:
 		listener.serial_read_fixed_packet_length()
 	else:
-		if packet_type == '':
+		if packet_type != 'vcp' or packet_type != 'lithium':
 			print colored('Packet Type not specified','red')
-			print colored('If reading variable length packets, please specify packet type')
+			print colored('If reading variable length packets, please specify packet type','red')
 		else:
 			listener.serial_read_variable_packet_length(packet_type)
 

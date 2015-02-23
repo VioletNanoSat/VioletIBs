@@ -89,4 +89,3 @@ if __name__ == '__main__':
 				raise ValueError
 
 	tester = SerialReaderTester(port,message)
-	tester.send_periodically(1)
