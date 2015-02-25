@@ -70,8 +70,10 @@ if __name__ == '__main__':
 	print 'Link Reader Testing Module'
 
 	# DEFAULT INITIALIZERS
-	port = '/dev/pts/13'
-	message = 'c005180304050607c0'
+	port 		= '/dev/pts/13'
+	message 	= 'c005180304050607c0'
+	manual 		= 'true'
+	period 		= 1
 
 	if len(sys.argv) > 1:
 		for i in range(1,len(sys.argv)):
@@ -81,6 +83,10 @@ if __name__ == '__main__':
 					port = split[1]
 				elif 'message' in split[0]:
 					message = split[1]
+				elif 'manual' in split[0]:
+					manual = (manual == split[1].lower())
+				elif 'period' in split[0]:
+					period = float(split[1])
 				else:
 					print 'Unknown arg'
 					raise ValueError
@@ -89,5 +95,9 @@ if __name__ == '__main__':
 				raise ValueError
 
 	tester = LinkReaderTester(port,message)
-	tester.send_individually()
-	print 'End Link Reader Testing Module'
+
+	# Note if manual is not specified, this just checks string existence
+	if manual:
+		tester.send_individually()
+	else:
+		tester.send_periodically(period)
