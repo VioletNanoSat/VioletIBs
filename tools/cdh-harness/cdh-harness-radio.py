@@ -1,6 +1,7 @@
 import sys
 from subprocess import check_output
 from binascii import unhexlify
+import re
 
 sys.path.append('../util/')
 from vcp import *
@@ -37,13 +38,41 @@ class RadioPathTester():
 
 		return map(unhexlify,[wrap_vcp(entry,path) for entry in ret])
 
+	def verify_radio_packets(self,path):
+		if 'fc' in path:
+			ret = []
+			ret.append('18ffdead')
+		elif 'pwb' in path:
+			pass
+		elif 'cdh' in path:
+			pass
+		else:
+			Sys.exit('Path is invalid: ' + path)
+
+		return map(unhexlify,[wrap_vcp(entry,'radio') for entry in ret])
+
 	def test_to_fc(self,radio_uart,fc_uart):
 		print 'The Radio UART is located at {r}. The FC UART is located at {f}'.format(r=radio_uart,f=fc_uart)
 		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
 		print 'Connect the TX pin of the RS-232 spare to the TX of the FC UART'
 		raw_input('Press Enter to continue')
-		radio_packets = self.populate_radio_packets('fc')
-		print radio_packets
+		radio_packets				= self.populate_radio_packets('fc')
+		verification_packets		= self.verify_radio_packets('fc')
+		correct_packets = 0
+		for pair in zip(radio_packets,verification_packets):
+			send, recv = pair
+			self.test_port.write(''.join(send))
+			actual = self.test_port.read(len(recv))
+			if ''.join(recv) == actual:
+				correct_packets += 1
+				print 'Received Correct Packet {}'.format(correct_packets)
+			else:
+				print 'Sent Packet:'
+				print send
+				print 'Received: '
+				print re.findall('..?',actual)
+				print 'Expected: '
+				print recv
 
 	def test_to_pwb(self):
 		pass
