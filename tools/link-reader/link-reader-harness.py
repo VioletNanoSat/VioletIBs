@@ -20,7 +20,7 @@ from time import sleep
 
 import sys
 
-class SerialReaderTester:
+class LinkReaderTester:
 	'''
 	Creates a new Serial Reader tester given a serial port and message.
 
@@ -39,7 +39,7 @@ class SerialReaderTester:
 			raise ValueError
 		self.message = unhexlify(message)
 		print 'Sending chunks of size {}'.format(len(self.message))
-		print 'Make sure SerialReader has proper chunk value.'
+		print 'Make sure Link Reader has proper chunk value.'
 
 	def send_individually(self):
 		try:
@@ -67,7 +67,7 @@ class SerialReaderTester:
 
 
 if __name__ == '__main__':
-	print 'Serial Reader Testing Module'
+	print 'Link Reader Testing Module'
 
 	# DEFAULT INITIALIZERS
 	port = '/dev/pts/13'
@@ -88,4 +88,6 @@ if __name__ == '__main__':
 				print 'Unformatted Argument'
 				raise ValueError
 
-	tester = SerialReaderTester(port,message)
+	tester = LinkReaderTester(port,message)
+	tester.send_individually()
+	print 'End Link Reader Testing Module'

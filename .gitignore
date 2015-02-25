@@ -28,10 +28,16 @@
 *.x86_64
 *.hex
 
-#Random Things I saw on my computer
+# Random Things I saw on my computer
 Debug/
 Debug/*
 *.d
 
+# Documentation
 doc/
 doc/*
+
+# Python compiled files
+*.pyc
+*.pyo
+

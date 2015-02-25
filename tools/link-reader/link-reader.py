@@ -117,10 +117,11 @@ from time import sleep
 import serial
 from termcolor import colored
 
+sys.path.append('../util/')
 from vcp import *
 from lithium import *
 
-class SerialReader:
+class LinkReader:
 	'''
 	SerialReader class that reads internal Violet packets.
 
@@ -221,12 +222,13 @@ class SerialReader:
 			if 'vcp' in packet_type:
 				while 1:
 					escape = self.reader.read()
-					if escape != self.VCP_ESCAPE:
-						print colored('PACKET DOES NOT START WITH FEND','red')
+					if escape != VCP_ESCAPE:
+						if escape != '':
+							print colored('PACKET DOES NOT START WITH FEND','red')
 						continue
 					packet = [escape]
 					next_byte = None
-					while next_byte != chr(self.VCP_ESCAPE):
+					while next_byte != VCP_ESCAPE:
 						next_byte = self.reader.read()
 						packet.append(next_byte)
 					datum = ''.join(packet)
@@ -234,13 +236,13 @@ class SerialReader:
 			elif 'lithium' in packet_type:
 				while 1:
 					h = self.reader.read()
-					if h != self.LI_H:
+					if h != LI_H:
 						print colored('Li SYNC H DOES NOT MATCH','red')
 						continue
 					packet = [h]
 
 					e = self.reader.read()
-					if e != self.LI_e:
+					if e != LI_e:
 						print colored('Li SYNC e DOES NOT MATCH','red')
 						continue
 					packet.append(e)
@@ -283,9 +285,7 @@ class SerialReader:
 
 
 if __name__ == '__main__':
-	print 'Serial Reader Module'
-
-	sys.path.append('../util/')
+	print 'Link Reader Module'
 
 	# DEFAULT INITIALIZERS
 	port 			= '/dev/pts/14'
@@ -370,15 +370,17 @@ if __name__ == '__main__':
 		colorama.init()
 
 
-	listener = SerialReader(port,chunk_size,link_message,
+	listener = LinkReader(port,chunk_size,link_message,
 		baudrate,timeout,parity,bytesize)
 
 	if chunk_size:
 		listener.serial_read_fixed_packet_length()
 	else:
-		if packet_type != 'vcp' or packet_type != 'lithium':
+		if packet_type != 'vcp' and packet_type != 'lithium':
 			print colored('Packet Type not specified','red')
 			print colored('If reading variable length packets, please specify packet type','red')
 		else:
 			listener.serial_read_variable_packet_length(packet_type)
+
+	print 'End Link Reader Module'
 
