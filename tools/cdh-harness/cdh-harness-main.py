@@ -4,22 +4,22 @@ port 		= None
 baudrate 	= None
 timeout 	= None
 
-def test_fc_path():
+def test_fc_path(cdh_port):
 	pass
 
-def test_radio_path():
+def test_radio_path(cdh_port):
 	pass
 
-def test_power_board_path():
+def test_power_board_path(cdh_port):
 	pass
 
-def test_gps_path():
+def test_gps_path(cdh_port):
 	pass
 
-def test_sun_sensor_path():
+def test_sun_sensor_path(cdh_port):
 	pass
 
-def test_star_tracker_path():
+def test_star_tracker_path(cdh_port):
 	pass
 
 '''
@@ -59,18 +59,24 @@ if __name__ == '__main__':
 		else:
 			sys.exit('Incorrectly formatted system argument: {}'.format(sys_arg))
 
+	cdh = serial.Serial(port		= port,
+						baudrate	= baudrate,
+						timeout		= timeout,
+						parity		= serial.PARITY_NONE,
+						bytesize	= serial.EIGHTBITS)
+
 	if 'fc' in path:
-		test_fc_path()
+		test_fc_path(cdh)
 	elif 'radio' in path:
-		test_radio_path()
+		test_radio_path(cdh)
 	elif 'power' in path:
-		test_power_board_path()
+		test_power_board_path(cdh)
 	elif 'gps' in path:
-		test_gps_path()
+		test_gps_path(cdh)
 	elif 'sun' in path:
-		test_sun_sensor_path()
+		test_sun_sensor_path(cdh)
 	elif 'star' in path:
-		test_star_tracker_path()
+		test_star_tracker_path(cdh)
 	else:
 		sys.exit('Unknown test path: {}'.format(path))
 	print 'Test Complete'

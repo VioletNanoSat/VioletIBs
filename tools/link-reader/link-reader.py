@@ -156,12 +156,11 @@ class LinkReader:
 		'''
 		self.chunk_size = chunk_size
 		if port:
-			self.reader = serial.Serial(
-				port=port,
-				baudrate=baudrate,
-				timeout=timeout,
-				parity=parity,
-				bytesize=bytesize)
+			self.reader = serial.Serial(port=port,
+										baudrate=baudrate,
+										timeout=timeout,
+										parity=parity,
+										bytesize=bytesize)
 		else:
 			self.reader = None
 
