@@ -1,5 +1,6 @@
 import sys
 from subprocess import check_output
+from binascii import unhexlify
 
 sys.path.append('../util/')
 from vcp import *
@@ -14,6 +15,8 @@ class RadioPathTester():
 	 RX	..	TX <- For Port A1
 	GND	..	VTG
 
+	Same pattern holds for all Ports on the STK600
+
 	RS-232 Spare Layout:
 	RX	..	TX
 	CTS	..	RTS
@@ -21,8 +24,26 @@ class RadioPathTester():
 	def __init__(self,serial):
 		self.test_port = serial
 
-	def test_to_fc(self):
-		pass
+	def populate_radio_packets(self,path):
+		if 'fc' in path:
+			ret = []
+			ret.append('18ffdead')
+		elif 'pwb' in path:
+			pass
+		elif 'cdh' in path:
+			pass
+		else:
+			Sys.exit('Path is invalid: ' + path)
+
+		return map(unhexlify,[wrap_vcp(entry,path) for entry in ret])
+
+	def test_to_fc(self,radio_uart,fc_uart):
+		print 'The Radio UART is located at {r}. The FC UART is located at {f}'.format(r=radio_uart,f=fc_uart)
+		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
+		print 'Connect the TX pin of the RS-232 spare to the TX of the FC UART'
+		raw_input('Press Enter to continue')
+		radio_packets = self.populate_radio_packets('fc')
+		print radio_packets
 
 	def test_to_pwb(self):
 		pass
