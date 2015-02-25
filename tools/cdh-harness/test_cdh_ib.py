@@ -33,8 +33,9 @@ MCU 		= Which MCU path it is
 if __name__ == '__main__':
 	print "CDH IB Tester"
 
-	# Default Values
+	sys.path.append('../util/')
 
+	# Default Values
 	port 		= '/dev/pts/14'
 	baudrate 	= 9600
 	timeout 	= 1

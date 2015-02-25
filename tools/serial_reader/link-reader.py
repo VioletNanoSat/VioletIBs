@@ -284,6 +284,8 @@ class SerialReader:
 if __name__ == '__main__':
 	print 'Serial Reader Module'
 
+	sys.path.append('../util/')
+
 	# DEFAULT INITIALIZERS
 	port 			= '/dev/pts/14'
 	baudrate 		= 9600
