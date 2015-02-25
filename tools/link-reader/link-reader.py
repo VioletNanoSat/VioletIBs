@@ -117,6 +117,9 @@ from time import sleep
 import serial
 from termcolor import colored
 
+from vcp import *
+from lithium import *
+
 class SerialReader:
 	'''
 	SerialReader class that reads internal Violet packets.
@@ -129,9 +132,7 @@ class SerialReader:
 
 	colors=['red','green','yellow','blue','magenta','cyan']
 
-	VCP_ESCAPE 	= chr(0xC0)
-	LI_H 		= chr(0x48)
-	LI_e 		= chr(0x65)
+
 
 
 	def __init__(self,port,chunk_size,link_message,baudrate=9600,timeout=1,
