@@ -77,7 +77,29 @@ class RadioPathTester():
 		print 'FC Test Path Complete'
 
 	def test_to_pwb(self):
-		pass
+		print 'The Radio UART is located at {r}. The PWB UART is located at {p}.'.format(r=radio_uart,p='power_uart')
+		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
+		print 'Connect the TX pin of the RS-232 spare to the TX of the Power UART.'
+		print ''
+		raw_input('Press Enter to begin PWB Test')
+		radio_packets				= self.populate_radio_packets('pwb')
+		verification_packets		= self.verify_radio_packets('pwb')
+		correct_packets = 0
+		for pair in zip(radio_packets,verification_packets):
+			send, recv = pair
+			self.test_port.write(unhexlify(send))
+			actual = self.test_port.read(len(recv)/2)
+			if unhexlify(recv) == actual:
+				correct_packets += 1
+				print 'Received Correct Packet {}'.format(correct_packets)
+			else:
+				print 'Sent Packet:'
+				print send
+				print 'Received: '
+				print re.findall('..?',actual)
+				print 'Expected: '
+				print recv
+		print 'FC Test Path Complete'
 
 	def test_to_cdh(self):
 		pass
