@@ -221,13 +221,13 @@ class LinkReader:
 			if 'vcp' in packet_type:
 				while 1:
 					escape = self.reader.read()
-					if escape != VCP_ESCAPE:
+					if escape != chr(VCP_FEND):
 						if escape != '':
 							print colored('PACKET DOES NOT START WITH FEND','red')
 						continue
 					packet = [escape]
 					next_byte = None
-					while next_byte != VCP_ESCAPE:
+					while next_byte != chr(VCP_FEND):
 						next_byte = self.reader.read()
 						packet.append(next_byte)
 					datum = ''.join(packet)

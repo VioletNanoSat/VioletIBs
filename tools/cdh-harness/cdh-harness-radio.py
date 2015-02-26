@@ -1,4 +1,5 @@
 import sys
+import serial
 from subprocess import check_output
 from binascii import unhexlify
 import re
@@ -27,8 +28,7 @@ class RadioPathTester():
 
 	def populate_radio_packets(self,path):
 		if 'fc' in path:
-			ret = []
-			ret.append('18ffdead')
+			ret = [[0x18,0xff,0xde,0xad]]
 		elif 'pwb' in path:
 			pass
 		elif 'cdh' in path:
@@ -36,12 +36,12 @@ class RadioPathTester():
 		else:
 			Sys.exit('Path is invalid: ' + path)
 
-		return map(unhexlify,[wrap_vcp(entry,path) for entry in ret])
+		return [wrap_vcp(hexlify(''.join([chr(x) for x in entry])),path) for entry in ret]
 
 	def verify_radio_packets(self,path):
 		if 'fc' in path:
 			ret = []
-			ret.append('18ffdead')
+			ret.append([0x18,0xff,0xde,0xad])
 		elif 'pwb' in path:
 			pass
 		elif 'cdh' in path:
@@ -49,21 +49,22 @@ class RadioPathTester():
 		else:
 			Sys.exit('Path is invalid: ' + path)
 
-		return map(unhexlify,[wrap_vcp(entry,'radio') for entry in ret])
+		return [wrap_vcp(hexlify(''.join([chr(x) for x in entry])),'radio') for entry in ret]
 
 	def test_to_fc(self,radio_uart,fc_uart):
 		print 'The Radio UART is located at {r}. The FC UART is located at {f}'.format(r=radio_uart,f=fc_uart)
 		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
 		print 'Connect the TX pin of the RS-232 spare to the TX of the FC UART'
-		raw_input('Press Enter to continue')
+		print ''
+		raw_input('Press Enter to begin FC Test')
 		radio_packets				= self.populate_radio_packets('fc')
 		verification_packets		= self.verify_radio_packets('fc')
 		correct_packets = 0
 		for pair in zip(radio_packets,verification_packets):
 			send, recv = pair
-			self.test_port.write(''.join(send))
-			actual = self.test_port.read(len(recv))
-			if ''.join(recv) == actual:
+			self.test_port.write(unhexlify(send))
+			actual = self.test_port.read(len(recv)/2)
+			if unhexlify(recv) == actual:
 				correct_packets += 1
 				print 'Received Correct Packet {}'.format(correct_packets)
 			else:
@@ -73,6 +74,7 @@ class RadioPathTester():
 				print re.findall('..?',actual)
 				print 'Expected: '
 				print recv
+		print 'FC Test Path Complete'
 
 	def test_to_pwb(self):
 		pass
@@ -108,5 +110,5 @@ class RadioPathTester():
 
 if __name__ == '__main__':
 	print 'RadioPathTester Tester:\n'
-	tester = RadioPathTester(None)
+	tester = RadioPathTester(serial.Serial(port='/dev/pts/4'))
 	tester.run_full_test()
