@@ -1,0 +1,5 @@
+To Compile to .so
+
+gcc -c fpic -IPython-3.2.3/Inlucde -o -std=c99 cdh_gps.c
+
+gcc -shared -lc -IPython-3.2.3/Include -o cdh_gps2.so cdh_gps2.o

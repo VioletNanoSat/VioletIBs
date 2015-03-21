@@ -1,0 +1,503 @@
+  set_component(svit_index++,
+                SPECTROMETER, /* name */
+				SW_EN7,       /* switch_num */
+				SW_OFF,       /* switch_state */
+				MUX1,         /* V_mux_num */
+				11,           /* V_mux_sel */
+				255,          /* V_upper_limit */
+				MUX1,         /* I_mux_num */
+				6,            /* I_mux_sel */
+				255,          /* I_upper_limit */
+				MUX_NULL,     /* T_mux_num */
+				0,            /* T_mux_sel */
+				255);         /* T_upper_limit */
+
+  set_component(svit_index++,
+                STAR_TRACKER, /* name */
+				SW_EN8,       /* switch_num */
+				SW_OFF,       /* switch_state */
+				MUX1,         /* V_mux_num */
+				23,           /* V_mux_sel */
+				255,          /* V_upper_limit */
+				MUX1,         /* I_mux_num */
+				7,            /* I_mux_sel */
+				255,          /* I_upper_limit */
+				MUX2,         /* T_mux_num */
+				7,            /* T_mux_sel */
+				255);         /* T_upper_limit */
+
+  set_component(svit_index++,
+                FC_5V,        /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                FC_3_3V, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                GPS_1, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                GPS_2, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                CDH_IB, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                HEATER_1, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                HEATER_2, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                CMG, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SUN_SENSOR, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                RADIO_1, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                RADIO_2, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                MAESTRO, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                MAGNETOM, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                FOG_15V, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                FOG_5V, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                TORQUER_1, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                TORQUER_2, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                TORQUER_3, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                BATTERY_1, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                BATTERY_2, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_FULL, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_1, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_2, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_3, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_4, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_5, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_6, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_7, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_8, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_9, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_10, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_11, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                SOLAR_12, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
+
+  set_component(svit_index++,
+                POWER_BOARD, /* name */
+				0,            /* switch_num */
+				0,            /* switch_state */
+				0,            /* V_mux_num */
+				0,            /* V_mux_sel */
+				0,            /* V_upper_limit */
+				0,            /* I_mux_num */
+				0,            /* I_mux_sel */
+				0,            /* I_upper_limit */
+				0,            /* T_mux_num */
+				0,            /* T_mux_sel */
+				0);           /* T_upper_limit */
