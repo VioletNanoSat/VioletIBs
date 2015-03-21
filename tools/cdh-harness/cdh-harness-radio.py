@@ -69,11 +69,11 @@ class RadioPathTester():
 				print 'Received Correct Packet {}'.format(correct_packets)
 			else:
 				print 'Sent Packet:'
-				print send
+				print '0x'+' 0x'.join(a+b for a,b in zip(send[::2],send[1::2]))
 				print 'Received: '
-				print re.findall('..?',actual)
+				print '0x'+' 0x'.join(a+b for a,b in zip(hexlify(actual)[::2],hexlify(actual)[1::2]))
 				print 'Expected: '
-				print recv
+				print '0x'+' 0x'.join(a+b for a,b in zip(recv[::2],recv[1::2]))
 		print 'FC Test Path Complete'
 
 	def test_to_pwb(self):
@@ -94,12 +94,13 @@ class RadioPathTester():
 				print 'Received Correct Packet {}'.format(correct_packets)
 			else:
 				print 'Sent Packet:'
-				print send
+
+				print '0x'+' 0x'.join(a+b for a,b in zip(send[::2],send[1::2]))
 				print 'Received: '
-				print re.findall('..?',actual)
+				print '0x'+' 0x'.join(a+b for a,b in zip(hexlify(actual)[::2],hexlify(actual)[1::2]))
 				print 'Expected: '
-				print recv
-		print 'FC Test Path Complete'
+				print '0x'+' 0x'.join(a+b for a,b in zip(recv[::2],recv[1::2]))
+		print 'Power Board Test Path Complete'
 
 	def test_to_cdh(self):
 		pass
@@ -132,5 +133,6 @@ class RadioPathTester():
 
 if __name__ == '__main__':
 	print 'RadioPathTester Tester:\n'
-	tester = RadioPathTester(serial.Serial(port='/dev/pts/4'))
+	tester = RadioPathTester(serial.Serial(port='/dev/ttyUSB0',baudrate=9600,
+		timeout=10))
 	tester.run_full_test()

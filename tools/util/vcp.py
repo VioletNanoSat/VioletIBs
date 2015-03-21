@@ -2,9 +2,12 @@
 This module contains VCP constants and VCP functions
 
 Functions include checksum generation and verification.
+Uses cristianav's PyCRC library for CRC16 checksum generation
+Usage covered under GPLv3 license
 '''
 
 from binascii import hexlify,unhexlify
+from CRC16 import CRC16
 
 
 VCP_FEND 			= 0xC0
@@ -24,12 +27,10 @@ VCP_ADDR_RADIO_2	= 0x05
 VCP_CDH				= VCP_CDH_MCU_2
 VCP_RADIO			= VCP_ADDR_RADIO_2
 
+crc_calculator		= CRC16() 
+
 def wrap_vcp(hex_str,address):
 	binaries = [ord(unit) for unit in unhexlify(hex_str)]
-	chk_a,chk_b = get_checksum(binaries)
-	binaries.append(chk_a)
-	binaries.append(chk_b)
-	binaries.append(VCP_FEND)
 
 	if 'pwb' in address:
 		binaries.insert(0,VCP_POWER)
@@ -49,18 +50,19 @@ def wrap_vcp(hex_str,address):
 		print 'Unknown VCP Address'
 		return []
 
+	chk_a,chk_b = get_checksum(binaries)
+
+	binaries.append(chk_a)
+	binaries.append(chk_b)
+	binaries.append(VCP_FEND)
 	binaries.insert(0,VCP_FEND)
+
 	return hexlify(''.join(map(chr,binaries)))
 
 
 def get_checksum(binary):
-	chk_a = 0
-	chk_b = 0
-	for byte in binary:
-		chk_a = chk_a + byte
-		chk_b = chk_b + chk_a
-
-	return (chk_a & 0xFF,chk_b & 0xFF)
+	crc = crc_calculator.calculate(''.join([chr(x) for x in binary]))
+	return ((crc >> 8) & 0xff,crc & 0xff)
     
 
 if __name__ == '__main__':
