@@ -40,6 +40,7 @@ void fc_task						(void);				///< See tasks.c
 void ths_task						(void);				///< See tasks.c
 void cdhib_task						(void);				///< See tasks.c
 void tcap_task						(void);				///< See tasks.c
+void kamakaze_send					(void);				///< See tasks.c
 #ifdef STAR_UART
 void star_task						(void);				///< See tasks.c
 #endif

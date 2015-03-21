@@ -167,7 +167,7 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 		Peripheral->VCP_rx_status = Receive_VCP_byte(&(Peripheral->vcp_rx_msg), rx_byte);
 
 		if (Peripheral->VCP_rx_status & VCP_NULL_ERR)	{}	// null buffer, will init and try again
-		if (Peripheral->VCP_rx_status & VCP_OVR_ERR		||	// received packet too long
+		/*if (Peripheral->VCP_rx_status & VCP_OVR_ERR		||	// received packet too long
 			Peripheral->VCP_rx_status & VCP_CRC_ERR		||	// CRC error
 			Peripheral->VCP_rx_status & VCP_ADDR_ERR	||	// Wrong VCP address
 			Peripheral->VCP_rx_status & VCP_ESC_ERR		)	// escaping error in packet
@@ -176,7 +176,29 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 			Peripheral->rejected_rx_packet_count++;
 			// kill VCP buffer
 			Peripheral->vcp_rx_msg.message = NULL;			
+		}*/
+		if (Peripheral->VCP_rx_status == VCP_OVR_ERR){
+			// Add to rejected received packet count
+			Peripheral->rejected_rx_packet_count++;
+			// kill VCP buffer
+			Peripheral->vcp_rx_msg.message = NULL;	
+		}else if(Peripheral->VCP_rx_status == VCP_CRC_ERR){
+			// Add to rejected received packet count
+			Peripheral->rejected_rx_packet_count++;
+			// kill VCP buffer
+			Peripheral->vcp_rx_msg.message = NULL;	
+		}else if(Peripheral->VCP_rx_status == VCP_ADDR_ERR){
+			// Add to rejected received packet count
+			Peripheral->rejected_rx_packet_count++;
+			// kill VCP buffer
+			Peripheral->vcp_rx_msg.message = NULL;	
+		}else if(Peripheral->VCP_rx_status == VCP_ESC_ERR){
+			// Add to rejected received packet count
+			Peripheral->rejected_rx_packet_count++;
+			// kill VCP buffer
+			Peripheral->vcp_rx_msg.message = NULL;	
 		}
+		
 		if (Peripheral->VCP_rx_status == VCP_TERM) // Done with no errors
 		{
 			// save received byte count
@@ -224,13 +246,15 @@ void read_Non_VCP_receive_buff(peripheral_t* Peripheral)
 		// Get byte from receive ring buffer
 		Peripheral->rx_data[Peripheral->rx_byte_count] = RingBuffer_Remove(&Peripheral->rx_ringbuff);
 		Peripheral->rx_byte_count++;
-	}	
+	}
 	
-	// Insert to fc transmit queue
-	Queue_RingBuffer_Insert(&fc_queue_ringbuff, Peripheral->VCP_address);	
+	if(Peripheral->rx_ringbuff.Count != 0){
+		// Insert to fc transmit queue
+		Queue_RingBuffer_Insert(&fc_queue_ringbuff, Peripheral->VCP_address);	
 	
-	// Add to received packet count
-	Peripheral->rx_packet_count++;	
+		// Add to received packet count
+		Peripheral->rx_packet_count++;	
+	}
 }
 
 /**
@@ -268,6 +292,62 @@ void DMA_transmit(peripheral_t*	Peripheral)
 		
 	// Add to transmit packet count
 	Peripheral->tx_packet_count++;
+}
+
+void Buffer_DMA_transmit()
+{
+	uint8_t buffer[7];
+	buffer[0]=0xc0;
+	buffer[1]=0x38;
+	buffer[2]=0x11;
+	buffer[3]=0xa0;
+	buffer[4]=0x1c;
+	buffer[5]=0x50;
+	buffer[6]=0xc0;
+	DMA_SetupBlock( sun.DMA_channel,
+					buffer,
+					DMA_CH_SRCRELOAD_NONE_gc,
+					DMA_CH_SRCDIR_INC_gc,
+					(void *)&sun.USART->DATA,
+					DMA_CH_DESTRELOAD_NONE_gc,
+					DMA_CH_DESTDIR_FIXED_gc,
+					7,
+					DMA_CH_BURSTLEN_1BYTE_gc,
+					0,
+					false);
+					
+	DMA_EnableChannel(sun.DMA_channel);
+	
+	sun.tx_packet_count++;
+}
+
+void Sun_DMA_transmit(peripheral_t* source, peripheral_t* destination)
+{
+	// Reset transmit data count to full buffer size
+	destination->tx_byte_count = destination->tx_data_buffer_size;
+	// create VCP frame in the peripheral transmit buffer
+	destination->VCP_tx_status = Create_VCP_frame(	destination->tx_data,
+													(uint16ptr)&destination->tx_byte_count,
+													destination->VCP_address,
+													source->rx_data,
+													source->rx_byte_count);
+
+	if (destination->VCP_tx_status == VCP_OVR_ERR)	{}
+	if (destination->VCP_tx_status == VCP_NULL_ERR)	{}
+	if (destination->VCP_tx_status == VCP_ADDR_ERR)	{}
+	if (destination->VCP_tx_status == VCP_TERM)			// Done with no errors
+	{
+
+		#ifndef DEBUG
+		// Reset the source received byte count
+		source->rx_byte_count = 0;
+		#endif
+		
+		
+		// Transmit with DMA
+		DMA_transmit(destination);
+	}
+
 }
 
 /**

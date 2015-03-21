@@ -43,6 +43,7 @@
 #define VCP_CDHIB_1			0x09	///< VCP Address of CDH IB MCU 1
 #define VCP_CDHIB_2			0x0A	///< VCP Address of CDH IB MCU 2
 #define	VCP_FC				0x0B 	///< VCP Address of Flight Computer
+#define VCP_BROKEN			0x0C
 #define VCP_SUN_SENSOR		0x38	///< VCP Address of Sun Sensor
 
 

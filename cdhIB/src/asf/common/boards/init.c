@@ -93,10 +93,16 @@ void clock_init	(void)
 	serial_options.baudrate =		RADIO_UART_BAUDRATE;
 	usart_serial_init				(radio.USART, &serial_options);
 	usart_set_rx_interrupt_level	(radio.USART,USART_RXCINTLVL_LO_gc);
+	radio.USART->BAUDCTRLA = 0x02;
+	radio.USART->BAUDCTRLB = 0x96;
 
 	serial_options.baudrate =		FC_UART_BAUDRATE;
 	usart_serial_init				(fc.USART, &serial_options);
 	usart_set_rx_interrupt_level	(fc.USART,USART_RXCINTLVL_LO_gc);
+	fc.USART->BAUDCTRLA = 0x02;
+	fc.USART->BAUDCTRLB = 0x96;
+	//fc.USART->BAUDCTRLA = 0x96;
+	//fc.USART->BAUDCTRLB = 0x90;
 	
 	#ifdef STAR_UART
 	serial_options.baudrate =		STAR_UART_BAUDRATE;
@@ -108,6 +114,8 @@ void clock_init	(void)
 	serial_options.baudrate =		SUN_UART_BAUDRATE;
 	usart_serial_init				(sun.USART, &serial_options);
 	usart_set_rx_interrupt_level	(sun.USART,USART_RXCINTLVL_LO_gc);
+	sun.USART->BAUDCTRLA = 0x96;    //Sun Baud = 57600
+	sun.USART->BAUDCTRLB = 0x90;
 	#endif
 	
 }	

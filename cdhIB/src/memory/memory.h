@@ -117,6 +117,8 @@ void dma_init					(void);												///< See memory.c
 void read_VCP_receive_buff		(peripheral_t* Peripheral);							///< See memory.c
 void read_Non_VCP_receive_buff	(peripheral_t* Peripheral);							///< See memory.c
 void DMA_transmit				(peripheral_t* Peripheral);							///< See memory.c
+void Buffer_DMA_transmit		(void);
 void VCP_DMA_transmit			(peripheral_t* source, peripheral_t* destination);	///< See memory.c
+void Sun_DMA_transmit			(peripheral_t* source, peripheral_t* destination);	///< See memory.c           
 void switch_to_ext_osc			(void);												///< See init.c
 #endif /* MEMORY_H_ */

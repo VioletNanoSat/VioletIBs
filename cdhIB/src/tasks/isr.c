@@ -12,7 +12,10 @@ volatile uint16_t mSeconds;						///< mSeconds counter
 volatile uint16_t THS_Seconds_counter;			///< THS Interval Seconds counter
 volatile uint16_t PWR_WDOG_Seconds_counter;		///< Power WatchDog Interval Seconds counter
 volatile uint16_t i,j;
-volatile Bool xosc_recovey;				
+volatile Bool xosc_recovey;
+volatile uint8_t flag;
+volatile uint8_t fendi;
+			
 
 /// External oscillator failure interrupt handler
 ISR(OSC_XOSCF_vect)
@@ -72,6 +75,7 @@ ISR(GPS_UART_RXC_vect)
 /// Radio USART Receive interrupt handler		
 ISR(RADIO_UART_RXC_vect)
 {
+	//flag++;
 	if (RingBuffer_IsFull(&radio.rx_ringbuff))
 	{
 		volatile uint8_t temp = radio.USART->DATA;					// clear interrupt flag
@@ -82,11 +86,13 @@ ISR(RADIO_UART_RXC_vect)
 	{
 		RingBuffer_Insert(&radio.rx_ringbuff, radio.USART->DATA);	// read received byte into the ring buffer
 	}
+
 }
 	
 /// FC USART Receive interrupt handler
 ISR(FC_UART_RXC_vect)
 {
+	flag++;
 	//uint8_t data;
 	if (RingBuffer_IsFull(&fc.rx_ringbuff))
 	{
@@ -96,9 +102,21 @@ ISR(FC_UART_RXC_vect)
 	}
 	else
 	{
-		RingBuffer_Insert(&fc.rx_ringbuff, fc.USART->DATA);			// read received byte into the ring buffer
+		/*if(fc.USART->DATA == 0xC0){
+			fendi++;
+		}else{
+			fendi = 0;
+		}
+		if(fendi<3){*/
+			RingBuffer_Insert(&fc.rx_ringbuff, fc.USART->DATA);			// read received byte into the ring buffer
+		//}
 		//data = fc.USART->DATA;
-	}		
+	}
+	if(flag == 8){
+		flag = 10;
+	}
+	
+	
 }
 
 #ifdef STAR_UART

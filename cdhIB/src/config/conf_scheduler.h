@@ -27,7 +27,7 @@
 	#define Scheduler_task_8        tcap_task
 	
 #elif defined MCU_CDH_2
-	#define Scheduler_task_1        power_task
+	//#define Scheduler_task_1        power_task
 	#define Scheduler_task_2        gps_task
 	#define Scheduler_task_3        radio_task
 	#define Scheduler_task_4        fc_task

@@ -37,7 +37,7 @@ void scheduler (void)
          Scheduler_task_4();
       #endif
       #ifdef Scheduler_task_5
-         //Scheduler_task_5();
+         Scheduler_task_5();
       #endif
       #ifdef Scheduler_task_6
          Scheduler_task_6();

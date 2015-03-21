@@ -111,12 +111,12 @@
 
 
 // Baud Rates for the different USARTS
-#define POWER_UART_BAUDRATE		115200		///< Power USART Baud rate
-#define GPS_UART_BAUDRATE		115200		///< GPS USART Baud rate
-#define RADIO_UART_BAUDRATE		115200		///< Radio USART Baud rate
-#define FC_UART_BAUDRATE		115200		///< Fligh Computer USART Baud rate
-#define STAR_UART_BAUDRATE		115200		///< Star Tracker USART Baud rate
-#define SUN_UART_BAUDRATE		57600		///< Sun Sensor USART Baud rate
+#define POWER_UART_BAUDRATE		9600		///< Power USART Baud rate
+#define GPS_UART_BAUDRATE		9600		///< GPS USART Baud rate
+#define RADIO_UART_BAUDRATE		9600		///< Radio USART Baud rate
+#define FC_UART_BAUDRATE		9600		///< Flight Computer USART Baud rate
+#define STAR_UART_BAUDRATE		9600		///< Star Tracker USART Baud rate NOT SURE THESE SHOULD BE 9600
+#define SUN_UART_BAUDRATE		57600		///< Sun Sensor USART Baud rate NOT SURE THESE SHOULD BE 9600
 
 
 #endif /* CONF_USART_SERIAL_H_INCLUDED */

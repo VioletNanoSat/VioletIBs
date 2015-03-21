@@ -33,31 +33,13 @@ uint16_t	num_of_debug_packets;
 void debug_task	(void)
 {
 
-	PORTA.OUTSET =	PIN2_bm;	
 	for(;;)
 	{
-		// test external and internal osc
-		
-		if (xosc_recovey)
-			switch_to_ext_osc ();
-		
-		if (OSC.STATUS & OSC_XOSCRDY_bm)
-			PORTA.OUTCLR =	PIN1_bm;
-		else
-			PORTA.OUTSET =	PIN1_bm;
-			
-		if (OSC.STATUS & OSC_RC32MRDY_bm)
-			PORTA.OUTCLR =	PIN2_bm;
-		else
-			PORTA.OUTSET =	PIN2_bm;
-			
-			
-			
-		power_task();
-		//gps_task();
+		radio_task();
 		fc_task();
-//		cdhib_task();
+		sun_task();
 	}
+
 	
 	
 	for(;;);	// Need this loop if running debug task so program can't exit
@@ -120,7 +102,6 @@ void power_task	(void)
  */
 void fc_task	(void)
 {
-	
 	read_VCP_receive_buff(&fc);
 	
 	if (fc.rx_data_ready)											// New data from FC ready
@@ -145,7 +126,8 @@ void fc_task	(void)
 		case VCP_SUN_SENSOR:
 			memcpy(sun.tx_data, fc.rx_data, fc.rx_byte_count);		// copy fc rx buffer to sun tx buffer
 			sun.tx_byte_count = fc.rx_byte_count;					// set block size
-			DMA_transmit(&sun);										// DMA
+			//Sun_DMA_transmit(&fc,&sun);								// DMA
+			Buffer_DMA_transmit();
 			break;
 		#endif	
 		case VCP_RADIO:
@@ -157,6 +139,7 @@ void fc_task	(void)
 			break;
 		default:
 			// Unknown address.
+			Queue_RingBuffer_Insert(&radio_queue_ringbuff, VCP_BROKEN);	// Insert to radio transmit queue
 			break;
 		}
 	}
@@ -289,6 +272,12 @@ void cdhib_task	(void)
 	}
 }
 
+void kamakaze_send(void)
+{
+	
+	
+}
+
 
 /**
  * Name         : radio_task
@@ -303,7 +292,6 @@ void cdhib_task	(void)
  */
 void radio_task	(void)
 {
-	
 	read_VCP_receive_buff(&radio); // receive radio data here
 	
 	if (radio.rx_data_ready)	// New data from Radio ready
@@ -363,9 +351,17 @@ void radio_task	(void)
 			VCP_DMA_transmit(&cdhib, &radio);	// build VCP frame and transmit with DMA
 			
 		}			
-		else	
+		else if (source_vcp_address == VCP_BROKEN)
 		{
-			// something's wrong with the queue data
+			radio.tx_data[0] = FEND;
+			radio.tx_data[1] = VCP_FC;
+			radio.tx_data[2] = 0x01;
+			radio.tx_data[3] = 0x02;
+			radio.tx_data[4] = 0x40;
+			radio.tx_data[5] = 0x80;
+			radio.tx_data[6] = FEND;
+			radio.tx_byte_count = 7;
+			DMA_transmit(&radio);
 		}
 		
 		// transmit to radio here...
@@ -453,8 +449,9 @@ void star_task	(void)
 void sun_task	(void)
 {
 	// check if the buffer is free before writing to it
-	if (sun.rx_byte_count == 0)
+	//if (sun.rx_byte_count == 0)
 		read_Non_VCP_receive_buff(&sun);
+		
 }
 #endif
 
