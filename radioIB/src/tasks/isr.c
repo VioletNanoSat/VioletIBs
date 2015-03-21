@@ -45,7 +45,6 @@ ISR(TCC0_OVF_vect)
 /// Radio USART Receive interrupt handler		
 ISR(RADIO_UART_RXC_vect)
 {
-	flag++;
 	if (RingBuffer_IsFull(&radio.rx_ringbuff))
 	{
 		volatile uint8_t temp = radio.USART->DATA;					// clear interrupt flag
@@ -57,9 +56,6 @@ ISR(RADIO_UART_RXC_vect)
 		//if(radio.USART->DATA != 0xC0){
 			RingBuffer_Insert(&radio.rx_ringbuff, radio.USART->DATA);	// read received byte into the ring buffer
 		//}
-	}
-	if(flag == 300){
-		flag = 0;
 	}
 
 }

@@ -302,7 +302,12 @@ void read_radio_receive_buff	(void)
 		}
 		ctr++;
 	}
-	cdhib.tx_byte_count = ctr;
+	
+	if(ctr != 0)
+	{
+		cdhib.tx_byte_count = ctr;
+	}
+	
 }
 	
 
