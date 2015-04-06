@@ -142,6 +142,7 @@ void dma_init (void)
  *				  When data is ready, raises flag or inserts an entry to the FC or Radio queue.
  * 
  */
+uint8_t errz = 0;
 void read_VCP_receive_buff(peripheral_t* Peripheral)
 {
 	/*volatile uint8_t stuff = 0;
@@ -166,7 +167,9 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 		// decode VCP
 		Peripheral->VCP_rx_status = Receive_VCP_byte(&(Peripheral->vcp_rx_msg), rx_byte);
 
-		if (Peripheral->VCP_rx_status & VCP_NULL_ERR)	{}	// null buffer, will init and try again
+		if (Peripheral->VCP_rx_status == VCP_NULL_ERR)	{
+			errz++;	
+		}	// null buffer, will init and try again
 		/*if (Peripheral->VCP_rx_status & VCP_OVR_ERR		||	// received packet too long
 			Peripheral->VCP_rx_status & VCP_CRC_ERR		||	// CRC error
 			Peripheral->VCP_rx_status & VCP_ADDR_ERR	||	// Wrong VCP address
@@ -238,6 +241,7 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
  *				  and inserts an entry to the FC queue.
  * 
  */
+uint8_t haveQueued = 0;
 void read_Non_VCP_receive_buff(peripheral_t* Peripheral)
 {
 	
@@ -246,12 +250,16 @@ void read_Non_VCP_receive_buff(peripheral_t* Peripheral)
 		// Get byte from receive ring buffer
 		Peripheral->rx_data[Peripheral->rx_byte_count] = RingBuffer_Remove(&Peripheral->rx_ringbuff);
 		Peripheral->rx_byte_count++;
+		//haveQueued = 1;
+		haveQueued++;
 	}
 	
-	if(Peripheral->rx_ringbuff.Count != 0){
+	//if(Peripheral->rx_byte_count != 0){
+	if(haveQueued > 0){
 		// Insert to fc transmit queue
+		haveQueued = 0;
 		Queue_RingBuffer_Insert(&fc_queue_ringbuff, Peripheral->VCP_address);	
-	
+	    //Peripheral->rx_byte_count = 0;
 		// Add to received packet count
 		Peripheral->rx_packet_count++;	
 	}
@@ -294,6 +302,7 @@ void DMA_transmit(peripheral_t*	Peripheral)
 	Peripheral->tx_packet_count++;
 }
 
+#ifdef SUN_UART 
 void Buffer_DMA_transmit()
 {
 	uint8_t buffer[7];
@@ -320,6 +329,8 @@ void Buffer_DMA_transmit()
 	
 	sun.tx_packet_count++;
 }
+
+#endif
 
 void Sun_DMA_transmit(peripheral_t* source, peripheral_t* destination)
 {
@@ -362,6 +373,7 @@ void Sun_DMA_transmit(peripheral_t* source, peripheral_t* destination)
  *				  to a destination peripheral tx buffer in VCP frame and transmit using DMA
  * 
  */
+uint8_t errd = 0;
 void VCP_DMA_transmit(peripheral_t* source, peripheral_t* destination)
 {
 	// Reset transmit data count to full buffer size
@@ -374,9 +386,15 @@ void VCP_DMA_transmit(peripheral_t* source, peripheral_t* destination)
 													source->rx_data, 
 													source->rx_byte_count);
 
-	if (destination->VCP_tx_status == VCP_OVR_ERR)	{}
-	if (destination->VCP_tx_status == VCP_NULL_ERR)	{}
-	if (destination->VCP_tx_status == VCP_ADDR_ERR)	{}
+	if (destination->VCP_tx_status == VCP_OVR_ERR)	{
+		errd++;
+	}
+	if (destination->VCP_tx_status == VCP_NULL_ERR)	{
+		errd++;
+	}
+	if (destination->VCP_tx_status == VCP_ADDR_ERR)	{
+		errd++;
+	}
 	if (destination->VCP_tx_status == VCP_TERM)			// Done with no errors
 	{
 

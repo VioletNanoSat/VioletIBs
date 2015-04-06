@@ -105,10 +105,14 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
 		}
 		
 		// Check if the frame fits in the dst buffer 
-		if (dst_index >= *dst_size - 1)
-			return VCP_OVR_ERR;
+		//if (dst_index >= *dst_size - 1){
+			//return VCP_OVR_ERR;
+		//}
 	}
-	
+	if (dst_index >= *dst_size - 1){
+		//return VCP_OVR_ERR;
+		dst_index = *dst_size - 3;
+	}
 	// End the frame with FEND
 	dst[dst_index++] =					FEND;
 	
@@ -157,7 +161,9 @@ uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 			break;
 		case VCP_ADDRESS:
 			// Check for invalid VCP address
-			if (byte > VCP_FC && byte != VCP_SUN_SENSOR)
+			if(byte == FEND){
+				buff->status = VCP_ADDRESS;
+			}else if (byte > VCP_FC && byte != VCP_SUN_SENSOR)
 				return VCP_ADDR_ERR;
 			else
 			{

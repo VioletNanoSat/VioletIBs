@@ -37,7 +37,9 @@ void debug_task	(void)
 	{
 		radio_task();
 		fc_task();
-		sun_task();
+		star_task();
+		//sun_task();
+		//gps_task();
 	}
 
 	
@@ -272,11 +274,7 @@ void cdhib_task	(void)
 	}
 }
 
-void kamakaze_send(void)
-{
-	
-	
-}
+
 
 
 /**
@@ -431,8 +429,8 @@ void ths_task	(void)
 void star_task	(void)
 {
 	// check if the buffer is free before writing to it
-	if (star.rx_byte_count == 0)
-		read_Non_VCP_receive_buff(&star);
+	//if (star.rx_byte_count == 0)
+	read_Non_VCP_receive_buff(&star);
 }	
 #endif
 

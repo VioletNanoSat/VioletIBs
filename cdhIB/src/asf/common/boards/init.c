@@ -108,6 +108,8 @@ void clock_init	(void)
 	serial_options.baudrate =		STAR_UART_BAUDRATE;
 	usart_serial_init				(star.USART, &serial_options);
 	usart_set_rx_interrupt_level	(star.USART,USART_RXCINTLVL_LO_gc);
+	star.USART->BAUDCTRLA = 0x01;
+	star.USART->BAUDCTRLB = 0xD0;
 	#endif
 	
 	#ifdef SUN_UART

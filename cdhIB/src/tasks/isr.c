@@ -15,6 +15,7 @@ volatile uint16_t i,j;
 volatile Bool xosc_recovey;
 volatile uint8_t flag;
 volatile uint8_t fendi;
+uint8_t pax = 0;
 			
 
 /// External oscillator failure interrupt handler
@@ -109,6 +110,7 @@ ISR(FC_UART_RXC_vect)
 		}
 		if(fendi<3){*/
 			RingBuffer_Insert(&fc.rx_ringbuff, fc.USART->DATA);			// read received byte into the ring buffer
+			pax++;
 		//}
 		//data = fc.USART->DATA;
 	}
@@ -132,6 +134,7 @@ ISR(FC_UART_RXC_vect)
 		else
 		{
 			RingBuffer_Insert(&star.rx_ringbuff, star.USART->DATA);	// read received byte into the ring buffer
+			pax++;
 		}				
 	}
 #endif

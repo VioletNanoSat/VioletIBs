@@ -345,8 +345,10 @@ bool usart_set_baudrate(USART_t *usart, uint32_t baud, uint32_t cpu_hz)
 
 	//(usart)->BAUDCTRLB = (uint8_t)(((div >> 8) & 0X0F) | (exp << 4));
 	//(usart)->BAUDCTRLA = (uint8_t)div;
-	(usart)->BAUDCTRLA = 0x01;
-	(usart)->BAUDCTRLB = 0xD0;
+	//(usart)->BAUDCTRLA = 0x01;
+	//(usart)->BAUDCTRLB = 0xD0;
+	(usart)->BAUDCTRLA = 0x02;
+	(usart)->BAUDCTRLB = 0x96;
 
 	return true;
 }
