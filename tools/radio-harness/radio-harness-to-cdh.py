@@ -28,15 +28,35 @@ class RadioToCDHTester():
 
 	def populate_fc_packets(self):
 		packets = [[0x18,0xff,0x01,0x05]]
-		return [wrap_lithium(hexlify(''.join([chr(x) for x in entry])),True) for entry in packets]
+		return packets,[wrap_lithium(hexlify(''.join([chr(x) for x in entry])),True) for entry in packets]
+
+	def verify_fc_packets(self,packets):
+		return [wrap_vcp(hexlify(''.join([chr(x) for x in entry])),VCP_FC) for entry in packets]
 
 	def send_packets_to_fc(self,radio_uart,cdh_uart):
 		print 'The Radio UART is located at {r}. The CDH UART is located at {c}.'.format(r=radio_uart,c=cdh_uart)
 		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
 		print 'Connect the TX pin of the RS-232 Spare to the TX of the CDH UART.'
 
-		
+		bare_packets,test_packets = self.populate_fc_packets()
+		verification_packets = self.verify_fc_packets(bare_packets)
+		correct_packets = 0
+		for pair in zip(test_packets,verification_packets):
+			send,recv = pair
+			self.test_port.write(unhexlify(send))
+			actual = self.test_port.read(len(recv)/2)
+			if unhexlify(recv) == actual:
+				correct_packets += 1
+				print 'Received Correct Packet {}'.format(correct_packets)
+			else:
+				print 'Sent Packet:'
+				print '0x'+' 0x'.join(a+b for a,b in zip(send[::2],send[1::2]))
+				print 'Received: '
+				print '0x'+' 0x'.join(a+b for a,b in zip(hexlify(actual)[::2],hexlify(actual)[1::2]))
+				print 'Expected: '
+				print '0x'+' 0x'.join(a+b for a,b in zip(recv[::2],recv[1::2]))
 
+		print 'FC Packets Complete'
 
 
 	def run_full_test(self):
