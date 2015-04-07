@@ -157,10 +157,11 @@ uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 			break;
 		case VCP_ADDRESS:
 			// Check for invalid VCP address
-			if (byte > VCP_FC && byte != VCP_SUN_SENSOR)
+			if(byte == FEND){
+				buff->status = VCP_ADDRESS;
+			}else if (byte > VCP_FC && byte != VCP_SUN_SENSOR){
 				return VCP_ADDR_ERR;
-			else
-			{
+			}else {
 				buff->address = byte;
 				buff->status = VCP_RECEIVING;
 			}	
