@@ -1,7 +1,7 @@
 import sys
 import serial
 from subprocess import check_output
-from binascii import unhexlify
+from binascii import unhexlify,hexlify
 
 sys.path.append('../util/')
 from vcp import *

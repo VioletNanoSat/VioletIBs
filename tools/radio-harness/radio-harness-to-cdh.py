@@ -1,5 +1,11 @@
 import sys
 import serial
+from subprocess import check_output
+from binascii import unhexlify
+
+sys.path.append('../util/')
+from vcp import *
+from lithium import *
 
 class RadioToCDHTester():
 	'''
@@ -20,8 +26,17 @@ class RadioToCDHTester():
 	def __init__(self,serial):
 		self.test_port = serial
 
-	def send_packets_to_fc(self):
-		pass
+	def populate_fc_packets(self):
+		packets = [[0x18,0xff,0x01,0x05]]
+		return [wrap_lithium(hexlify(''.join([chr(x) for x in entry])),True) for entry in packets]
+
+	def send_packets_to_fc(self,radio_uart,cdh_uart):
+		print 'The Radio UART is located at {r}. The CDH UART is located at {c}.'.format(r=radio_uart,c=cdh_uart)
+		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
+		print 'Connect the TX pin of the RS-232 Spare to the TX of the CDH UART.'
+
+		
+
 
 
 	def run_full_test(self):
@@ -29,11 +44,28 @@ class RadioToCDHTester():
 		print 'There are only 2 type of packet that comes in.'
 		print 'One packet is [LI | AX-25 | CCSDS | AX-25 Footer | LI Footer] and'
 		print 'The other packet is [LI | AX-25 | CCSDS Command | AX-25 Footer | LI-Footer]'
-		print 'We will test both types of packets.'
+		print 'We will test both types of packets.\n\n'
 
 		# Make sure version you are running is latest commit.
 		latest_commit = check_output(['git','log','--pretty=format:"%h"']).split('\n')[0]
-		self.send_packets_to_fc()
+		with open('../../radioIB/src/config/conf_usart_serial.h','r') as f:
+			uarts = (''.join(f.readlines()).split('BEGIN UARTS')[1]).split('END_UARTS')[0].split('\n')
+
+		print 'Latest commit is {}. Make sure the code being tested is ON THIS COMMIT!!!'.format(latest_commit)
+
+		radio_uart 	= ''
+		cdh_uart 	= ''
+
+		for uart in uarts:
+			if 'RADIO_UART' in uart and radio_uart == '':
+				radio_uart = uart.split('\t')[-1]
+			elif 'CDHIB_UART' in uart and cdh_uart == '':
+				cdh_uart = uart.split('\t')[-1]
+
+		print 'Testing First Type of Packets'
+		self.send_packets_to_fc(radio_uart,cdh_uart)
+
+
 
 
 if __name__ == '__main__':

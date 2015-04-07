@@ -50,6 +50,7 @@
  *
 */
 
+// BEGIN UARTS
 // Radio
 #define RADIO_UART 							USARTC0
 #define RADIO_UART_RXC_vect					USARTC0_RXC_vect
@@ -58,7 +59,7 @@
 #define CDHIB_UART 							USARTD0
 #define CDHIB_UART_RXC_vect					USARTD0_RXC_vect
 #define DMA_CH_TRIGSRC_CDHIB_UART_DRE_gc	DMA_CH_TRIGSRC_USARTD0_DRE_gc
-
+// END UARTS
 
 // Baud Rates for the different USARTS
 #define RADIO_UART_BAUDRATE		9600		///< Radio USART Baud rate
