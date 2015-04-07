@@ -235,8 +235,10 @@ class LinkReader:
 			elif 'lithium' in packet_type:
 				while 1:
 					h = self.reader.read()
-					if h != LI_H:
+					if h != LI_H and len(h) > 0:
 						print colored('Li SYNC H DOES NOT MATCH','red')
+						continue
+					elif len(h) == 0:
 						continue
 					packet = [h]
 
@@ -292,7 +294,7 @@ if __name__ == '__main__':
 	timeout 		= 5
 	parity 			= serial.PARITY_NONE
 	bytesize 		= serial.EIGHTBITS
-	chunk_size 		= 9
+	chunk_size 		= None
 	link_message 	= 'No message supplied' 
 	packet_type 	= ''
 	windows			= False
