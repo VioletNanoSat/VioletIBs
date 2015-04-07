@@ -1,8 +1,5 @@
 import sys
-
-port 		= None
-baudrate 	= None
-timeout 	= None
+import serial
 
 def test_fc_path(cdh_port):
 	pass
@@ -79,4 +76,4 @@ if __name__ == '__main__':
 		test_star_tracker_path(cdh)
 	else:
 		sys.exit('Unknown test path: {}'.format(path))
-	print 'Test Complete'
+	print 'Full CDHIB Test Complete'

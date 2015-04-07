@@ -1,0 +1,32 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exclude_patterns": [".svn",
+				".git"],
+			"file_exclude_patterns": [
+				"*.jar",
+				"*.out",
+				"*.log",
+				"*.pdf",
+				"*.synctex.gz",
+				"*.aux",
+				"*.avrgccproj",
+				"*.config",
+				"*.atsln",
+				"*.atsuo",
+				"*.cproj",
+				"*.jpg"]
+		}
+	],
+	"settings":
+	{
+		"rulers":
+		[
+			100
+		],
+		"translate_tabs_to_spaces": false,
+		"tab_size": 4
+	}
+}
