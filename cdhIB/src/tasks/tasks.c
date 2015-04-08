@@ -37,7 +37,7 @@ void debug_task	(void)
 	{
 		radio_task();
 		fc_task();
-		star_task();
+		//star_task();
 		//sun_task();
 		//gps_task();
 	}
