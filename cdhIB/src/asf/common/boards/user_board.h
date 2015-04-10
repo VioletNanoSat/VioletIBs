@@ -14,6 +14,7 @@
  * pins.
  */
 
+extern void adc_init			(void); ///< See init.c
 extern void interrupts_init		(void);	///< See init.c
 extern void usart_init			(void);	///< See init.c
 extern void io_init				(void);	///< See init.c

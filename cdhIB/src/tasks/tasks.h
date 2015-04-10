@@ -33,6 +33,7 @@ volatile extern Bool xosc_recovey;						///< Flag for attempt to recover from ex
 #define		VCP_BAD_ADDRESS			0xAA 
 
 
+void mag_task						(void);				///< See tasks.c
 void power_task						(void);				///< See tasks.c			
 void gps_task						(void);				///< See tasks.c
 void radio_task						(void);				///< See tasks.c

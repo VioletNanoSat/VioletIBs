@@ -7,6 +7,7 @@
 
 #include <asf.h>
 #include "tasks.h"
+#include "../adc_driver.h"
 
 
 #ifdef DEBUG
@@ -19,6 +20,11 @@ Bool		debug_check = false;
 uint16_t	num_of_debug_packets;
 
 #endif
+
+//ADC Variables
+int16_t ADC_result;
+// Offset is supposed to be defined in init.c. This line is just a placeholder so we can compile.
+uint16_t offset=0;
 
 
 #ifdef DEBUG
@@ -37,6 +43,7 @@ void debug_task	(void)
 	{
 		radio_task();
 		fc_task();
+		mag_task();
 		//star_task();
 		//sun_task();
 		//gps_task();
@@ -48,6 +55,22 @@ void debug_task	(void)
 }
 #endif // DEBUG
 
+/**
+ * Name         : mag_task
+ *
+ * Synopsis     : void mag_task	(void)
+ *
+ * Description  : Magnetometer Task 
+ * 
+ */
+
+void mag_task	(void)
+{
+	ADC_Ch_Conversion_Start(&ADCB.CH0);
+	while(!ADC_Ch_Conversion_Complete(&ADCB.CH0));
+	ADC_result = ADC_ResultCh_GetWord_Signed(&ADCB.CH0, offset);
+
+}
 
 /**
  * Name         : gps_task
