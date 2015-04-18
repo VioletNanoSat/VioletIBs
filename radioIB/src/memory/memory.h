@@ -53,6 +53,12 @@ typedef struct {
 	uint16_t					radio_packet_size;
 	uint8_t						dest_address;
 	uint8_t						rejected_packets; 
+	
+	
+	//debug stuff
+	uint8_t                     first_command;
+	uint8_t                     he_fail;
+	uint8_t                     radio_ack;
 
 	#ifdef DEBUG
 		uint8_t					tx_LED_pin;					///< DEUBG - STK LED pin	

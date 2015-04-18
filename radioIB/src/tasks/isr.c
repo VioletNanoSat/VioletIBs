@@ -45,6 +45,7 @@ ISR(TCC0_OVF_vect)
 /// Radio USART Receive interrupt handler		
 ISR(RADIO_UART_RXC_vect)
 {
+	flag++;
 	if (RingBuffer_IsFull(&radio.rx_ringbuff))
 	{
 		volatile uint8_t temp = radio.USART->DATA;					// clear interrupt flag
@@ -57,12 +58,16 @@ ISR(RADIO_UART_RXC_vect)
 			RingBuffer_Insert(&radio.rx_ringbuff, radio.USART->DATA);	// read received byte into the ring buffer
 		//}
 	}
+	if(flag == 15){
+		flag=0;
+	}
 
 }
 	
 /// CDHIB USART Receive interrupt handler
 ISR(CDHIB_UART_RXC_vect)
 {
+	//flag++;
 	if (RingBuffer_IsFull(&cdhib.rx_ringbuff))
 	{
 		volatile uint8_t temp = cdhib.USART->DATA;						// clear interrupt flag
@@ -72,5 +77,6 @@ ISR(CDHIB_UART_RXC_vect)
 	else
 	{
 		RingBuffer_Insert(&cdhib.rx_ringbuff, cdhib.USART->DATA);			// read received byte into the ring buffer
-	}		
+	}
+	
 }

@@ -229,79 +229,117 @@ void send_radio_error(void)
 void read_radio_receive_buff	(void)
 {
 	uint16_t ctr = cdhib.tx_byte_count;
-	// read only if packet not already queued to go out
 	while(!RingBuffer_IsEmpty(&radio.rx_ringbuff))
 	{
 		// read byte
 		uint8_t rx_byte = RingBuffer_Remove(&radio.rx_ringbuff);
 		
 		//random errors
-		if(ctr == 0 && rx_byte != HE)
+		if(ctr == 0)
 		{
+			cdhib.radio_ack = 0;
+			if(rx_byte != HE){
+				cdhib.he_fail = 1;
+			}else if(rx_byte == HE){
+				cdhib.he_fail = 0;
+			}
 			//cdhib.tx_status = HE_ERR;
 			//send_radio_error();
 		}
+		
 		else if(ctr == 1 && rx_byte != LO)
 		{
 			//cdhib.tx_status = LO_ERR;
 			//send_radio_error();
 		}
 		
-		if(ctr == 4)
-		{
-			//get packet size! Important
-			cdhib.radio_packet_size = (rx_byte << 8);
+		else if(ctr == 2){
+			cdhib.first_command = rx_byte;
 		}
-		else if(ctr == 5)
-		{
-			//Same deal
-			cdhib.radio_packet_size = cdhib.radio_packet_size + rx_byte;
+		
+		else if(ctr == 3){
+			if(cdhib.first_command == 0x20){
+				if(rx_byte == 0x03){
+					//cdhib.radio_ack = 1; 
+					cdhib.he_fail = 1;
+					ctr = 0;
+					cdhib.tx_byte_count = 0;
+					//continue;
+				}else if(rx_byte == 0x04){
+					cdhib.radio_ack = 0;
+				}
+			}else{
+				cdhib.radio_ack = 0;
+				cdhib.he_fail = 1;
+				ctr = 0;
+				cdhib.tx_byte_count = 0;
+			}
 		}
-		else if(ctr == LI_HDR + AX_HDR )
-		{
-			if(rx_byte == FC_MSG || rx_byte == FC_CMD)
+		
+		if(!cdhib.radio_ack){
+		
+			if(ctr == 4)
 			{
-				cdhib.dest_address = VCP_FC;
+				//get packet size! Important
+				cdhib.radio_packet_size = (rx_byte << 8);
 			}
-			else if(rx_byte == CDH_MSG || rx_byte == CDH_CMD)
+			else if(ctr == 5)
 			{
-				cdhib.dest_address = VCP_CDHIB;
+				//Same deal
+				cdhib.radio_packet_size = cdhib.radio_packet_size + rx_byte;
 			}
-			else if(rx_byte == PWB_MSG || rx_byte == PWB_CMD)
+			else if(ctr == LI_HDR + AX_HDR )
 			{
-				cdhib.dest_address = VCP_POWER;
+				if(rx_byte == FC_MSG || rx_byte == FC_CMD)
+				{
+					cdhib.dest_address = VCP_FC;
+				}
+				else if(rx_byte == CDH_MSG || rx_byte == CDH_CMD)
+				{
+					cdhib.dest_address = VCP_CDHIB;
+				}
+				else if(rx_byte == PWB_MSG || rx_byte == PWB_CMD)
+				{
+					cdhib.dest_address = VCP_POWER;
+				}
+				else
+				{
+					//cdhib.tx_status = VCP_CREAT_ERR;
+					//send_radio_error();
+				}
+			}
+			
+			//Once you reach the payload
+			if(cdhib.dest_address == VCP_FC)
+			{
+				//Copy entire packet over
+				if((ctr >= LI_HDR + AX_HDR) && (ctr < (cdhib.radio_packet_size + LI_HDR - AX_FTR)))
+				{
+					cdhib.radio_pre_vcp[ctr - (LI_HDR + AX_HDR)] = rx_byte;
+				}
 			}
 			else
 			{
-				//cdhib.tx_status = VCP_CREAT_ERR;
-				//send_radio_error();
+				//Direct Command, Create VCP Frame. 
+				if((ctr > LI_HDR + AX_HDR) && (ctr < (cdhib.radio_packet_size + LI_HDR - AX_FTR)))
+				{
+					cdhib.radio_pre_vcp[ctr - (LI_HDR + AX_HDR + 1)] = rx_byte;
+				}
 			}
-		}
 			
-		//Once you reach the payload
-		if(cdhib.dest_address == VCP_FC)
-		{
-			//Copy entire packet over
-			if((ctr >= LI_HDR + AX_HDR) && (ctr < (cdhib.radio_packet_size + LI_HDR - AX_FTR)))
+			if(ctr == (cdhib.radio_packet_size + LI_HDR + LI_FTR - 1))
 			{
-				cdhib.radio_pre_vcp[ctr - (LI_HDR + AX_HDR)] = rx_byte;
+				cdhib.first_command = 0;
+				cdhib.radio_ack = 0;
+				cdhib.he_fail = 0;
+				cdhib.tx_data_ready = true;
 			}
 		}
-		else
-		{
-			//Direct Command, Create VCP Frame. 
-			if((ctr > LI_HDR + AX_HDR) && (ctr < (cdhib.radio_packet_size + LI_HDR - AX_FTR)))
-			{
-				cdhib.radio_pre_vcp[ctr - (LI_HDR + AX_HDR + 1)] = rx_byte;
-			}
+		if(!cdhib.he_fail){
+			ctr++;
 		}
-			
-		if(ctr == (cdhib.radio_packet_size + LI_HDR + LI_FTR - 1))
-		{
-			cdhib.tx_data_ready = true;
-		}
-		ctr++;
 	}
+	
 	
 	if(ctr != 0)
 	{

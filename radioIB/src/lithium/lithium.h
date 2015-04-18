@@ -25,6 +25,9 @@
 #define TRANSMIT 0x20
 #define TELEMETRY 0x07
 
+#define RADIO_ACK 0xDD
+#define RADIO_MSG 0xDF
+
 #define FC_MSG 0x08
 #define FC_CMD 0x18
 
