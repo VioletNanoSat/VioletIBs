@@ -37,9 +37,11 @@ void debug_task	(void)
 	{
 		radio_task();
 		fc_task();
-		star_task();
+		cdhib_task();
+		ths_task();
+		//star_task();
 		//sun_task();
-		//gps_task();
+		gps_task();
 	}
 
 	
@@ -61,7 +63,7 @@ void debug_task	(void)
  */
 void gps_task	(void)
 {
-	read_VCP_receive_buff(&gps);	
+	read_GPS_receive_buff(&gps);	
 	
 	if (gps.rx_data_ready)
 	{
@@ -256,10 +258,10 @@ void cdhib_task	(void)
 	}
 	
 	// In case internal oscillator is used - try to switch to external oscillator
-	if (xosc_recovey)
+	/*if (xosc_recovey)
 	{
 		switch_to_ext_osc ();
-	}
+	}*/
 	
 	// If need to transmit a noop command to the power board	
 	if (PWR_WDOG_Seconds_counter >= PWR_WDOG_TX_INTERVAL)
@@ -408,7 +410,7 @@ void ths_task	(void)
 			{
 				THS_interval_seconds =	Commanded_THS_interval_seconds;		// Reload the interval
 				
-				Collect_THS_data();											// collect THS data into THS_Beacon
+				//Collect_THS_data();											// collect THS data into THS_Beacon
 				Queue_RingBuffer_Insert(&radio_queue_ringbuff,VCP_CDHIB);	// Insert to radio transmit queue
 			}
 		}

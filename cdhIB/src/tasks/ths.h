@@ -13,8 +13,8 @@
 #include "../config/conf_usart_serial.h"
 #include "cdhib.h"
 
-#define		DEFAULT_THS_INTERVAL_SECONDS	60				///< Default time interval between THS beacon transmissions (in Seconds)
-#define		MINIMUM_THS_INTERVAL_SECONDS	20				///< Minimum time interval between THS beacon transmissions (in Seconds)
+#define		DEFAULT_THS_INTERVAL_SECONDS	15				///< Default time interval between THS beacon transmissions (in Seconds)
+#define		MINIMUM_THS_INTERVAL_SECONDS	1				///< Minimum time interval between THS beacon transmissions (in Seconds)
 #define		MAXIMUM_THS_INTERVAL_SECONDS	300				///< Maximum time interval between THS beacon transmissions (in Seconds)
 
 #define		THS_POWER_TELEMETRY_SIZE		96				///< Power telemetry size in bytes

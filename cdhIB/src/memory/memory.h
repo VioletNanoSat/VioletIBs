@@ -121,4 +121,5 @@ void Buffer_DMA_transmit		(void);
 void VCP_DMA_transmit			(peripheral_t* source, peripheral_t* destination);	///< See memory.c
 void Sun_DMA_transmit			(peripheral_t* source, peripheral_t* destination);	///< See memory.c           
 void switch_to_ext_osc			(void);												///< See init.c
+void read_GPS_receive_buff      (peripheral_t* Peripheral);
 #endif /* MEMORY_H_ */

@@ -265,6 +265,37 @@ void read_Non_VCP_receive_buff(peripheral_t* Peripheral)
 	}
 }
 
+/*
+*	GPS Receive Function
+*
+*
+*/
+uint8_t haveQueuedG = 0;
+void read_GPS_receive_buff(peripheral_t* Peripheral)
+{
+	
+	while(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff))
+	{
+		// Get byte from receive ring buffer
+		Peripheral->rx_data[Peripheral->rx_byte_count] = RingBuffer_Remove(&Peripheral->rx_ringbuff);
+		Peripheral->rx_byte_count++;
+		//haveQueued = 1;
+		haveQueuedG++;
+	}
+	
+	//if(Peripheral->rx_byte_count != 0){
+	if(haveQueuedG > 0){
+		// Insert to fc transmit queue
+		haveQueued = 0;
+		//Queue_RingBuffer_Insert(&fc_queue_ringbuff, Peripheral->VCP_address);	
+		gps.rx_data_ready = 1;
+	    //Peripheral->rx_byte_count = 0;
+		// Add to received packet count
+		Peripheral->rx_packet_count++;	
+	}
+}
+
+
 /**
  * Name         : DMA_transmit
  *

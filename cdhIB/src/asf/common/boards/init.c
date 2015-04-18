@@ -228,7 +228,7 @@ void timers_init (void)
 	TCC0.INTCTRLA = (TCC0.INTCTRLA & ~TC0_OVFINTLVL_gm ) | TC_OVFINTLVL_LO_gc;
 
 	// Set the period
-	TCC0.PER = 125;
+	TCC0.PER = 125/16;
 
 	// Pre-scale the 32MHz clock by 256
 	TCC0.CTRLA = (TCC0.CTRLA & ~ TC0_CLKSEL_gm) | TC_CLKSEL_DIV256_gc;
