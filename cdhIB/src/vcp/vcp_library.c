@@ -59,9 +59,9 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
 	
 	// Check for invalid buffers
 	if (dst == NULL || src == NULL)
-		return VCP_NULL_ERR;
+		//return VCP_NULL_ERR;
 	// Check for invalid VCP address	
-	if (addr > VCP_FC && addr != VCP_SUN_SENSOR)
+	if (addr > VCP_MAGNETOMETER && addr != VCP_SUN_SENSOR)
 		return VCP_ADDR_ERR;		
 		
 	// Calculate CRC:

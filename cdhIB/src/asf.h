@@ -39,6 +39,19 @@
 #ifndef ASF_H
 #define ASF_H
 
+
+
+#define F_CPU 2000000UL
+//#define delay_us( us )   ( __delay_cycles( ( F_CPU / 1000000UL ) * ( us ) ) )
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <util/delay.h>
+/*! \brief Define the delay_us macro for GCC. */
+#define delay_us( us )   (_delay_us( us ))
+
+
+
 /*
  * This file includes all API header files for the selected drivers from ASF.
  *
@@ -54,4 +67,5 @@
 #include <compiler.h>
 #include <parts.h>
 #include <interrupt.h>
+
 #endif // ASF_H

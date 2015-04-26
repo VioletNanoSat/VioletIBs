@@ -7,6 +7,7 @@
 
 #include <asf.h>
 #include "tasks.h"
+#include "adc_driver.h"
 
 
 #ifdef DEBUG
@@ -35,13 +36,14 @@ void debug_task	(void)
 
 	for(;;)
 	{
-		radio_task();
+		//radio_task();
 		fc_task();
-		cdhib_task();
-		ths_task();
+		//cdhib_task();
+		//ths_task();
+		mag_task();
 		//star_task();
 		//sun_task();
-		gps_task();
+		//gps_task();
 	}
 
 	
@@ -49,6 +51,72 @@ void debug_task	(void)
 	for(;;);	// Need this loop if running debug task so program can't exit
 }
 #endif // DEBUG
+
+
+
+/**
+ * Name         : mag_task
+ *
+ * Synopsis     : void mag_task	(void)
+ *
+ * Description  : Magnetometer Task 
+ * *			Read the Magnetometer ADC data
+ * *			When packet is ready copy it to a buffer
+ * 
+ */
+void mag_task	(void)
+{
+		
+	// Start a single conversion
+	ADC_Ch_Conversion_Start(&ADCA.CH0);
+	while(!ADC_Ch_Conversion_Complete(&ADCA.CH0));
+	//ADCA.INTFLAGS = ADC_CH0IF_bm; // Clear CH0IF by writing a one to it
+	//adcx.ADC_result = ADC_ResultCh_GetWord_Signed(&ADCA.CH0, adcx.offset);
+	adcx.ADC_result_low = ADC_ResultCh_GetLowByte(&ADCA.CH0);
+	adcx.ADC_result_high = ADC_ResultCh_GetHighByte(&ADCA.CH0);
+	
+	// Start a single conversion
+	ADC_Ch_Conversion_Start(&ADCA.CH1);
+	while(!ADC_Ch_Conversion_Complete(&ADCA.CH1));
+	//ADCA.INTFLAGS = ADC_CH0IF_bm; // Clear CH0IF by writing a one to it
+	adcy.ADC_result = ADC_ResultCh_GetWord_Signed(&ADCA.CH1, adcy.offset);
+	
+	// Start a single conversion
+	ADC_Ch_Conversion_Start(&ADCA.CH2);
+	while(!ADC_Ch_Conversion_Complete(&ADCA.CH2));
+	//ADCA.INTFLAGS = ADC_CH0IF_bm; // Clear CH0IF by writing a one to it
+	adcz.ADC_result = ADC_ResultCh_GetWord_Signed(&ADCA.CH2, adcz.offset);
+	
+	//adcx.ADC_result_high = (adcx.ADC_result>>8)&0xFF;
+	//adcx.ADC_result_low = adcx.ADC_result;
+	adcy.ADC_result_high = (adcy.ADC_result>>8)&0xFF;
+	adcy.ADC_result_low = adcy.ADC_result;
+	adcz.ADC_result_high = (adcz.ADC_result>>8)&0xFF;
+	adcz.ADC_result_low = adcz.ADC_result;
+	
+	magnetometer.rx_data[magnetometer.rx_byte_count] = adcx.ADC_result_high;
+	magnetometer.rx_byte_count++;
+	magnetometer.rx_data[magnetometer.rx_byte_count] = adcx.ADC_result_low;
+	magnetometer.rx_byte_count++;
+	
+	magnetometer.rx_data[magnetometer.rx_byte_count] = adcy.ADC_result_high;
+	magnetometer.rx_byte_count++;
+	magnetometer.rx_data[magnetometer.rx_byte_count] = adcy.ADC_result_low;
+	magnetometer.rx_byte_count++;
+	
+	magnetometer.rx_data[magnetometer.rx_byte_count] = adcz.ADC_result_high;
+	magnetometer.rx_byte_count++;
+	magnetometer.rx_data[magnetometer.rx_byte_count] = adcz.ADC_result_low;
+	magnetometer.rx_byte_count++;
+	
+	
+	Queue_RingBuffer_Insert(&fc_queue_ringbuff, magnetometer.VCP_address);
+	//magnetometer.rx_byte_count = 0;
+	//magnetometer.rx_packet_count++;
+	
+}
+
+
 
 
 /**
@@ -176,6 +244,10 @@ void fc_task	(void)
 		#endif	
 		case VCP_RADIO:
 			source_peripheral =		radio;	
+			break;
+		case VCP_MAGNETOMETER:
+			source_peripheral = magnetometer;
+			source_peripheral.rx_byte_count = 6;
 			break;
 		case VCP_CDHIB:
 			source_peripheral =		cdhib;	

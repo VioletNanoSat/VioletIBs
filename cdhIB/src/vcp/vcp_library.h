@@ -45,6 +45,7 @@
 #define	VCP_FC				0x0B 	///< VCP Address of Flight Computer
 #define VCP_BROKEN			0x0C
 #define VCP_SUN_SENSOR		0x38	///< VCP Address of Sun Sensor
+#define VCP_MAGNETOMETER    0x0D
 
 
 

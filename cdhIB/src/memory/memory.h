@@ -78,6 +78,7 @@ typedef struct {
 // Declare peripheral structures
 peripheral_t					fc;							///< Flight Computer Peripheral
 peripheral_t					power;						///< Power Peripheral
+peripheral_t                    magnetometer;
 peripheral_t					gps;						///< GPS Peripheral
 peripheral_t					radio;						///< Radio Peripheral
 peripheral_t					cdhib;						///< CDHIB (Self) Peripheral - enables the use of all the peripheral functions
@@ -108,6 +109,22 @@ uint8_t radio_tx_data			[RADIO_TRANSMIT_MESSAGE_BUFF_SIZE];	///< Radio transmit 
 	uint8_t sun_rx_data			[SUN_RECEIVE_MESSAGE_BUFF_SIZE];	///< Sun Sensor receive buffer allocation
 	uint8_t sun_tx_data			[SUN_TRANSMIT_MESSAGE_BUFF_SIZE];	///< Sun Sensor transmit buffer allocation
 #endif
+uint8_t mag_rx_data             [6];
+
+
+
+
+typedef struct  
+{
+	int8_t offset;
+	volatile uint16_t ADC_result;
+	uint8_t ADC_result_high;
+	uint8_t ADC_result_low;
+}adc_t;
+
+adc_t    adcx;
+adc_t    adcy;
+adc_t    adcz;
 
 
 // Functions

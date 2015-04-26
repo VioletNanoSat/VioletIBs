@@ -84,6 +84,10 @@ void memory_init (void)
 
 	// CDHIB
 	cdhib.VCP_address =				VCP_CDHIB;	
+	
+	
+	magnetometer.rx_data = mag_rx_data;
+	magnetometer.VCP_address = VCP_MAGNETOMETER;
 }
 
 
