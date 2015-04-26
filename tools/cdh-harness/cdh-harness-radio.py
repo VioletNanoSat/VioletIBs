@@ -2,6 +2,7 @@ import sys
 import serial
 from subprocess import check_output
 from binascii import unhexlify,hexlify
+from time import sleep
 
 sys.path.append('../util/')
 from vcp import *
@@ -27,7 +28,7 @@ class RadioPathTester():
 
 	def populate_radio_packets(self,path):
 		if 'fc' in path:
-			ret = [[0x18,0xff,0xde,0xad]]
+			ret = [[0x18,0xff,0x01,0x05]]
 		elif 'pwb' in path:
 			pass
 		elif 'cdh' in path:
@@ -40,7 +41,7 @@ class RadioPathTester():
 	def verify_radio_packets(self,path):
 		if 'fc' in path:
 			ret = []
-			ret.append([0x18,0xff,0xde,0xad])
+			ret.append([0x18,0xff,0x01,0x05])
 		elif 'pwb' in path:
 			pass
 		elif 'cdh' in path:
@@ -74,6 +75,36 @@ class RadioPathTester():
 				print 'Expected: '
 				print '0x'+' 0x'.join(a+b for a,b in zip(recv[::2],recv[1::2]))
 		print 'FC Test Path Complete'
+
+	def spam_to_fc(self,radio_uart,fc_uart):
+		print 'The Radio UART is located at {r}. The FC UART is located at {f}'.format(r=radio_uart,f=fc_uart)
+		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
+		print 'Connect the TX pin of the RS-232 spare to the TX of the FC UART'
+		print ''
+		raw_input('Press Enter to begin FC Test')
+		radio_packets				= self.populate_radio_packets('fc')
+		verification_packets		= self.verify_radio_packets('fc')
+		correct_packets = 0
+		try:
+			while 1:
+				for pair in zip(radio_packets,verification_packets):
+					send, recv = pair
+					self.test_port.write(unhexlify(send))
+					actual = self.test_port.read(len(recv)/2)
+					if unhexlify(recv) == actual:
+						correct_packets += 1
+						print 'Received Correct Packet {}'.format(correct_packets)
+					else:
+						print 'Sent Packet:'
+						print '0x'+' 0x'.join(a+b for a,b in zip(send[::2],send[1::2]))
+						print 'Received: '
+						print '0x'+' 0x'.join(a+b for a,b in zip(hexlify(actual)[::2],hexlify(actual)[1::2]))
+						print 'Expected: '
+						print '0x'+' 0x'.join(a+b for a,b in zip(recv[::2],recv[1::2]))
+					sleep(0.01)
+		except KeyboardInterrupt:
+			pass
+		print 'Spam Test Complete'
 
 	def test_to_pwb(self):
 		print 'The Radio UART is located at {r}. The PWB UART is located at {p}.'.format(r=radio_uart,p='power_uart')
@@ -128,7 +159,7 @@ class RadioPathTester():
 
 		print ''
 		print 'Testing RADIO IB to FC'
-		self.test_to_fc(radio_uart,fc_uart)
+		self.spam_to_fc(radio_uart,fc_uart)
 
 if __name__ == '__main__':
 	print 'RadioPathTester Tester:\n'

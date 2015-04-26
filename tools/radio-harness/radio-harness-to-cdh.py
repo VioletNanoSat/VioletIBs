@@ -2,6 +2,7 @@ import sys
 import serial
 from subprocess import check_output
 from binascii import unhexlify
+from time import sleep
 
 sys.path.append('../util/')
 from vcp import *
@@ -23,28 +24,37 @@ class RadioToCDHTester():
 	RX	..	TX
 	CTS	..	RTS
 	'''
-	def __init__(self,serial):
+	def __init__(self,serial,read_serial=None):
 		self.test_port = serial
+		self.read_serial = read_serial
 
 	def populate_fc_packets(self):
 		packets = [[0x18,0xff,0x01,0x05]]
 		return packets,[wrap_lithium(hexlify(''.join([chr(x) for x in entry])),True) for entry in packets]
 
 	def verify_fc_packets(self,packets):
-		return [wrap_vcp(hexlify(''.join([chr(x) for x in entry])),VCP_FC) for entry in packets]
+		print [wrap_vcp(hexlify(''.join([chr(x) for x in entry])),'fc') for entry in packets]
+		return [wrap_vcp(hexlify(''.join([chr(x) for x in entry])),'fc') for entry in packets]
 
 	def send_packets_to_fc(self,radio_uart,cdh_uart):
-		print 'The Radio UART is located at {r}. The CDH UART is located at {c}.'.format(r=radio_uart,c=cdh_uart)
-		print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
-		print 'Connect the TX pin of the RS-232 Spare to the TX of the CDH UART.'
+		if self.read_serial:
+			print 'Set up your two data grabbers!'
+		else:
+			print 'The Radio UART is located at {r}. The CDH UART is located at {c}.'.format(r=radio_uart,c=cdh_uart)
+			print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
+			print 'Connect the TX pin of the RS-232 Spare to the TX of the CDH UART.'
 
+		raw_input('Press Enter to Start Sending Packets')
 		bare_packets,test_packets = self.populate_fc_packets()
 		verification_packets = self.verify_fc_packets(bare_packets)
 		correct_packets = 0
 		for pair in zip(test_packets,verification_packets):
 			send,recv = pair
 			self.test_port.write(unhexlify(send))
-			actual = self.test_port.read(len(recv)/2)
+			if self.read_serial:
+				actual = self.read_serial.read(len(recv)/2)
+			else:
+				actual = self.test_port.read(len(recv)/2)
 			if unhexlify(recv) == actual:
 				correct_packets += 1
 				print 'Received Correct Packet {}'.format(correct_packets)
@@ -58,6 +68,42 @@ class RadioToCDHTester():
 
 		print 'FC Packets Complete'
 
+	def spam_test_packets(self,radio_uart,cdh_uart):
+		if self.read_serial:
+			print 'Set up your two data grabbers!'
+		else:
+			print 'The Radio UART is located at {r}. The CDH UART is located at {c}.'.format(r=radio_uart,c=cdh_uart)
+			print 'Connect the RX pin of the RS-232 spare to the RX of the Radio UART.'
+			print 'Connect the TX pin of the RS-232 Spare to the TX of the CDH UART.'
+
+		raw_input('Press Enter to Start SPAMMING Packets')
+		bare_packets,test_packets = self.populate_fc_packets()
+		verification_packets = self.verify_fc_packets(bare_packets)
+		correct_packets = 0
+		try:
+			while 1:
+				for pair in zip(test_packets,verification_packets):
+					send,recv = pair
+					self.test_port.write(unhexlify(send))
+					if self.read_serial:
+						actual = self.read_serial.read(len(recv)/2)
+					else:
+						actual = self.test_port.read(len(recv)/2)
+					if unhexlify(recv) == actual:
+						correct_packets += 1
+						print 'Received Correct Packet {}'.format(correct_packets)
+					else:
+						print 'Sent Packet:'
+						print '0x'+' 0x'.join(a+b for a,b in zip(send[::2],send[1::2]))
+						print 'Received: '
+						print '0x'+' 0x'.join(a+b for a,b in zip(hexlify(actual)[::2],hexlify(actual)[1::2]))
+						print 'Expected: '
+						print '0x'+' 0x'.join(a+b for a,b in zip(recv[::2],recv[1::2]))
+					sleep(0.01)
+		except KeyboardInterrupt:
+			pass
+
+		print 'FC Packets Complete'
 
 	def run_full_test(self):
 		print 'We will test the path from RadioIB to the CDHIB.'
@@ -83,14 +129,15 @@ class RadioToCDHTester():
 				cdh_uart = uart.split('\t')[-1]
 
 		print 'Testing First Type of Packets'
-		self.send_packets_to_fc(radio_uart,cdh_uart)
+		self.spam_test_packets(radio_uart,cdh_uart)
 
 
 
 
 if __name__ == '__main__':
 	print 'Radio IB to CDH Test Path'
-	tester = RadioPathTester(serial.Serial(port='/dev/ttyUSB0',baudrate=9600,
+	tester = RadioToCDHTester(serial.Serial(port='/dev/ttyUSB0',baudrate=9600,
+		timeout=10),read_serial=serial.Serial(port='/dev/ttyUSB1',baudrate=9600,
 		timeout=10))
 	tester.run_full_test()
 
