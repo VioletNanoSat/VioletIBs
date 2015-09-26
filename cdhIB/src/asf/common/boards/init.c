@@ -59,7 +59,7 @@ void adc_init	(void)
 	/* Move stored calibration values to ADC B */
 	ADC_CalibrationValues_Load(&ADCA);
 	/* Set up ADC A to have signed conversion mode and 8 bit resolution. */
-	ADC_ConvMode_and_Resolution_Config(&ADCA, false, ADC_RESOLUTION_12BIT_gc);
+	ADC_ConvMode_and_Resolution_Config(&ADCA, true, ADC_RESOLUTION_12BIT_gc);
 	// The ADC has different voltage reference options, controlled by the REFSEL bits in the
 	// REFCTRL register. Here the internal reference is selected
 	ADC_Reference_Config(&ADCA, ADC_REFSEL_VCC_gc);

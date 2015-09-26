@@ -33,17 +33,18 @@ uint16_t	num_of_debug_packets;
  */
 void debug_task	(void)
 {
-
+  
 	for(;;)
 	{
 		//radio_task();
 		fc_task();
 		//cdhib_task();
 		//ths_task();
-		mag_task();
+		//mag_task();
 		//star_task();
-		//sun_task();
+		sun_task();
 		//gps_task();
+		power_task();
 	}
 
 	
@@ -71,9 +72,9 @@ void mag_task	(void)
 	ADC_Ch_Conversion_Start(&ADCA.CH0);
 	while(!ADC_Ch_Conversion_Complete(&ADCA.CH0));
 	//ADCA.INTFLAGS = ADC_CH0IF_bm; // Clear CH0IF by writing a one to it
-	//adcx.ADC_result = ADC_ResultCh_GetWord_Signed(&ADCA.CH0, adcx.offset);
-	adcx.ADC_result_low = ADC_ResultCh_GetLowByte(&ADCA.CH0);
-	adcx.ADC_result_high = ADC_ResultCh_GetHighByte(&ADCA.CH0);
+	adcx.ADC_result = ADC_ResultCh_GetWord_Signed(&ADCA.CH0, adcx.offset);
+	//adcx.ADC_result_low = 0xAD; //ADC_ResultCh_GetLowByte(&ADCA.CH0);
+	//adcx.ADC_result_high = 0xBC; //ADC_ResultCh_GetHighByte(&ADCA.CH0);
 	
 	// Start a single conversion
 	ADC_Ch_Conversion_Start(&ADCA.CH1);
@@ -87,8 +88,8 @@ void mag_task	(void)
 	//ADCA.INTFLAGS = ADC_CH0IF_bm; // Clear CH0IF by writing a one to it
 	adcz.ADC_result = ADC_ResultCh_GetWord_Signed(&ADCA.CH2, adcz.offset);
 	
-	//adcx.ADC_result_high = (adcx.ADC_result>>8)&0xFF;
-	//adcx.ADC_result_low = adcx.ADC_result;
+	adcx.ADC_result_high = (adcx.ADC_result>>8)&0xFF;
+	adcx.ADC_result_low = adcx.ADC_result;
 	adcy.ADC_result_high = (adcy.ADC_result>>8)&0xFF;
 	adcy.ADC_result_low = adcy.ADC_result;
 	adcz.ADC_result_high = (adcz.ADC_result>>8)&0xFF;
@@ -198,8 +199,8 @@ void fc_task	(void)
 		case VCP_SUN_SENSOR:
 			memcpy(sun.tx_data, fc.rx_data, fc.rx_byte_count);		// copy fc rx buffer to sun tx buffer
 			sun.tx_byte_count = fc.rx_byte_count;					// set block size
-			//Sun_DMA_transmit(&fc,&sun);								// DMA
-			Buffer_DMA_transmit();
+			Sun_DMA_transmit(&fc,&sun);								// DMA
+			//Buffer_DMA_transmit();
 			break;
 		#endif	
 		case VCP_RADIO:
@@ -209,6 +210,10 @@ void fc_task	(void)
 			memcpy(&FC_packet, fc.rx_data, sizeof(FC_packet));		// copy the received packet to the FC packet buffer
 			FC_command_received = true;								// Destination is this MCU	
 			break;
+		case VCP_FC:
+			memcpy(fc.tx_data, fc.rx_data, fc.rx_byte_count);	
+			fc.tx_byte_count = fc.rx_byte_count;
+			VCP_DMA_transmit(&fc, &fc);
 		default:
 			// Unknown address.
 			Queue_RingBuffer_Insert(&radio_queue_ringbuff, VCP_BROKEN);	// Insert to radio transmit queue
@@ -263,6 +268,7 @@ void fc_task	(void)
 		else
 		{
 			VCP_DMA_transmit(&source_peripheral, &fc);	// build VCP frame and transmit with DMA 
+			source_peripheral.rx_byte_count = 0;
 			#ifdef DEBUG
 			debug_check = true;
 			#endif
@@ -400,6 +406,7 @@ void radio_task	(void)
 			break;
 		default:
 			// Unknown address.	
+			//Queue_RingBuffer_Insert(&fc_queue_ringbuff, VCP_RADIO);		// Insert to fc transmit queue	
 			break;
 		}
 	}	
@@ -504,6 +511,7 @@ void star_task	(void)
 {
 	// check if the buffer is free before writing to it
 	//if (star.rx_byte_count == 0)
+	star.rx_byte_count = 0;
 	read_Non_VCP_receive_buff(&star);
 }	
 #endif

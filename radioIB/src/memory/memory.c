@@ -305,7 +305,7 @@ void read_radio_receive_buff	(void)
 				else
 				{
 					//cdhib.tx_status = VCP_CREAT_ERR;
-					//send_radio_error();
+					send_radio_error();
 				}
 			}
 			

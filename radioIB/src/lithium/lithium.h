@@ -16,7 +16,7 @@
 #define LITHIUM_H_
 
 #define LI_HDR 8
-#define AX_HDR 14
+#define AX_HDR 16//14
 #define LI_FTR 2
 #define AX_FTR 2
 

@@ -80,7 +80,7 @@ ISR(GPS_UART_RXC_vect)
 /// Radio USART Receive interrupt handler		
 ISR(RADIO_UART_RXC_vect)
 {
-	//flag++;
+	flag++;
 	if (RingBuffer_IsFull(&radio.rx_ringbuff))
 	{
 		volatile uint8_t temp = radio.USART->DATA;					// clear interrupt flag
@@ -90,6 +90,10 @@ ISR(RADIO_UART_RXC_vect)
 	else
 	{
 		RingBuffer_Insert(&radio.rx_ringbuff, radio.USART->DATA);	// read received byte into the ring buffer
+		radio.tx_LED_pin=1;
+	}
+	if(flag == 15){
+		flag = 0;
 	}
 
 }
@@ -114,7 +118,7 @@ ISR(FC_UART_RXC_vect)
 		}
 		if(fendi<3){*/
 			RingBuffer_Insert(&fc.rx_ringbuff, fc.USART->DATA);			// read received byte into the ring buffer
-			pax++;
+			//pax++;
 		//}
 		//data = fc.USART->DATA;
 	}
@@ -138,9 +142,11 @@ ISR(FC_UART_RXC_vect)
 		else
 		{
 			RingBuffer_Insert(&star.rx_ringbuff, star.USART->DATA);	// read received byte into the ring buffer
-			pax++;
-		}				
-	}
+			//pax++;
+		}
+		
+					
+	} 
 #endif
 
 #ifdef SUN_UART

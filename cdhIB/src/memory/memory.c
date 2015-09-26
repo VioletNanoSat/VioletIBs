@@ -147,6 +147,7 @@ void dma_init (void)
  * 
  */
 uint8_t errz = 0;
+
 void read_VCP_receive_buff(peripheral_t* Peripheral)
 {
 	/*volatile uint8_t stuff = 0;
@@ -157,7 +158,7 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 	}else{
 		stuff = 2;
 	}*/
-	while(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff))
+	while(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff) || (Peripheral->VCP_rx_status==VCP_RECEIVING  &&  Peripheral == &radio && Peripheral->tx_LED_pin==1))
 	{
 		//stuff++;
 		//if there's no vcp buffer, initialize it
@@ -191,9 +192,9 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 			Peripheral->vcp_rx_msg.message = NULL;	
 		}else if(Peripheral->VCP_rx_status == VCP_CRC_ERR){
 			// Add to rejected received packet count
-			Peripheral->rejected_rx_packet_count++;
+			//Peripheral->rejected_rx_packet_count++;
 			// kill VCP buffer
-			Peripheral->vcp_rx_msg.message = NULL;	
+			//Peripheral->vcp_rx_msg.message = NULL;	
 		}else if(Peripheral->VCP_rx_status == VCP_ADDR_ERR){
 			// Add to rejected received packet count
 			Peripheral->rejected_rx_packet_count++;
@@ -208,6 +209,7 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 		
 		if (Peripheral->VCP_rx_status == VCP_TERM) // Done with no errors
 		{
+			Peripheral->tx_LED_pin = 0;
 			// save received byte count
 			Peripheral->rx_byte_count = Peripheral->vcp_rx_msg.index;
 			Peripheral->rx_data_ready = true;											// Data ready
@@ -250,6 +252,7 @@ void read_Non_VCP_receive_buff(peripheral_t* Peripheral)
 {
 	
 	while(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff))
+	//while(haveQueued < 200)
 	{
 		// Get byte from receive ring buffer
 		Peripheral->rx_data[Peripheral->rx_byte_count] = RingBuffer_Remove(&Peripheral->rx_ringbuff);
@@ -263,6 +266,7 @@ void read_Non_VCP_receive_buff(peripheral_t* Peripheral)
 		// Insert to fc transmit queue
 		haveQueued = 0;
 		Queue_RingBuffer_Insert(&fc_queue_ringbuff, Peripheral->VCP_address);	
+		//haveQueued = 0;
 	    //Peripheral->rx_byte_count = 0;
 		// Add to received packet count
 		Peripheral->rx_packet_count++;	
@@ -342,7 +346,7 @@ void Buffer_DMA_transmit()
 {
 	uint8_t buffer[7];
 	buffer[0]=0xc0;
-	buffer[1]=0x38;
+	buffer[1]=0x39;
 	buffer[2]=0x11;
 	buffer[3]=0xa0;
 	buffer[4]=0x1c;
@@ -433,10 +437,10 @@ void VCP_DMA_transmit(peripheral_t* source, peripheral_t* destination)
 	if (destination->VCP_tx_status == VCP_TERM)			// Done with no errors
 	{
 
-		#ifndef DEBUG
+		//#ifndef DEBUG
 		// Reset the source received byte count
 		source->rx_byte_count = 0;
-		#endif
+		//#endif
 		
 		// Transmit with DMA
 		DMA_transmit(destination);

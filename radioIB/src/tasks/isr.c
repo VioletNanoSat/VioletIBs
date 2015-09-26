@@ -58,7 +58,7 @@ ISR(RADIO_UART_RXC_vect)
 			RingBuffer_Insert(&radio.rx_ringbuff, radio.USART->DATA);	// read received byte into the ring buffer
 		//}
 	}
-	if(flag == 15){
+	if(flag == 60){
 		flag=0;
 	}
 
@@ -77,6 +77,9 @@ ISR(CDHIB_UART_RXC_vect)
 	else
 	{
 		RingBuffer_Insert(&cdhib.rx_ringbuff, cdhib.USART->DATA);			// read received byte into the ring buffer
+	}
+	if(flag == 35){
+		flag = 0;
 	}
 	
 }

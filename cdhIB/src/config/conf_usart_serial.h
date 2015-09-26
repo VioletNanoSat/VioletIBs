@@ -115,7 +115,7 @@
 #define GPS_UART_BAUDRATE		9600		///< GPS USART Baud rate
 #define RADIO_UART_BAUDRATE		9600		///< Radio USART Baud rate
 #define FC_UART_BAUDRATE		9600		///< Flight Computer USART Baud rate
-#define STAR_UART_BAUDRATE		9600		///< Star Tracker USART Baud rate NOT SURE THESE SHOULD BE 9600
+#define STAR_UART_BAUDRATE		115200		///< Star Tracker USART Baud rate NOT SURE THESE SHOULD BE 9600 (was 96000
 #define SUN_UART_BAUDRATE		57600		///< Sun Sensor USART Baud rate NOT SURE THESE SHOULD BE 9600
 
 

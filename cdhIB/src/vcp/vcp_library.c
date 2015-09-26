@@ -61,7 +61,7 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
 	if (dst == NULL || src == NULL)
 		//return VCP_NULL_ERR;
 	// Check for invalid VCP address	
-	if (addr > VCP_MAGNETOMETER && addr != VCP_SUN_SENSOR)
+	if (addr > VCP_BROKEN && addr != VCP_SUN_SENSOR)
 		return VCP_ADDR_ERR;		
 		
 	// Calculate CRC:
@@ -138,6 +138,7 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
  * 
  * \return			VCP status flags
  */
+uint8_t bitez = 0;
 uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 {
 	
@@ -181,12 +182,17 @@ uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 					// No data between FENDs - assume lost sync and start over
 					buff->status = VCP_ADDRESS;
 			}
-			else if (byte == FESC)
-				buff->status = VCP_ESC;
+			//else if (byte == FESC)
+				//buff->status = VCP_ESC;
 			else
 			{
 				buff->message[(buff->index)++] = byte;	
-			}						
+				bitez++;
+			}			
+			if(bitez>45){
+				bitez=0;
+				//buff->status = VCP_TERM;
+			}			
 			break;
 		case VCP_ESC:
 			if (byte == TFEND)
@@ -201,6 +207,7 @@ uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 			}
 			else
 				return VCP_ESC_ERR;	
+				//buff->status = VCP_RECEIVING;
 			break;
 		default:
 			buff->status = VCP_IDLE;
@@ -210,6 +217,7 @@ uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 	// End of frame
 	if (buff->status == VCP_TERM)
 	{
+		//radio.tx_LED_pin == 0;
 		// Message CRC is last 2 bytes 
 		message_crc = (buff->message[buff->index-2] << 8 ) + buff->message[buff->index-1];
 		// Remove CRC bytes from the message
