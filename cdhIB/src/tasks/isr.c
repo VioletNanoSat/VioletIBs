@@ -80,7 +80,7 @@ ISR(GPS_UART_RXC_vect)
 /// Radio USART Receive interrupt handler		
 ISR(RADIO_UART_RXC_vect)
 {
-	flag++;
+	//flag++;
 	if (RingBuffer_IsFull(&radio.rx_ringbuff))
 	{
 		volatile uint8_t temp = radio.USART->DATA;					// clear interrupt flag
@@ -93,7 +93,7 @@ ISR(RADIO_UART_RXC_vect)
 		radio.tx_LED_pin=1;
 	}
 	if(flag == 142){
-		flag = 0;
+		//flag = 0;
 	}
 
 }
@@ -101,7 +101,7 @@ ISR(RADIO_UART_RXC_vect)
 /// FC USART Receive interrupt handler
 ISR(FC_UART_RXC_vect)
 {
-	//flag++;
+	flag++;
 	uint8_t data;
 	if (RingBuffer_IsFull(&fc.rx_ringbuff))
 	{
@@ -122,8 +122,8 @@ ISR(FC_UART_RXC_vect)
 		//}
 		//data = fc.USART->DATA;
 	}
-	if(flag == 50){
-		//flag = 10;
+	if(flag == 10){
+		flag = 10;
 	}
 	
 	
