@@ -36,15 +36,15 @@ void debug_task	(void)
   
 	for(;;)
 	{
-		//radio_task();
+		radio_task();
 		fc_task();
 		//cdhib_task();
 		//ths_task();
 		//mag_task();
 		//star_task();
-		sun_task();
+		//sun_task();
 		//gps_task();
-		power_task();
+		//power_task();
 	}
 
 	
@@ -65,9 +65,10 @@ void debug_task	(void)
  * *			When packet is ready copy it to a buffer
  * 
  */
+//int slower =0;
 void mag_task	(void)
 {
-		
+	//slower++;	
 	// Start a single conversion
 	ADC_Ch_Conversion_Start(&ADCA.CH0);
 	while(!ADC_Ch_Conversion_Complete(&ADCA.CH0));
@@ -111,7 +112,10 @@ void mag_task	(void)
 	magnetometer.rx_byte_count++;
 	
 	
+	
 	Queue_RingBuffer_Insert(&fc_queue_ringbuff, magnetometer.VCP_address);
+	
+	
 	//magnetometer.rx_byte_count = 0;
 	//magnetometer.rx_packet_count++;
 	
@@ -392,7 +396,7 @@ void radio_task	(void)
 		#endif
 		#ifdef SUN_UART
 		case VCP_SUN_SENSOR:
-			memcpy(sun.tx_data, radio.rx_data, radio.rx_byte_count);	// copy fc rx buffer to star tx buffer
+			memcpy(sun.tx_data, radio.rx_data, radio.rx_byte_count);	// copy fc rx buffer to sun tx buffer
 			sun.tx_byte_count = radio.rx_byte_count;					// set block size
 			DMA_transmit(&sun);											// DMA
 			break;

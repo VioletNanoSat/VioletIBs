@@ -13,7 +13,7 @@
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>
     <OutputType>Executable</OutputType>
     <Language>C</Language>
-    <avrtool>com.atmel.avrdbg.tool.jtagicemkii</avrtool>
+    <avrtool>com.atmel.avrdbg.tool.jtagice3plus</avrtool>
     <com_atmel_avrdbg_tool_simulator>
       <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
       <ToolName>Simulator</ToolName>
@@ -28,7 +28,8 @@
         <InterfaceProperties>
           <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
         </InterfaceProperties>
-        <InterfaceName>JTAG</InterfaceName>
+        <InterfaceName>
+        </InterfaceName>
       </ToolOptions>
     </com_atmel_avrdbg_tool_simulator>
     <avrtoolinterface>JTAG</avrtoolinterface>
@@ -150,73 +151,97 @@
       </framework-data>
     </AsfFrameworkConfig>
     <preserveEEPROM>True</preserveEEPROM>
+    <com_atmel_avrdbg_tool_jtagicemk3>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <JtagDbgClock>1080000</JtagDbgClock>
+        </InterfaceProperties>
+        <InterfaceName>JTAG</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.jtagicemk3</ToolType>
+      <ToolNumber>J30200029938</ToolNumber>
+      <ToolName>JTAGICE3</ToolName>
+    </com_atmel_avrdbg_tool_jtagicemk3>
+    <com_atmel_avrdbg_tool_jtagice3plus>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <JtagDbgClock>1410000</JtagDbgClock>
+        </InterfaceProperties>
+        <InterfaceName>JTAG</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.jtagice3plus</ToolType>
+      <ToolNumber>J30200029938</ToolNumber>
+      <ToolName>JTAGICE3</ToolName>
+    </com_atmel_avrdbg_tool_jtagice3plus>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputFileName>CDHIB_MCU</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <ToolchainSettings>
       <AvrGcc>
-        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
-        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
-        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
-        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
-        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
-        <avrgcc.compiler.symbols.DefSymbols>
-          <ListValues>
-            <Value>BOARD=USER_BOARD</Value>
-          </ListValues>
-        </avrgcc.compiler.symbols.DefSymbols>
-        <avrgcc.compiler.directories.IncludePaths>
-          <ListValues>
-            <Value>../src</Value>
-            <Value>../src/asf/common/applications/user_application/user_board</Value>
-            <Value>../src/asf/common/boards</Value>
-            <Value>../src/asf/common/boards/user_board</Value>
-            <Value>../src/asf/common/utils</Value>
-            <Value>../src/asf/xmega/utils</Value>
-            <Value>../src/asf/xmega/utils/preprocessor</Value>
-            <Value>../src/config</Value>
-            <Value>../src/asf/xmega/drivers/cpu</Value>
-            <Value>../src/asf/xmega/drivers/pmic</Value>
-            <Value>../src/asf/xmega/drivers/ioport</Value>
-            <Value>../src/asf/xmega/drivers/usart</Value>
-            <Value>../src/asf/common/services/clock</Value>
-            <Value>../src/asf/common/services/serial</Value>
-          </ListValues>
-        </avrgcc.compiler.directories.IncludePaths>
-        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
-        <avrgcc.compiler.optimization.OtherFlags>-fdata-sections</avrgcc.compiler.optimization.OtherFlags>
-        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
-        <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
-        <avrgcc.linker.general.DoNotUseStandardStartFiles />
-        <avrgcc.linker.general.DoNotUseDefaultLibraries />
-        <avrgcc.linker.general.NoStartupOrDefaultLibs />
-        <avrgcc.linker.libraries.Libraries>
-          <ListValues>
-            <Value>libm</Value>
-          </ListValues>
-        </avrgcc.linker.libraries.Libraries>
-        <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
-        <avrgcc.assembler.general.AssemblerFlags>-mrelax</avrgcc.assembler.general.AssemblerFlags>
-        <avrgcc.assembler.general.IncludePaths>
-          <ListValues>
-            <Value>../src</Value>
-            <Value>../src/asf/common/applications/user_application/user_board</Value>
-            <Value>../src/asf/common/boards</Value>
-            <Value>../src/asf/common/boards/user_board</Value>
-            <Value>../src/asf/common/utils</Value>
-            <Value>../src/asf/xmega/utils</Value>
-            <Value>../src/asf/xmega/utils/preprocessor</Value>
-            <Value>../src/config</Value>
-            <Value>../src/asf/xmega/drivers/cpu</Value>
-            <Value>../src/asf/xmega/drivers/pmic</Value>
-            <Value>../src/asf/xmega/drivers/ioport</Value>
-            <Value>../src/asf/xmega/drivers/usart</Value>
-            <Value>../src/asf/common/services/clock</Value>
-            <Value>../src/asf/common/services/serial</Value>
-          </ListValues>
-        </avrgcc.assembler.general.IncludePaths>
-      </AvrGcc>
+  <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>BOARD=USER_BOARD</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../src</Value>
+      <Value>../src/asf/common/applications/user_application/user_board</Value>
+      <Value>../src/asf/common/boards</Value>
+      <Value>../src/asf/common/boards/user_board</Value>
+      <Value>../src/asf/common/utils</Value>
+      <Value>../src/asf/xmega/utils</Value>
+      <Value>../src/asf/xmega/utils/preprocessor</Value>
+      <Value>../src/config</Value>
+      <Value>../src/asf/xmega/drivers/cpu</Value>
+      <Value>../src/asf/xmega/drivers/pmic</Value>
+      <Value>../src/asf/xmega/drivers/ioport</Value>
+      <Value>../src/asf/xmega/drivers/usart</Value>
+      <Value>../src/asf/common/services/clock</Value>
+      <Value>../src/asf/common/services/serial</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.OtherFlags>-fdata-sections</avrgcc.compiler.optimization.OtherFlags>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.linker.general.DoNotUseStandardStartFiles />
+  <avrgcc.linker.general.DoNotUseDefaultLibraries />
+  <avrgcc.linker.general.NoStartupOrDefaultLibs />
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-mrelax</avrgcc.assembler.general.AssemblerFlags>
+  <avrgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>../src</Value>
+      <Value>../src/asf/common/applications/user_application/user_board</Value>
+      <Value>../src/asf/common/boards</Value>
+      <Value>../src/asf/common/boards/user_board</Value>
+      <Value>../src/asf/common/utils</Value>
+      <Value>../src/asf/xmega/utils</Value>
+      <Value>../src/asf/xmega/utils/preprocessor</Value>
+      <Value>../src/config</Value>
+      <Value>../src/asf/xmega/drivers/cpu</Value>
+      <Value>../src/asf/xmega/drivers/pmic</Value>
+      <Value>../src/asf/xmega/drivers/ioport</Value>
+      <Value>../src/asf/xmega/drivers/usart</Value>
+      <Value>../src/asf/common/services/clock</Value>
+      <Value>../src/asf/common/services/serial</Value>
+    </ListValues>
+  </avrgcc.assembler.general.IncludePaths>
+</AvrGcc>
     </ToolchainSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -224,69 +249,69 @@
     <OutputFileExtension>.elf</OutputFileExtension>
     <ToolchainSettings>
       <AvrGcc>
-        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
-        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
-        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
-        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
-        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
-        <avrgcc.compiler.symbols.DefSymbols>
-          <ListValues>
-            <Value>BOARD=USER_BOARD</Value>
-          </ListValues>
-        </avrgcc.compiler.symbols.DefSymbols>
-        <avrgcc.compiler.directories.IncludePaths>
-          <ListValues>
-            <Value>../src</Value>
-            <Value>../src/asf/common/applications/user_application/user_board</Value>
-            <Value>../src/asf/common/boards</Value>
-            <Value>../src/asf/common/boards/user_board</Value>
-            <Value>../src/asf/common/utils</Value>
-            <Value>../src/asf/xmega/utils</Value>
-            <Value>../src/asf/xmega/utils/preprocessor</Value>
-            <Value>../src/config</Value>
-            <Value>../src/asf/xmega/drivers/cpu</Value>
-            <Value>../src/asf/xmega/drivers/pmic</Value>
-            <Value>../src/asf/xmega/drivers/ioport</Value>
-            <Value>../src/asf/xmega/drivers/usart</Value>
-            <Value>../src/asf/common/services/clock</Value>
-            <Value>../src/asf/common/services/serial</Value>
-          </ListValues>
-        </avrgcc.compiler.directories.IncludePaths>
-        <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
-        <avrgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>False</avrgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
-        <avrgcc.compiler.optimization.PrepareDataForGarbageCollection>False</avrgcc.compiler.optimization.PrepareDataForGarbageCollection>
-        <avrgcc.compiler.optimization.DebugLevel>Maximum (-g3)</avrgcc.compiler.optimization.DebugLevel>
-        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
-        <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
-        <avrgcc.linker.general.DoNotUseStandardStartFiles />
-        <avrgcc.linker.general.DoNotUseDefaultLibraries />
-        <avrgcc.linker.general.NoStartupOrDefaultLibs />
-        <avrgcc.linker.libraries.Libraries>
-          <ListValues>
-            <Value>libm</Value>
-          </ListValues>
-        </avrgcc.linker.libraries.Libraries>
-        <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
-        <avrgcc.assembler.general.AssemblerFlags>-mrelax</avrgcc.assembler.general.AssemblerFlags>
-        <avrgcc.assembler.general.IncludePaths>
-          <ListValues>
-            <Value>../src</Value>
-            <Value>../src/asf/common/applications/user_application/user_board</Value>
-            <Value>../src/asf/common/boards</Value>
-            <Value>../src/asf/common/boards/user_board</Value>
-            <Value>../src/asf/common/utils</Value>
-            <Value>../src/asf/xmega/utils</Value>
-            <Value>../src/asf/xmega/utils/preprocessor</Value>
-            <Value>../src/config</Value>
-            <Value>../src/asf/xmega/drivers/cpu</Value>
-            <Value>../src/asf/xmega/drivers/pmic</Value>
-            <Value>../src/asf/xmega/drivers/ioport</Value>
-            <Value>../src/asf/xmega/drivers/usart</Value>
-            <Value>../src/asf/common/services/clock</Value>
-            <Value>../src/asf/common/services/serial</Value>
-          </ListValues>
-        </avrgcc.assembler.general.IncludePaths>
-      </AvrGcc>
+  <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>BOARD=USER_BOARD</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../src</Value>
+      <Value>../src/asf/common/applications/user_application/user_board</Value>
+      <Value>../src/asf/common/boards</Value>
+      <Value>../src/asf/common/boards/user_board</Value>
+      <Value>../src/asf/common/utils</Value>
+      <Value>../src/asf/xmega/utils</Value>
+      <Value>../src/asf/xmega/utils/preprocessor</Value>
+      <Value>../src/config</Value>
+      <Value>../src/asf/xmega/drivers/cpu</Value>
+      <Value>../src/asf/xmega/drivers/pmic</Value>
+      <Value>../src/asf/xmega/drivers/ioport</Value>
+      <Value>../src/asf/xmega/drivers/usart</Value>
+      <Value>../src/asf/common/services/clock</Value>
+      <Value>../src/asf/common/services/serial</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>False</avrgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+  <avrgcc.compiler.optimization.PrepareDataForGarbageCollection>False</avrgcc.compiler.optimization.PrepareDataForGarbageCollection>
+  <avrgcc.compiler.optimization.DebugLevel>Maximum (-g3)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.linker.general.DoNotUseStandardStartFiles />
+  <avrgcc.linker.general.DoNotUseDefaultLibraries />
+  <avrgcc.linker.general.NoStartupOrDefaultLibs />
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-mrelax</avrgcc.assembler.general.AssemblerFlags>
+  <avrgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>../src</Value>
+      <Value>../src/asf/common/applications/user_application/user_board</Value>
+      <Value>../src/asf/common/boards</Value>
+      <Value>../src/asf/common/boards/user_board</Value>
+      <Value>../src/asf/common/utils</Value>
+      <Value>../src/asf/xmega/utils</Value>
+      <Value>../src/asf/xmega/utils/preprocessor</Value>
+      <Value>../src/config</Value>
+      <Value>../src/asf/xmega/drivers/cpu</Value>
+      <Value>../src/asf/xmega/drivers/pmic</Value>
+      <Value>../src/asf/xmega/drivers/ioport</Value>
+      <Value>../src/asf/xmega/drivers/usart</Value>
+      <Value>../src/asf/common/services/clock</Value>
+      <Value>../src/asf/common/services/serial</Value>
+    </ListValues>
+  </avrgcc.assembler.general.IncludePaths>
+</AvrGcc>
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>

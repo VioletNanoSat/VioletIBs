@@ -1,0 +1,521 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_mulsi3.o)
+                              common.o (__mulsi3)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_udivmodsi4.o)
+                              common.o (__udivmodsi4)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+                              c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o (exit)
+c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+f18                 0xc0              main.o
+usart1_complete     0x2               main.o
+f03                 0x108             main.o
+rec_checksum        0x2               main.o
+usart0_index        0x2               main.o
+f22                 0x78              main.o
+usart0_complete     0x2               main.o
+f00                 0x48              main.o
+send_on_command     0x1               main.o
+usart1_index        0x2               main.o
+telem               0x8               main.o
+usart1_flags        0x1               main.o
+usart1_buffer       0x3e8             main.o
+order               0x1               main.o
+count               0x4               main.o
+usart0_buffer       0x3e8             main.o
+error               0x1               main.o
+gpsi_ready          0x1               main.o
+f23                 0x60              main.o
+checksum            0x2               main.o
+rx_id               0x3               main.o
+usart0_flags        0x1               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+LOAD common.o
+LOAD crclib.o
+LOAD vcplib.o
+LOAD uart.o
+LOAD main.o
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51\libc.a
+LOAD c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x1c56
+ *(.vectors)
+ .vectors       0x00000000       0x8c c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+                0x00000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x0000008c                . = ALIGN (0x2)
+                0x0000008c                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000008c        0x0 linker stubs
+ *(.trampolines*)
+                0x0000008c                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000008c                __ctors_start = .
+ *(.ctors)
+                0x0000008c                __ctors_end = .
+                0x0000008c                __dtors_start = .
+ *(.dtors)
+                0x0000008c                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000008c        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+                0x0000008c                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000008c        0xc c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000098       0x1a c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+                0x00000098                __do_copy_data
+ .init4         0x000000b2       0x10 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                0x000000b2                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x000000c2        0x8 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+ *(.init9)
+ *(.text)
+ .text          0x000000ca        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+                0x000000ca                __vector_22
+                0x000000ca                __vector_28
+                0x000000ca                __vector_1
+                0x000000ca                __vector_32
+                0x000000ca                __vector_34
+                0x000000ca                __vector_24
+                0x000000ca                __vector_12
+                0x000000ca                __bad_interrupt
+                0x000000ca                __vector_6
+                0x000000ca                __vector_3
+                0x000000ca                __vector_23
+                0x000000ca                __vector_25
+                0x000000ca                __vector_11
+                0x000000ca                __vector_13
+                0x000000ca                __vector_17
+                0x000000ca                __vector_7
+                0x000000ca                __vector_27
+                0x000000ca                __vector_5
+                0x000000ca                __vector_33
+                0x000000ca                __vector_4
+                0x000000ca                __vector_9
+                0x000000ca                __vector_2
+                0x000000ca                __vector_21
+                0x000000ca                __vector_15
+                0x000000ca                __vector_29
+                0x000000ca                __vector_8
+                0x000000ca                __vector_26
+                0x000000ca                __vector_14
+                0x000000ca                __vector_10
+                0x000000ca                __vector_16
+                0x000000ca                __vector_20
+ .text          0x000000ce      0x258 common.o
+                0x000000f2                insert_str
+                0x00000182                int_to_char
+                0x000000ce                getbit
+ .text          0x00000326       0xb0 crclib.o
+                0x00000326                crc16
+                0x0000039e                append_crc16
+ .text          0x000003d6      0xa0c vcplib.o
+                0x00000838                vcp_unpackage
+                0x000006ae                vcpptr_rx
+                0x0000092e                vcp_tx
+                0x00000ae0                vcp_rx
+                0x000003d6                vcp_clear
+                0x00000418                vcpptr_clear
+                0x000005b0                vcp_package
+                0x00000430                vcpptr_tx
+                0x000003f4                vcpptr_init
+                0x00000c84                vcp_get_error
+ .text          0x00000de2       0x84 uart.o
+                0x00000e56                usart1_tx_poll
+                0x00000de2                get_ubrr
+                0x00000e1a                usart1_initialize
+                0x00000e40                usart0_tx_poll
+                0x00000e38                usart0_rx_poll
+                0x00000e48                usart1_rx_poll
+                0x00000e00                usart0_initialize
+ .text          0x00000e66      0xd6a main.o
+                0x00000eae                retrieve_command
+                0x00001160                retrieve_gps_data
+                0x00001044                __vector_31
+                0x00000fcc                __vector_30
+                0x00000e66                send
+                0x00000f36                __vector_19
+                0x00000eb0                __vector_default
+                0x00001b12                main
+                0x000010e0                send_data
+                0x00001abe                initialize
+                0x00000ec4                __vector_18
+ .text          0x00001bd0        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_mulsi3.o)
+ .text          0x00001bd0        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_udivmodsi4.o)
+ .text          0x00001bd0        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .text          0x00001bd0        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                0x00001bd0                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x00001bd0       0x3e c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_mulsi3.o)
+                0x00001bd0                __mulsi3
+ .text.libgcc   0x00001c0e       0x44 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_udivmodsi4.o)
+                0x00001c0e                __udivmodsi4
+ .text.libgcc   0x00001c52        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .text.libgcc   0x00001c52        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                0x00001c52                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00001c52        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+                0x00001c52                exit
+                0x00001c52                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00001c52        0x4 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00001c56                _etext = .
+
+.data           0x00800100       0x94 load address 0x00001c56
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800100        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+ .data          0x00800100        0x0 common.o
+ .data          0x00800100        0x0 crclib.o
+ .data          0x00800100       0x93 vcplib.o
+ .data          0x00800193        0x0 uart.o
+ .data          0x00800193        0x0 main.o
+ .data          0x00800193        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_mulsi3.o)
+ .data          0x00800193        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_udivmodsi4.o)
+ .data          0x00800193        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .data          0x00800193        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800194                . = ALIGN (0x2)
+ *fill*         0x00800193        0x1 00
+                0x00800194                _edata = .
+                0x00800194                PROVIDE (__data_end, .)
+
+.bss            0x00800194      0xadd
+                0x00800194                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800194        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm128.o
+ .bss           0x00800194        0x0 common.o
+ .bss           0x00800194        0x0 crclib.o
+ .bss           0x00800194        0x0 vcplib.o
+ .bss           0x00800194        0x0 uart.o
+ .bss           0x00800194        0x4 main.o
+                0x00800196                usart1_snapshot
+                0x00800194                usart0_snapshot
+ .bss           0x00800198        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_mulsi3.o)
+ .bss           0x00800198        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_udivmodsi4.o)
+ .bss           0x00800198        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .bss           0x00800198        0x0 c:/winavr-20090313/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800198      0xad9 main.o
+                0x00800198                f18
+                0x00800258                usart1_complete
+                0x0080025a                f03
+                0x00800362                rec_checksum
+                0x00800364                usart0_index
+                0x00800366                f22
+                0x008003de                usart0_complete
+                0x008003e0                f00
+                0x00800428                send_on_command
+                0x00800429                usart1_index
+                0x0080042b                telem
+                0x00800433                usart1_flags
+                0x00800434                usart1_buffer
+                0x0080081c                order
+                0x0080081d                count
+                0x00800821                usart0_buffer
+                0x00800c09                error
+                0x00800c0a                gpsi_ready
+                0x00800c0b                f23
+                0x00800c6b                checksum
+                0x00800c6d                rx_id
+                0x00800c70                usart0_flags
+                0x00800c71                PROVIDE (__bss_end, .)
+                0x00001c56                __data_load_start = LOADADDR (.data)
+                0x00001cea                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800c71        0x0
+                0x00800c71                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800c71                PROVIDE (__noinit_end, .)
+                0x00800c71                _end = .
+                0x00800c71                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0xa0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 common.o
+ .debug_aranges
+                0x00000020       0x20 crclib.o
+ .debug_aranges
+                0x00000040       0x20 vcplib.o
+ .debug_aranges
+                0x00000060       0x20 uart.o
+ .debug_aranges
+                0x00000080       0x20 main.o
+
+.debug_pubnames
+                0x00000000      0x3bb
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x3c common.o
+ .debug_pubnames
+                0x0000003c       0x2d crclib.o
+ .debug_pubnames
+                0x00000069       0xa7 vcplib.o
+ .debug_pubnames
+                0x00000110       0x97 uart.o
+ .debug_pubnames
+                0x000001a7      0x214 main.o
+
+.debug_info     0x00000000     0x1640
+ *(.debug_info)
+ .debug_info    0x00000000      0x1dc common.o
+ .debug_info    0x000001dc      0x17b crclib.o
+ .debug_info    0x00000357      0x525 vcplib.o
+ .debug_info    0x0000087c      0x192 uart.o
+ .debug_info    0x00000a0e      0xc32 main.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x5f5
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xd1 common.o
+ .debug_abbrev  0x000000d1       0xcf crclib.o
+ .debug_abbrev  0x000001a0      0x1b1 vcplib.o
+ .debug_abbrev  0x00000351       0xb8 uart.o
+ .debug_abbrev  0x00000409      0x1ec main.o
+
+.debug_line     0x00000000     0x11a1
+ *(.debug_line)
+ .debug_line    0x00000000      0x126 common.o
+ .debug_line    0x00000126       0xcc crclib.o
+ .debug_line    0x000001f2      0x66a vcplib.o
+ .debug_line    0x0000085c      0x152 uart.o
+ .debug_line    0x000009ae      0x7f3 main.o
+
+.debug_frame    0x00000000      0x260
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x40 common.o
+ .debug_frame   0x00000040       0x30 crclib.o
+ .debug_frame   0x00000070       0xb0 vcplib.o
+ .debug_frame   0x00000120       0x80 uart.o
+ .debug_frame   0x000001a0       0xc0 main.o
+
+.debug_str      0x00000000      0x71a
+ *(.debug_str)
+ .debug_str     0x00000000      0x10c common.o
+                                0x14f (size before relaxing)
+ .debug_str     0x0000010c       0x47 crclib.o
+                                0x127 (size before relaxing)
+ .debug_str     0x00000153       0xed vcplib.o
+                                0x1f1 (size before relaxing)
+ .debug_str     0x00000240       0x78 uart.o
+                                0x151 (size before relaxing)
+ .debug_str     0x000002b8      0x462 main.o
+                                0x569 (size before relaxing)
+
+.debug_loc      0x00000000      0xa8d
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x38b common.o
+ .debug_loc     0x0000038b       0xd8 crclib.o
+ .debug_loc     0x00000463      0x5b0 vcplib.o
+ .debug_loc     0x00000a13       0x52 uart.o
+ .debug_loc     0x00000a65       0x28 main.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(gps_ib.elf elf32-avr)
+LOAD linker stubs

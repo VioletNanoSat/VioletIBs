@@ -61,7 +61,7 @@ ISR(POWER_UART_RXC_vect)
 /// GPS USART Receive interrupt handler
 ISR(GPS_UART_RXC_vect)
 {
-	flag++;
+	//flag++;
 	if (RingBuffer_IsFull(&gps.rx_ringbuff))
 	{
 		volatile uint8_t temp = gps.USART->DATA;					// clear interrupt flag
@@ -73,7 +73,7 @@ ISR(GPS_UART_RXC_vect)
 		RingBuffer_Insert(&gps.rx_ringbuff, gps.USART->DATA);		// read received byte into the ring buffer
 	}
 	if(flag == 15){
-		flag = 0;
+		//flag = 0;
 	}
 }
 	
@@ -92,7 +92,7 @@ ISR(RADIO_UART_RXC_vect)
 		RingBuffer_Insert(&radio.rx_ringbuff, radio.USART->DATA);	// read received byte into the ring buffer
 		radio.tx_LED_pin=1;
 	}
-	if(flag == 15){
+	if(flag == 142){
 		flag = 0;
 	}
 
@@ -102,7 +102,7 @@ ISR(RADIO_UART_RXC_vect)
 ISR(FC_UART_RXC_vect)
 {
 	//flag++;
-	//uint8_t data;
+	uint8_t data;
 	if (RingBuffer_IsFull(&fc.rx_ringbuff))
 	{
 		volatile uint8_t temp = fc.USART->DATA;						// clear interrupt flag
@@ -122,9 +122,9 @@ ISR(FC_UART_RXC_vect)
 		//}
 		//data = fc.USART->DATA;
 	}
-	/*if(flag == 8){
-		flag = 10;
-	}*/
+	if(flag == 50){
+		//flag = 10;
+	}
 	
 	
 }
@@ -133,6 +133,7 @@ ISR(FC_UART_RXC_vect)
 	/// Star Tracker USART Receive interrupt handler
 	ISR(STAR_UART_RXC_vect)
 	{
+		//flag++;
 		if (RingBuffer_IsFull(&star.rx_ringbuff))
 		{
 			volatile uint8_t temp = star.USART->DATA;				// clear interrupt flag
@@ -144,7 +145,9 @@ ISR(FC_UART_RXC_vect)
 			RingBuffer_Insert(&star.rx_ringbuff, star.USART->DATA);	// read received byte into the ring buffer
 			//pax++;
 		}
-		
+		if(flag == 12){
+			//flag = 10;
+		}
 					
 	} 
 #endif
@@ -152,7 +155,8 @@ ISR(FC_UART_RXC_vect)
 #ifdef SUN_UART
 	/// Sun Sensor USART Receive interrupt handler
 	ISR(SUN_UART_RXC_vect)
-	{
+	{	
+		//flag++;
 		if (RingBuffer_IsFull(&sun.rx_ringbuff))
 		{
 			volatile uint8_t temp = sun.USART->DATA;				// clear interrupt flag
@@ -162,6 +166,9 @@ ISR(FC_UART_RXC_vect)
 		else
 		{
 			RingBuffer_Insert(&sun.rx_ringbuff, sun.USART->DATA);	// read received byte into the ring buffer
-		}				
+		}	
+		if(flag == 11){
+			//flag = 10;	
+		}
 	}
 #endif

@@ -157,6 +157,8 @@ void clock_init	(void)
 	serial_options.baudrate =		POWER_UART_BAUDRATE;
 	usart_serial_init				(power.USART, &serial_options);
 	usart_set_rx_interrupt_level	(power.USART,USART_RXCINTLVL_LO_gc);
+	power.USART->BAUDCTRLA = 0x01;
+	power.USART->BAUDCTRLB = 0xD0;
 	
 	serial_options.baudrate =		GPS_UART_BAUDRATE;
 	usart_serial_init				(gps.USART,	&serial_options);

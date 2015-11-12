@@ -1,0 +1,24 @@
+#ifndef adc_h
+#define adc_h
+
+#include "common.h"
+#include <avr/io.h>
+
+// Functions - see adc.c
+uint8 Sample_ADC_Channel (uint8 channel);
+uint8 Get_ADC_Result (uint8 channel);
+
+inline void Enable_ADC()						{ ADCSRA |=  (1<<ADEN); }	
+inline void Disbale_ADC()						{ ADCSRA &= ~(1<<ADEN); } 
+inline void Start_ADC_Conversion()				{ ADCSRA |=  (1<<ADSC); }
+inline void Clear_ADC_MUX()						{ ADMUX  &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX0)); }
+inline void Select_ADC_channel(uint8 channel)   { Clear_ADC_MUX();  (ADMUX |= (channel)); }
+#define		ADC_Conversion_Finished()			( ADCSRA & (1<<ADIF)	) 
+
+
+// ADC samples array - size 8x4 so ready for all available ADC channels, and length 4 moving average filter
+// ADC_samples[ADC channel][Filter index]
+uint8 ADC_samples [8][4];
+uint8 ADC_samples_index[8];
+
+#endif

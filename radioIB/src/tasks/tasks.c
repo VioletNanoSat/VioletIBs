@@ -83,7 +83,7 @@ void cdhib_task	(void)
 				res = Create_VCP_frame(cdhib.tx_data,&size,cdhib.dest_address,cdhib.radio_pre_vcp,cdhib.tx_byte_count);
 			}
 			
-			cdhib.tx_byte_count = cdhib.tx_byte_count + 5;
+			cdhib.tx_byte_count = size;//cdhib.tx_byte_count + 5;
 			if(res == VCP_TERM)
 			{
 				DMA_transmit(&cdhib);

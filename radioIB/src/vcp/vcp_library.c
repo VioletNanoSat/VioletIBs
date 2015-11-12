@@ -93,6 +93,7 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
 		{
 			dst[dst_index++] =			FESC;
 			dst[dst_index++] =			TFEND;
+			//src->tx_byte_count++;
 		}
 		else if (src[src_index] == FESC)
 		{

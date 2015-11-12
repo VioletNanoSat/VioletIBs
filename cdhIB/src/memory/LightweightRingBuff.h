@@ -50,7 +50,7 @@
 
 	/* Defines: */
 		/** Size of each ring buffer, in data elements - must be between 1 and 255. */
-		#define RECEIVE_RINGBUFFER_SIZE		64
+		#define RECEIVE_RINGBUFFER_SIZE		250//64
 		/** Size of each ring buffer, in data elements - must be between 1 and 255. */
 		#define QUEUE_BUFFER_SIZE		10
 		

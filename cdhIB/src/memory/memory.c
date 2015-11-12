@@ -150,17 +150,8 @@ uint8_t errz = 0;
 
 void read_VCP_receive_buff(peripheral_t* Peripheral)
 {
-	/*volatile uint8_t stuff = 0;
-	if(RingBuffer_IsEmpty(&Peripheral->rx_ringbuff)){
-		stuff = 0;
-	}else if(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff)){
-		stuff = 1;
-	}else{
-		stuff = 2;
-	}*/
-	while(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff) || (Peripheral->VCP_rx_status==VCP_RECEIVING  &&  Peripheral == &radio && Peripheral->tx_LED_pin==1))
+	while(!RingBuffer_IsEmpty(&Peripheral->rx_ringbuff))  
 	{
-		//stuff++;
 		//if there's no vcp buffer, initialize it
 		if (Peripheral->vcp_rx_msg.message == NULL)
 		{
@@ -175,16 +166,6 @@ void read_VCP_receive_buff(peripheral_t* Peripheral)
 		if (Peripheral->VCP_rx_status == VCP_NULL_ERR)	{
 			errz++;	
 		}	// null buffer, will init and try again
-		/*if (Peripheral->VCP_rx_status & VCP_OVR_ERR		||	// received packet too long
-			Peripheral->VCP_rx_status & VCP_CRC_ERR		||	// CRC error
-			Peripheral->VCP_rx_status & VCP_ADDR_ERR	||	// Wrong VCP address
-			Peripheral->VCP_rx_status & VCP_ESC_ERR		)	// escaping error in packet
-		{
-			// Add to rejected received packet count
-			Peripheral->rejected_rx_packet_count++;
-			// kill VCP buffer
-			Peripheral->vcp_rx_msg.message = NULL;			
-		}*/
 		if (Peripheral->VCP_rx_status == VCP_OVR_ERR){
 			// Add to rejected received packet count
 			Peripheral->rejected_rx_packet_count++;

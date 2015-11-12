@@ -71,9 +71,24 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
 		append_crc16(src[src_index], (uint16ptr)&crc);
 	}
 	
+	/*unsigned short crcSUN = 0xFFFF;
+	uint8ptr srcSUN;
+	srcSUN[0] = 0x39;
+	for(int i = 0; i<src_size; i++){
+		srcSUN[i+1] = src[i];
+	}
+	int src_size_sun = src_size +1;
+	while(src_size_sun-- > 0){
+		unsigned char ch = *srcSUN++;
+		for(int i=0; i<8; i++){
+			crcSUN = (crcSUN>>1)^(((ch^crcSUN) & 0x01)? 0x8408: 0);
+			ch>>=1;
+		}
+	}*///FOR SUN SENSOR
+	
 	// Add CRC to the end of the source buffer
-	src[src_index++] = ((crc >> 8) & 0xFF);
-	src[src_index++] = (crc & 0xFF);
+	src[src_index++] = ((crc >> 8) & 0xFF);//(crcSUN & 0xFF);
+	src[src_index++] = (crc & 0xFF);//((crcSUN >> 8) & 0xFF);
 	
 	// Size including the 2 CRC bytes
 	payload_size = src_index;
@@ -138,7 +153,7 @@ uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr 
  * 
  * \return			VCP status flags
  */
-uint8_t bitez = 0;
+uint16_t bitez = 0;
 uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 {
 	

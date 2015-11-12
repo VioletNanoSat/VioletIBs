@@ -26,7 +26,7 @@
 #define RADIO_RECEIVE_MESSAGE_BUFF_SIZE		270			///< Radio receive buffer size(non - VCP)
 #define STAR_RECEIVE_MESSAGE_BUFF_SIZE		256			///< Star Tracker receive buffer size(non - VCP)
 #define SUN_RECEIVE_MESSAGE_BUFF_SIZE		256			///< Sun Sensor receive buffer size(non - VCP)
-#define FC_RECEIVE_MESSAGE_BUFF_SIZE		100			///< Flight Computer receive buffer size(non - VCP)
+#define FC_RECEIVE_MESSAGE_BUFF_SIZE		256//100			///< Flight Computer receive buffer size(non - VCP)
 
 // VCP transmit Buffers size
 #define POWER_TRANSMIT_MESSAGE_BUFF_SIZE	200			///< Power transmit buffer size (VCP)

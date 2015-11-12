@@ -228,6 +228,7 @@ void send_radio_error(void)
 
 void read_radio_receive_buff	(void)
 {
+	
 	uint16_t ctr = cdhib.tx_byte_count;
 	while(!RingBuffer_IsEmpty(&radio.rx_ringbuff))
 	{
@@ -282,12 +283,19 @@ void read_radio_receive_buff	(void)
 			{
 				//get packet size! Important
 				cdhib.radio_packet_size = (rx_byte << 8);
+			    if(cdhib.radio_packet_size >= 50){
+				    //cdhib.radio_packet_size = 50;
+			    }
 			}
 			else if(ctr == 5)
 			{
 				//Same deal
 				cdhib.radio_packet_size = cdhib.radio_packet_size + rx_byte;
+				if(cdhib.radio_packet_size >= 50){
+				    //cdhib.radio_packet_size = 50;
+			    }
 			}
+			
 			else if(ctr == LI_HDR + AX_HDR )
 			{
 				if(rx_byte == FC_MSG || rx_byte == FC_CMD)
