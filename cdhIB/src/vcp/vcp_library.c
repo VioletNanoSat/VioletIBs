@@ -197,15 +197,15 @@ uint8_t Receive_VCP_byte(vcp_ptrbuffer *buff, uint8 byte)
 					// No data between FENDs - assume lost sync and start over
 					buff->status = VCP_ADDRESS;
 			}
-			//else if (byte == FESC)
-				//buff->status = VCP_ESC;
+			else if (byte == FESC)
+				buff->status = VCP_ESC;
 			else
 			{
 				buff->message[(buff->index)++] = byte;	
-				bitez++;
+				//bitez++;
 			}			
 			if(bitez>45){
-				bitez=0;
+				//bitez=0;
 				//buff->status = VCP_TERM;
 			}			
 			break;
