@@ -66,6 +66,7 @@ typedef struct
 
 void	vcpptr_init			(vcp_ptrbuffer *buff, uint8 *message_buffer, uint16 message_buffer_size);		///< See vcp_library.c
 uint8_t	Create_VCP_frame	(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr src, uint16 src_size);	///< See vcp_library.c
+uint8_t	Create_Sun_VCP_frame	(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr src, uint16 src_size);	///< See vcp_library.c
 uint8_t	Receive_VCP_byte	(vcp_ptrbuffer *buff, uint8 byte);												///< See vcp_library.c
 
 #endif /* VCP_LIBRARY_H_ */

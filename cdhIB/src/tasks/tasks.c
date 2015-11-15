@@ -2,7 +2,7 @@
  * tasks.c
  * \brief Tasks source file
  *
- *  Author: Liran
+ *  Author: Liran, William Voge
  */ 
 
 #include <asf.h>
@@ -42,7 +42,7 @@ void debug_task	(void)
 		//ths_task();
 		//mag_task();
 		//star_task();
-		//sun_task();
+		sun_task();
 		//gps_task();
 		//power_task();
 	}

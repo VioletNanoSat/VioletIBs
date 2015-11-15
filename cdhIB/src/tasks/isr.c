@@ -13,7 +13,7 @@ volatile uint16_t THS_Seconds_counter;			///< THS Interval Seconds counter
 volatile uint16_t PWR_WDOG_Seconds_counter;		///< Power WatchDog Interval Seconds counter
 volatile uint16_t i,j;
 volatile Bool xosc_recovey;
-volatile uint8_t flag;
+volatile uint16_t flag;
 volatile uint8_t fendi;
 uint8_t pax = 0;
 			
@@ -122,7 +122,7 @@ ISR(FC_UART_RXC_vect)
 		//}
 		//data = fc.USART->DATA;
 	}
-	if(flag == 10){
+	if(flag == 300){
 		flag = 10;
 	}
 	

@@ -310,6 +310,9 @@ void read_radio_receive_buff	(void)
 				{
 					cdhib.dest_address = VCP_POWER;
 				}
+				/*else if(rx_byte == 0xB1){ //sun sensor
+					cdhib.dest_address = 0x39;
+				}*/
 				else
 				{
 					//cdhib.tx_status = VCP_CREAT_ERR;

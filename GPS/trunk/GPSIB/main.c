@@ -8,6 +8,8 @@
 // Internal Infrastructure Variables
 #define usart0_buffer_size 500
 #define usart1_buffer_size 1000
+#define F_CPU 1000000UL
+#define UART_BAUD 9600 
 
 uint8 usart0_buffer[usart0_buffer_size];
 volatile uint16 usart0_index;
@@ -46,8 +48,58 @@ uint8			rx_id[3];			// Used to hole identifiers for the GPS sentences
 uint8			checksum[2];		// Hold the calculated checksum
 uint8			rec_checksum[2];	// Hold the received checksum
 
-
 void initialize()
+{
+	//to do: copy over initialize from power code
+	 //---------------------------------------------------------------------
+  // timer 0
+  //---------------------------------------------------------------------
+  // used for transmitting telemetry packet at 1 Hz
+  //
+  // mode = clear on match
+  // prescalar = 1024
+  // compare value = 124
+  // compare match interrupt freq = (14.7456 MHz / 1024 / 100) = 144 Hz
+  // use timer0_counter to get 144 / 144 = 1 Hz
+
+  // enable clear on match interrupt
+  TIMSK = ( 1 << OCIE0 );
+  OCR0 = 71;
+
+  // enable clear on match mode, set prescalar to 1024
+  TCCR0 = ( 1 << WGM01 ) | ( 1 << CS02 ) | ( 1 << CS01 ) | ( 1 << CS00 );
+
+  //timer0_counter[0] = 99;
+  //timer0_counter[1] = 199;
+  //soc_counter = 1000; //5 sec
+  
+  // communication
+  //   uart_init();
+  #if F_CPU < 2000000UL && defined(U2X)
+  UCSR0A = UCSR1A = _BV(U2X); /* improve baud rate error by using 2x clk */
+  UBRR0L = UBRR1L = (F_CPU / (8UL * UART_BAUD)) - 1;
+  #else
+  UBRR0L = UBRR1L = 7;//(F_CPU / (16UL * UART_BAUD)) - 1;//7;
+  #endif
+  UCSR0B = _BV(TXEN0) | _BV(RXEN0); /* tx/rx enable */
+  UCSR1B = _BV(TXEN1) | _BV(RXEN1); /* tx/rx enable */
+
+
+  UCSR1B = UCSR1B | _BV(TXCIE1);
+  UCSR1B = UCSR1B | _BV(RXCIE1);
+  UCSR0B = UCSR0B | _BV(TXCIE0);
+  UCSR0B = UCSR0B | _BV(RXCIE0);
+
+  
+  // rev up those interrupts
+  sei();
+
+}
+
+
+
+
+void initialize_old()
 {
 
 	//STK500
@@ -69,7 +121,7 @@ void initialize()
 	
 		
 	// set up the UART lines
-	usart0_initialize(get_ubrr(CDHIB_BAUD_RATE));		// UART0 is the interface to the CDH IB
+	usart0_initialize(/*get_ubrr(CDHIB_BAUD_RATE)*/9600);		// UART0 is the interface to the CDH IB
 	usart1_initialize(get_ubrr(RECEIVER_BAUD_RATE));	// UART1 is the interface to the GPS receiver
 
 	usart0_index		= 0;
@@ -560,7 +612,7 @@ void send(char *str, int len)	// No VCP
 // Main
 int main()
 {
-	initialize();
+	//initialize();
 
 	usart1_rx_interrupt_enable();
 

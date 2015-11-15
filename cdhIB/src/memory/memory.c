@@ -357,7 +357,7 @@ void Sun_DMA_transmit(peripheral_t* source, peripheral_t* destination)
 	// Reset transmit data count to full buffer size
 	destination->tx_byte_count = destination->tx_data_buffer_size;
 	// create VCP frame in the peripheral transmit buffer
-	destination->VCP_tx_status = Create_VCP_frame(	destination->tx_data,
+	destination->VCP_tx_status = Create_Sun_VCP_frame(	destination->tx_data,
 													(uint16ptr)&destination->tx_byte_count,
 													destination->VCP_address,
 													source->rx_data,
