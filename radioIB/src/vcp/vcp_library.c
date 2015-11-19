@@ -4,7 +4,7 @@
  *
  * Created: 3/8/2012
  *
- * Author: Liran
+ * Author: Liran, William Voge
  */ 
 
 #include "vcp_library.h"

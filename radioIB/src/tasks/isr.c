@@ -2,7 +2,7 @@
  * isr.c
  * \brief Interrupt Service Routines source file
  *
- *  Author: Liran
+ *  Author: Liran, William Voge
  */ 
 
 #include <asf.h>

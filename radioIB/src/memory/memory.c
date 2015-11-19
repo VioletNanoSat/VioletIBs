@@ -3,7 +3,7 @@
  * \brief Memory source file
  *
  * Created: 12/15/2011
- *  Author: Liran
+ *  Author: William Voge, Liran
  */ 
 
 #include "memory.h"

@@ -3,332 +3,242 @@ gps_ib.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00000e32  00000ec6  2**0
+  0 .data         00000000  00800100  000010da  0000116e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000e32  00000000  00000000  00000094  2**1
+  1 .text         000010da  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000932  00800100  00800100  00000ec6  2**0
+  2 .bss          00000932  00800100  00800100  0000116e  2**0
                   ALLOC
-  3 .stab         00000750  00000000  00000000  00000ec8  2**2
+  3 .stab         00000750  00000000  00000000  00001170  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      0000010b  00000000  00000000  00001618  2**0
+  4 .stabstr      0000010b  00000000  00000000  000018c0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .comment      0000002f  00000000  00000000  00001723  2**0
+  5 .comment      0000002f  00000000  00000000  000019cb  2**0
                   CONTENTS, READONLY
-  6 .debug_aranges 00000158  00000000  00000000  00001752  2**0
+  6 .debug_aranges 00000150  00000000  00000000  000019fa  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00001839  00000000  00000000  000018aa  2**0
+  7 .debug_info   00001818  00000000  00000000  00001b4a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000006d3  00000000  00000000  000030e3  2**0
+  8 .debug_abbrev 000006bd  00000000  00000000  00003362  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   000008ae  00000000  00000000  000037b6  2**0
+  9 .debug_line   0000088c  00000000  00000000  00003a1f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000478  00000000  00000000  00004064  2**2
+ 10 .debug_frame  00000468  00000000  00000000  000042ac  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    000007ae  00000000  00000000  000044dc  2**0
+ 11 .debug_str    0000079f  00000000  00000000  00004714  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    000010bf  00000000  00000000  00004c8a  2**0
+ 12 .debug_loc    000010bf  00000000  00000000  00004eb3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 000000f8  00000000  00000000  00005d49  2**0
+ 13 .debug_ranges 000000f0  00000000  00000000  00005f72  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
- * Calculates a 16 bit ccitt crc from a message
- * buffer. The return value
- * is the crc.
- */
-uint16 crc16(uint8ptr message, uint32 size)
-{
-   0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
-   4:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-   8:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
- *
- * Calculates a 16 bit ccitt crc from a message
- * buffer. The return value
- * is the crc.
- */
-uint16 crc16(uint8ptr message, uint32 size)
-   c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-{
-	uint16 crc = CRC16_INIT_VALUE;
-
-	uint8 ch;
-	sint32 index, j;
-	for (index = 0; index < size; index++)
-  10:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  14:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
- * buffer. The return value
- * is the crc.
- */
-uint16 crc16(uint8ptr message, uint32 size)
-{
-	uint16 crc = CRC16_INIT_VALUE;
-  18:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-
-	uint8 ch;
-	sint32 index, j;
-	for (index = 0; index < size; index++)
-	{
-		ch = message[index];
-  1c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  20:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-		for (j = 0; j < 8; j++)
-		{
-			crc = (crc >> 1) ^ (((ch ^ crc) & 0x01) ? 0x8408 : 0);
-  24:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  28:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  2c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  30:	0c 94 58 06 	jmp	0xcb0	; 0xcb0 <__vector_12>
-  34:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  38:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-			ch >>= 1;
-  3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-	uint8 ch;
-	sint32 index, j;
-	for (index = 0; index < size; index++)
-	{
-		ch = message[index];
-		for (j = 0; j < 8; j++)
-  40:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-{
-	uint16 crc = CRC16_INIT_VALUE;
-
-	uint8 ch;
-	sint32 index, j;
-	for (index = 0; index < size; index++)
-  48:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  4c:	0c 94 86 06 	jmp	0xd0c	; 0xd0c <__vector_19>
-  50:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  54:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-			ch >>= 1;
-		}
-	}
-
-	return crc;
-}
-  58:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  5c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  60:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-		case VCP_RECEIVING:
-			if (byte == FEND)
-			{
-				if (buff->index > 0)
-					// Done
-					buff->status = VCP_TERM;
-  68:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-				else
-					// No data between FENDs - assume lost sync and start over
-					buff->status = VCP_ADDRESS;
-  6c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-			}
-			else if (byte == FESC)
-  70:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-				buff->status = VCP_ESC;
-  74:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-			else
-			{
-				buff->message[(buff->index)++] = byte;	
-  78:	0c 94 c0 06 	jmp	0xd80	; 0xd80 <__vector_30>
-  7c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  80:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-  84:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
-			}						
-			break;
-		case VCP_ESC:
-			if (byte == TFEND)
-  88:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+       0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
+       4:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+       8:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+       c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      10:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      14:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      18:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      1c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      20:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      24:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      28:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      2c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      30:	0c 94 93 07 	jmp	0xf26	; 0xf26 <__vector_12>
+      34:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      38:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      40:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      48:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      4c:	0c 94 c1 07 	jmp	0xf82	; 0xf82 <__vector_19>
+      50:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      54:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      58:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      5c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      60:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      68:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      6c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      70:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      74:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      78:	0c 94 fb 07 	jmp	0xff6	; 0xff6 <__vector_30>
+      7c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      80:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      84:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+      88:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
 
 0000008c <__ctors_end>:
-			{
-				buff->message[(buff->index)++] = FEND;
-  8c:	11 24       	eor	r1, r1
-  8e:	1f be       	out	0x3f, r1	; 63
-  90:	cf ef       	ldi	r28, 0xFF	; 255
-  92:	d0 e1       	ldi	r29, 0x10	; 16
-				buff->status = VCP_RECEIVING;
-			}
-			else if (byte == TFESC)
-  94:	de bf       	out	0x3e, r29	; 62
-  96:	cd bf       	out	0x3d, r28	; 61
+      8c:	11 24       	eor	r1, r1
+      8e:	1f be       	out	0x3f, r1	; 63
+      90:	cf ef       	ldi	r28, 0xFF	; 255
+      92:	d0 e1       	ldi	r29, 0x10	; 16
+      94:	de bf       	out	0x3e, r29	; 62
+      96:	cd bf       	out	0x3d, r28	; 61
 
 00000098 <__do_clear_bss>:
-  98:	2a e0       	ldi	r18, 0x0A	; 10
-			{
-				buff->message[(buff->index)++] = FESC;
-  9a:	a0 e0       	ldi	r26, 0x00	; 0
-  9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
+      98:	2a e0       	ldi	r18, 0x0A	; 10
+      9a:	a0 e0       	ldi	r26, 0x00	; 0
+      9c:	b1 e0       	ldi	r27, 0x01	; 1
+      9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
 
 000000a0 <.do_clear_bss_loop>:
-  a0:	1d 92       	st	X+, r1
+      a0:	1d 92       	st	X+, r1
 
 000000a2 <.do_clear_bss_start>:
-  a2:	a2 33       	cpi	r26, 0x32	; 50
-  a4:	b2 07       	cpc	r27, r18
-  a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
-  a8:	0e 94 c4 05 	call	0xb88	; 0xb88 <main>
-				buff->status = VCP_RECEIVING;
-  ac:	0c 94 17 07 	jmp	0xe2e	; 0xe2e <_exit>
+      a2:	a2 33       	cpi	r26, 0x32	; 50
+      a4:	b2 07       	cpc	r27, r18
+      a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
+      a8:	0e 94 07 07 	call	0xe0e	; 0xe0e <main>
+      ac:	0c 94 6b 08 	jmp	0x10d6	; 0x10d6 <_exit>
 
 000000b0 <__bad_interrupt>:
-			}
-			else
-				return VCP_ESC_ERR;	
-			break;
-		default:
-			buff->status = VCP_IDLE;
-  b0:	0c 94 4e 06 	jmp	0xc9c	; 0xc9c <__vector_default>
+      b0:	0c 94 89 07 	jmp	0xf12	; 0xf12 <__vector_default>
 
 000000b4 <Sample_ADC_Channel>:
-			break; 
-	}
-	
-	// End of frame
-	if (buff->status == VCP_TERM)
-  b4:	97 b1       	in	r25, 0x07	; 7
-  b6:	90 7f       	andi	r25, 0xF0	; 240
-		// Check Calculated CRC against Received CRC
-		if (buff->crc != message_crc)
-			return VCP_CRC_ERR;
-	}
+uint8 Get_ADC_Result (uint8 channel);
 
-	return buff->status;
-  b8:	97 b9       	out	0x07, r25	; 7
-  ba:	97 b1       	in	r25, 0x07	; 7
+inline void Enable_ADC()						{ ADCSRA |=  (1<<ADEN); }	
+inline void Disbale_ADC()						{ ADCSRA &= ~(1<<ADEN); } 
+inline void Start_ADC_Conversion()				{ ADCSRA |=  (1<<ADSC); }
+inline void Clear_ADC_MUX()						{ ADMUX  &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX0)); }
+      b4:	97 b1       	in	r25, 0x07	; 7
+      b6:	90 7f       	andi	r25, 0xF0	; 240
+      b8:	97 b9       	out	0x07, r25	; 7
+inline void Select_ADC_channel(uint8 channel)   { Clear_ADC_MUX();  (ADMUX |= (channel)); }
+      ba:	97 b1       	in	r25, 0x07	; 7
+      bc:	98 2b       	or	r25, r24
+      be:	97 b9       	out	0x07, r25	; 7
+uint8 Sample_ADC_Channel (uint8 channel);
+uint8 Get_ADC_Result (uint8 channel);
+
+inline void Enable_ADC()						{ ADCSRA |=  (1<<ADEN); }	
+inline void Disbale_ADC()						{ ADCSRA &= ~(1<<ADEN); } 
+inline void Start_ADC_Conversion()				{ ADCSRA |=  (1<<ADSC); }
+      c0:	36 9a       	sbi	0x06, 6	; 6
+uint8 Sample_ADC_Channel (uint8 channel)
+{
 	
-	// End of frame
-	if (buff->status == VCP_TERM)
-	{
-		// Message CRC is last 2 bytes 
-		message_crc = (buff->message[buff->index-2] << 8 ) + buff->message[buff->index-1];
-  bc:	98 2b       	or	r25, r24
-  be:	97 b9       	out	0x07, r25	; 7
-  c0:	36 9a       	sbi	0x06, 6	; 6
-  c2:	34 9b       	sbis	0x06, 4	; 6
-  c4:	fe cf       	rjmp	.-4      	; 0xc2 <Sample_ADC_Channel+0xe>
-  c6:	85 b1       	in	r24, 0x05	; 5
-  c8:	08 95       	ret
+	Select_ADC_channel(channel); 			// Channel
+    Start_ADC_Conversion();   				// start conversion
+	while ( !ADC_Conversion_Finished() );   // wait for conversion to end
+      c2:	34 9b       	sbis	0x06, 4	; 6
+      c4:	fe cf       	rjmp	.-4      	; 0xc2 <Sample_ADC_Channel+0xe>
+
+    return ADCH; 							// read ADC result and change the index
+      c6:	85 b1       	in	r24, 0x05	; 5
+      c8:	08 95       	ret
 
 000000ca <Get_ADC_Result>:
-  ca:	ff 92       	push	r15
-  cc:	0f 93       	push	r16
-  ce:	1f 93       	push	r17
-  d0:	cf 93       	push	r28
-  d2:	df 93       	push	r29
-  d4:	08 2f       	mov	r16, r24
-  d6:	10 e0       	ldi	r17, 0x00	; 0
-  d8:	e8 01       	movw	r28, r16
-  da:	cd 5f       	subi	r28, 0xFD	; 253
-		// Remove CRC bytes from the message
-		buff->index -= 2;
-  dc:	de 4f       	sbci	r29, 0xFE	; 254
-  de:	f8 80       	ld	r15, Y
-  e0:	0e 94 5a 00 	call	0xb4	; 0xb4 <Sample_ADC_Channel>
-		// Calculate CRC on received message (including address)
-		append_crc16(buff->address, &(buff->crc));
-  e4:	f8 01       	movw	r30, r16
-  e6:	ee 0f       	add	r30, r30
-  e8:	ff 1f       	adc	r31, r31
-  ea:	ee 0f       	add	r30, r30
-  ec:	ff 1f       	adc	r31, r31
-  ee:	df 01       	movw	r26, r30
-  f0:	af 0d       	add	r26, r15
-  f2:	b1 1d       	adc	r27, r1
-		for (payload_index = 0; payload_index < buff->index; payload_index++)
-  f4:	a5 5f       	subi	r26, 0xF5	; 245
-  f6:	be 4f       	sbci	r27, 0xFE	; 254
-  f8:	8c 93       	st	X, r24
-		{
-			append_crc16(buff->message[payload_index], &buff->crc);
-  fa:	8f 2d       	mov	r24, r15
-  fc:	8f 5f       	subi	r24, 0xFF	; 255
-  fe:	88 83       	st	Y, r24
- 100:	84 30       	cpi	r24, 0x04	; 4
- 102:	08 f0       	brcs	.+2      	; 0x106 <Get_ADC_Result+0x3c>
- 104:	18 82       	st	Y, r1
- 106:	e5 5f       	subi	r30, 0xF5	; 245
- 108:	fe 4f       	sbci	r31, 0xFE	; 254
-		message_crc = (buff->message[buff->index-2] << 8 ) + buff->message[buff->index-1];
-		// Remove CRC bytes from the message
-		buff->index -= 2;
-		// Calculate CRC on received message (including address)
-		append_crc16(buff->address, &(buff->crc));
-		for (payload_index = 0; payload_index < buff->index; payload_index++)
- 10a:	21 81       	ldd	r18, Z+1	; 0x01
- 10c:	80 81       	ld	r24, Z
- 10e:	90 e0       	ldi	r25, 0x00	; 0
- 110:	a0 e0       	ldi	r26, 0x00	; 0
- 112:	b0 e0       	ldi	r27, 0x00	; 0
- 114:	82 0f       	add	r24, r18
- 116:	91 1d       	adc	r25, r1
-		{
-			append_crc16(buff->message[payload_index], &buff->crc);
-		}
-		// Check Calculated CRC against Received CRC
-		if (buff->crc != message_crc)
- 118:	a1 1d       	adc	r26, r1
- 11a:	b1 1d       	adc	r27, r1
- 11c:	22 81       	ldd	r18, Z+2	; 0x02
- 11e:	82 0f       	add	r24, r18
- 120:	91 1d       	adc	r25, r1
-			return VCP_CRC_ERR;
- 122:	a1 1d       	adc	r26, r1
- 124:	b1 1d       	adc	r27, r1
-	uint16_t payload_index;
-	uint16_t message_crc;
-	
-	// Check for invalid buffer
-	if (buff->message == NULL)
-		return VCP_NULL_ERR;
- 126:	23 81       	ldd	r18, Z+3	; 0x03
- 128:	82 0f       	add	r24, r18
-	
-	// Check if the buffer will overflow
-	if (buff->index >= buff->size-1)
-		return VCP_OVR_ERR;
- 12a:	91 1d       	adc	r25, r1
- 12c:	a1 1d       	adc	r26, r1
-				buff->status = VCP_ADDRESS;	
-			break;
-		case VCP_ADDRESS:
-			// Check for invalid VCP address
-			if (byte > VCP_FC && byte != VCP_SUN_SENSOR)
-				return VCP_ADDR_ERR;
- 12e:	b1 1d       	adc	r27, r1
- 130:	22 e0       	ldi	r18, 0x02	; 2
-			{
-				buff->message[(buff->index)++] = FESC;
-				buff->status = VCP_RECEIVING;
-			}
-			else
-				return VCP_ESC_ERR;	
- 132:	b6 95       	lsr	r27
-		if (buff->crc != message_crc)
-			return VCP_CRC_ERR;
-	}
 
-	return buff->status;
- 134:	a7 95       	ror	r26
- 136:	97 95       	ror	r25
- 138:	87 95       	ror	r24
- 13a:	2a 95       	dec	r18
- 13c:	d1 f7       	brne	.-12     	; 0x132 <Get_ADC_Result+0x68>
- 13e:	df 91       	pop	r29
- 140:	cf 91       	pop	r28
- 142:	1f 91       	pop	r17
- 144:	0f 91       	pop	r16
+
+// This function collects 4 samples for a moving average filter of length 4, returns the average result
+// (channel) is the ADC Mux channel, range 0-8.
+uint8 Get_ADC_Result (uint8 channel)
+{
+      ca:	ff 92       	push	r15
+      cc:	0f 93       	push	r16
+      ce:	1f 93       	push	r17
+      d0:	cf 93       	push	r28
+      d2:	df 93       	push	r29
+	
+	uint32  ADC_Temp = 0;
+
+    ADC_samples [channel][ADC_samples_index[channel]++] = Sample_ADC_Channel(channel);		// read ADC result and change the index
+      d4:	08 2f       	mov	r16, r24
+      d6:	10 e0       	ldi	r17, 0x00	; 0
+      d8:	e8 01       	movw	r28, r16
+      da:	cd 5f       	subi	r28, 0xFD	; 253
+      dc:	de 4f       	sbci	r29, 0xFE	; 254
+      de:	f8 80       	ld	r15, Y
+      e0:	0e 94 5a 00 	call	0xb4	; 0xb4 <Sample_ADC_Channel>
+      e4:	f8 01       	movw	r30, r16
+      e6:	ee 0f       	add	r30, r30
+      e8:	ff 1f       	adc	r31, r31
+      ea:	ee 0f       	add	r30, r30
+      ec:	ff 1f       	adc	r31, r31
+      ee:	df 01       	movw	r26, r30
+      f0:	af 0d       	add	r26, r15
+      f2:	b1 1d       	adc	r27, r1
+      f4:	a5 5f       	subi	r26, 0xF5	; 245
+      f6:	be 4f       	sbci	r27, 0xFE	; 254
+      f8:	8c 93       	st	X, r24
+      fa:	8f 2d       	mov	r24, r15
+      fc:	8f 5f       	subi	r24, 0xFF	; 255
+      fe:	88 83       	st	Y, r24
+    if(ADC_samples_index[channel] >= 4)	
+     100:	84 30       	cpi	r24, 0x04	; 4
+     102:	08 f0       	brcs	.+2      	; 0x106 <Get_ADC_Result+0x3c>
+		ADC_samples_index[channel] = 0;							// length-4 filter
+     104:	18 82       	st	Y, r1
+    
+	ADC_Temp = (		(uint32)ADC_samples [channel][0] +
+                		(uint32)ADC_samples [channel][1] +
+     106:	e5 5f       	subi	r30, 0xF5	; 245
+     108:	fe 4f       	sbci	r31, 0xFE	; 254
+     10a:	21 81       	ldd	r18, Z+1	; 0x01
+
+    ADC_samples [channel][ADC_samples_index[channel]++] = Sample_ADC_Channel(channel);		// read ADC result and change the index
+    if(ADC_samples_index[channel] >= 4)	
+		ADC_samples_index[channel] = 0;							// length-4 filter
+    
+	ADC_Temp = (		(uint32)ADC_samples [channel][0] +
+     10c:	80 81       	ld	r24, Z
+     10e:	90 e0       	ldi	r25, 0x00	; 0
+     110:	a0 e0       	ldi	r26, 0x00	; 0
+     112:	b0 e0       	ldi	r27, 0x00	; 0
+     114:	82 0f       	add	r24, r18
+     116:	91 1d       	adc	r25, r1
+     118:	a1 1d       	adc	r26, r1
+     11a:	b1 1d       	adc	r27, r1
+                		(uint32)ADC_samples [channel][1] +
+                		(uint32)ADC_samples [channel][2] +
+     11c:	22 81       	ldd	r18, Z+2	; 0x02
+    ADC_samples [channel][ADC_samples_index[channel]++] = Sample_ADC_Channel(channel);		// read ADC result and change the index
+    if(ADC_samples_index[channel] >= 4)	
+		ADC_samples_index[channel] = 0;							// length-4 filter
+    
+	ADC_Temp = (		(uint32)ADC_samples [channel][0] +
+                		(uint32)ADC_samples [channel][1] +
+     11e:	82 0f       	add	r24, r18
+     120:	91 1d       	adc	r25, r1
+     122:	a1 1d       	adc	r26, r1
+     124:	b1 1d       	adc	r27, r1
+                		(uint32)ADC_samples [channel][2] +
+                		(uint32)ADC_samples [channel][3] );		// add up last 4
+     126:	23 81       	ldd	r18, Z+3	; 0x03
+
+    ADC_samples [channel][ADC_samples_index[channel]++] = Sample_ADC_Channel(channel);		// read ADC result and change the index
+    if(ADC_samples_index[channel] >= 4)	
+		ADC_samples_index[channel] = 0;							// length-4 filter
+    
+	ADC_Temp = (		(uint32)ADC_samples [channel][0] +
+     128:	82 0f       	add	r24, r18
+     12a:	91 1d       	adc	r25, r1
+     12c:	a1 1d       	adc	r26, r1
+     12e:	b1 1d       	adc	r27, r1
                 		(uint32)ADC_samples [channel][1] +
                 		(uint32)ADC_samples [channel][2] +
                 		(uint32)ADC_samples [channel][3] );		// add up last 4
 	return				(uint8)	(ADC_Temp >> 2);    			// divide by 4 and return the result
+     130:	22 e0       	ldi	r18, 0x02	; 2
+     132:	b6 95       	lsr	r27
+     134:	a7 95       	ror	r26
+     136:	97 95       	ror	r25
+     138:	87 95       	ror	r24
+     13a:	2a 95       	dec	r18
+     13c:	d1 f7       	brne	.-12     	; 0x132 <Get_ADC_Result+0x68>
 	
 }
- 146:	ff 90       	pop	r15
- 148:	08 95       	ret
+     13e:	df 91       	pop	r29
+     140:	cf 91       	pop	r28
+     142:	1f 91       	pop	r17
+     144:	0f 91       	pop	r16
+     146:	ff 90       	pop	r15
+     148:	08 95       	ret
 
 0000014a <getbit>:
 		levels++;
@@ -337,1988 +247,2609 @@ uint16 crc16(uint8ptr message, uint32 size)
 	div /= base;
 
 	while (div >= 1)
- 14a:	21 e0       	ldi	r18, 0x01	; 1
- 14c:	30 e0       	ldi	r19, 0x00	; 0
- 14e:	06 2e       	mov	r0, r22
- 150:	02 c0       	rjmp	.+4      	; 0x156 <getbit+0xc>
- 152:	22 0f       	add	r18, r18
+     14a:	21 e0       	ldi	r18, 0x01	; 1
+     14c:	30 e0       	ldi	r19, 0x00	; 0
+     14e:	06 2e       	mov	r0, r22
+     150:	02 c0       	rjmp	.+4      	; 0x156 <getbit+0xc>
+     152:	22 0f       	add	r18, r18
  * a char array
  */
 uint32 int_to_char(uint32 number, uint32 base, uint8 *str, uint32 str_size)
 {
 	if (str == NULL || str_size == 0)
 		return 0;
- 154:	33 1f       	adc	r19, r19
- 156:	0a 94       	dec	r0
- 158:	e2 f7       	brpl	.-8      	; 0x152 <getbit+0x8>
+     154:	33 1f       	adc	r19, r19
+     156:	0a 94       	dec	r0
+     158:	e2 f7       	brpl	.-8      	; 0x152 <getbit+0x8>
 
 		div /= base;
 	}
 
 	return pos;
 }
- 15a:	90 e0       	ldi	r25, 0x00	; 0
- 15c:	28 23       	and	r18, r24
- 15e:	39 23       	and	r19, r25
- 160:	02 c0       	rjmp	.+4      	; 0x166 <getbit+0x1c>
- 162:	35 95       	asr	r19
- 164:	27 95       	ror	r18
- 166:	6a 95       	dec	r22
- 168:	e2 f7       	brpl	.-8      	; 0x162 <getbit+0x18>
- 16a:	82 2f       	mov	r24, r18
- 16c:	08 95       	ret
+     15a:	90 e0       	ldi	r25, 0x00	; 0
+     15c:	28 23       	and	r18, r24
+     15e:	39 23       	and	r19, r25
+     160:	02 c0       	rjmp	.+4      	; 0x166 <getbit+0x1c>
+     162:	35 95       	asr	r19
+     164:	27 95       	ror	r18
+     166:	6a 95       	dec	r22
+     168:	e2 f7       	brpl	.-8      	; 0x162 <getbit+0x18>
+     16a:	82 2f       	mov	r24, r18
+     16c:	08 95       	ret
 
-0000016e <retrieve_gps_data>:
- 16e:	2f 92       	push	r2
- 170:	3f 92       	push	r3
- 172:	4f 92       	push	r4
- 174:	5f 92       	push	r5
- 176:	6f 92       	push	r6
- 178:	7f 92       	push	r7
- 17a:	8f 92       	push	r8
- 17c:	9f 92       	push	r9
- 17e:	af 92       	push	r10
- 180:	bf 92       	push	r11
- 182:	cf 92       	push	r12
- 184:	df 92       	push	r13
- 186:	ef 92       	push	r14
- 188:	ff 92       	push	r15
- 18a:	0f 93       	push	r16
+0000016e <append_crc16>:
+ * append_crc16
+ *
+ * Adds a byte of data into the crc calculation.
+ */
+void append_crc16(uint8 character, uint16ptr crc)
+{
+     16e:	fb 01       	movw	r30, r22
+     170:	98 e0       	ldi	r25, 0x08	; 8
+	for (j = 0; j < 8; j++)
+	{
+		//*crc = (*crc >> 1) ^ (((character ^ *crc) & 0x01) ? 0x8408 : 0);
+		//character >>= 1;
+
+		if ((character ^ *crc) & 0x01) {
+     172:	20 81       	ld	r18, Z
+     174:	31 81       	ldd	r19, Z+1	; 0x01
+     176:	a9 01       	movw	r20, r18
+     178:	48 27       	eor	r20, r24
+     17a:	36 95       	lsr	r19
+     17c:	27 95       	ror	r18
+     17e:	40 ff       	sbrs	r20, 0
+     180:	04 c0       	rjmp	.+8      	; 0x18a <append_crc16+0x1c>
+                *crc = (*crc >> 1) ^ 0x8408;
+     182:	48 e0       	ldi	r20, 0x08	; 8
+     184:	24 27       	eor	r18, r20
+     186:	44 e8       	ldi	r20, 0x84	; 132
+     188:	34 27       	eor	r19, r20
+		}
+        else {
+            *crc = *crc >> 1;
+     18a:	31 83       	std	Z+1, r19	; 0x01
+     18c:	20 83       	st	Z, r18
+		}
+
+        character >>= 1;
+     18e:	86 95       	lsr	r24
+     190:	91 50       	subi	r25, 0x01	; 1
+ * Adds a byte of data into the crc calculation.
+ */
+void append_crc16(uint8 character, uint16ptr crc)
+{
+	uint8 j;
+	for (j = 0; j < 8; j++)
+     192:	79 f7       	brne	.-34     	; 0x172 <append_crc16+0x4>
+            *crc = *crc >> 1;
+		}
+
+        character >>= 1;
+	}
+}
+     194:	08 95       	ret
+
+00000196 <Create_VCP_frame>:
+// uint16ptr	dst_size -	Pointer to the destination size. This will contain the frame size after the function exits.
+// uint8		addr -		Source peripheral VCP address 
+// uint8ptr		src -		Pointer to the source buffer
+// uint16		src_size -	Source size
+uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr src, uint16 src_size)
+{
+     196:	4f 92       	push	r4
+     198:	5f 92       	push	r5
+     19a:	6f 92       	push	r6
+     19c:	7f 92       	push	r7
+     19e:	8f 92       	push	r8
+     1a0:	9f 92       	push	r9
+     1a2:	af 92       	push	r10
+     1a4:	bf 92       	push	r11
+     1a6:	cf 92       	push	r12
+     1a8:	df 92       	push	r13
+     1aa:	ef 92       	push	r14
+     1ac:	ff 92       	push	r15
+     1ae:	0f 93       	push	r16
+     1b0:	1f 93       	push	r17
+     1b2:	cf 93       	push	r28
+     1b4:	df 93       	push	r29
+     1b6:	00 d0       	rcall	.+0      	; 0x1b8 <Create_VCP_frame+0x22>
+     1b8:	1f 92       	push	r1
+     1ba:	cd b7       	in	r28, 0x3d	; 61
+     1bc:	de b7       	in	r29, 0x3e	; 62
+     1be:	6c 01       	movw	r12, r24
+     1c0:	5b 01       	movw	r10, r22
+     1c2:	79 01       	movw	r14, r18
+	uint16_t crc = CRC16_INIT_VALUE;
+     1c4:	1a 82       	std	Y+2, r1	; 0x02
+     1c6:	19 82       	std	Y+1, r1	; 0x01
+	uint16_t src_index = 0;
+	uint16_t dst_index = 0;
+	uint16_t payload_size;
+	
+	// Check for invalid buffers
+	if (dst == NULL || src == NULL)
+     1c8:	00 97       	sbiw	r24, 0x00	; 0
+     1ca:	09 f4       	brne	.+2      	; 0x1ce <Create_VCP_frame+0x38>
+     1cc:	5f c0       	rjmp	.+190    	; 0x28c <Create_VCP_frame+0xf6>
+     1ce:	21 15       	cp	r18, r1
+     1d0:	31 05       	cpc	r19, r1
+     1d2:	09 f4       	brne	.+2      	; 0x1d6 <Create_VCP_frame+0x40>
+     1d4:	5b c0       	rjmp	.+182    	; 0x28c <Create_VCP_frame+0xf6>
+		return VCP_NULL_ERR;
+	// Check for invalid VCP address	
+	if (addr > VCP_FC && addr != VCP_SUN_SENSOR)
+     1d6:	4c 30       	cpi	r20, 0x0C	; 12
+     1d8:	18 f0       	brcs	.+6      	; 0x1e0 <Create_VCP_frame+0x4a>
+     1da:	48 33       	cpi	r20, 0x38	; 56
+     1dc:	09 f0       	breq	.+2      	; 0x1e0 <Create_VCP_frame+0x4a>
+     1de:	58 c0       	rjmp	.+176    	; 0x290 <Create_VCP_frame+0xfa>
+		return VCP_ADDR_ERR;		
+		
+	// Calculate CRC:
+	append_crc16(addr, (uint16ptr)&crc);
+     1e0:	44 24       	eor	r4, r4
+     1e2:	43 94       	inc	r4
+     1e4:	51 2c       	mov	r5, r1
+     1e6:	4c 0e       	add	r4, r28
+     1e8:	5d 1e       	adc	r5, r29
+     1ea:	b2 01       	movw	r22, r4
+     1ec:	84 2f       	mov	r24, r20
+     1ee:	4b 83       	std	Y+3, r20	; 0x03
+     1f0:	0e 94 b7 00 	call	0x16e	; 0x16e <append_crc16>
+// uint8ptr		dst -		Pointer to the destination buffer
+// uint16ptr	dst_size -	Pointer to the destination size. This will contain the frame size after the function exits.
+// uint8		addr -		Source peripheral VCP address 
+// uint8ptr		src -		Pointer to the source buffer
+// uint16		src_size -	Source size
+uint8_t Create_VCP_frame(uint8ptr dst, uint16ptr dst_size, uint8 addr, uint8ptr src, uint16 src_size)
+     1f4:	37 01       	movw	r6, r14
+     1f6:	60 0e       	add	r6, r16
+     1f8:	71 1e       	adc	r7, r17
+	if (addr > VCP_FC && addr != VCP_SUN_SENSOR)
+		return VCP_ADDR_ERR;		
+		
+	// Calculate CRC:
+	append_crc16(addr, (uint16ptr)&crc);
+	for (src_index = 0; src_index < src_size; src_index++)
+     1fa:	47 01       	movw	r8, r14
+     1fc:	07 c0       	rjmp	.+14     	; 0x20c <Create_VCP_frame+0x76>
+	{
+		append_crc16(src[src_index], (uint16ptr)&crc);
+     1fe:	b2 01       	movw	r22, r4
+     200:	f4 01       	movw	r30, r8
+     202:	81 91       	ld	r24, Z+
+     204:	4f 01       	movw	r8, r30
+     206:	4b 83       	std	Y+3, r20	; 0x03
+     208:	0e 94 b7 00 	call	0x16e	; 0x16e <append_crc16>
+     20c:	4b 81       	ldd	r20, Y+3	; 0x03
+	if (addr > VCP_FC && addr != VCP_SUN_SENSOR)
+		return VCP_ADDR_ERR;		
+		
+	// Calculate CRC:
+	append_crc16(addr, (uint16ptr)&crc);
+	for (src_index = 0; src_index < src_size; src_index++)
+     20e:	86 14       	cp	r8, r6
+     210:	97 04       	cpc	r9, r7
+     212:	a9 f7       	brne	.-22     	; 0x1fe <Create_VCP_frame+0x68>
+	{
+		append_crc16(src[src_index], (uint16ptr)&crc);
+	}
+	
+	// Add CRC to the end of the source buffer
+	src[src_index++] = ((crc >> 8) & 0xFF);
+     214:	89 81       	ldd	r24, Y+1	; 0x01
+     216:	9a 81       	ldd	r25, Y+2	; 0x02
+     218:	f7 01       	movw	r30, r14
+     21a:	e0 0f       	add	r30, r16
+     21c:	f1 1f       	adc	r31, r17
+     21e:	90 83       	st	Z, r25
+	src[src_index++] = (crc & 0xFF);
+     220:	81 83       	std	Z+1, r24	; 0x01
+     222:	0e 5f       	subi	r16, 0xFE	; 254
+     224:	1f 4f       	sbci	r17, 0xFF	; 255
+	
+	
+	// Build KISS Frame:
+	
+	// Start the frame with FEND
+	dst[dst_index++] =					FEND;
+     226:	80 ec       	ldi	r24, 0xC0	; 192
+     228:	f6 01       	movw	r30, r12
+     22a:	80 83       	st	Z, r24
+	// then insert VCP address
+	dst[dst_index++] =					addr;
+     22c:	41 83       	std	Z+1, r20	; 0x01
+	
+	// Copy src to dst and Escape when necessary
+	for (src_index = 0; src_index < payload_size; src_index++ )
+     22e:	d7 01       	movw	r26, r14
+	// Build KISS Frame:
+	
+	// Start the frame with FEND
+	dst[dst_index++] =					FEND;
+	// then insert VCP address
+	dst[dst_index++] =					addr;
+     230:	42 e0       	ldi	r20, 0x02	; 2
+     232:	50 e0       	ldi	r21, 0x00	; 0
+			dst[dst_index++] =			TFEND;
+		}
+		else if (src[src_index] == FESC)
+		{
+			dst[dst_index++] =			FESC;
+			dst[dst_index++] =			TFESC;
+     234:	2d ed       	ldi	r18, 0xDD	; 221
+	// Copy src to dst and Escape when necessary
+	for (src_index = 0; src_index < payload_size; src_index++ )
+	{
+		if (src[src_index] == FEND)
+		{
+			dst[dst_index++] =			FESC;
+     236:	3b ed       	ldi	r19, 0xDB	; 219
+			dst[dst_index++] =			TFEND;
+     238:	6c ed       	ldi	r22, 0xDC	; 220
+	dst[dst_index++] =					FEND;
+	// then insert VCP address
+	dst[dst_index++] =					addr;
+	
+	// Copy src to dst and Escape when necessary
+	for (src_index = 0; src_index < payload_size; src_index++ )
+     23a:	16 c0       	rjmp	.+44     	; 0x268 <Create_VCP_frame+0xd2>
+	{
+		if (src[src_index] == FEND)
+     23c:	8d 91       	ld	r24, X+
+     23e:	80 3c       	cpi	r24, 0xC0	; 192
+     240:	19 f4       	brne	.+6      	; 0x248 <Create_VCP_frame+0xb2>
+		{
+			dst[dst_index++] =			FESC;
+     242:	30 83       	st	Z, r19
+			dst[dst_index++] =			TFEND;
+     244:	61 83       	std	Z+1, r22	; 0x01
+     246:	04 c0       	rjmp	.+8      	; 0x250 <Create_VCP_frame+0xba>
+		}
+		else if (src[src_index] == FESC)
+		{
+			dst[dst_index++] =			FESC;
+     248:	80 83       	st	Z, r24
+		if (src[src_index] == FEND)
+		{
+			dst[dst_index++] =			FESC;
+			dst[dst_index++] =			TFEND;
+		}
+		else if (src[src_index] == FESC)
+     24a:	8b 3d       	cpi	r24, 0xDB	; 219
+     24c:	21 f4       	brne	.+8      	; 0x256 <Create_VCP_frame+0xc0>
+		{
+			dst[dst_index++] =			FESC;
+			dst[dst_index++] =			TFESC;
+     24e:	21 83       	std	Z+1, r18	; 0x01
+     250:	4e 5f       	subi	r20, 0xFE	; 254
+     252:	5f 4f       	sbci	r21, 0xFF	; 255
+     254:	02 c0       	rjmp	.+4      	; 0x25a <Create_VCP_frame+0xc4>
+		}
+		else
+		{
+			dst[dst_index++] =			src[src_index];
+     256:	4f 5f       	subi	r20, 0xFF	; 255
+     258:	5f 4f       	sbci	r21, 0xFF	; 255
+		}
+		
+		// Check if the frame fits in the dst buffer 
+		if (dst_index >= *dst_size - 1)
+     25a:	f5 01       	movw	r30, r10
+     25c:	80 81       	ld	r24, Z
+     25e:	91 81       	ldd	r25, Z+1	; 0x01
+     260:	01 97       	sbiw	r24, 0x01	; 1
+     262:	48 17       	cp	r20, r24
+     264:	59 07       	cpc	r21, r25
+     266:	b0 f4       	brcc	.+44     	; 0x294 <Create_VCP_frame+0xfe>
+	dst[dst_index++] =					FEND;
+	// then insert VCP address
+	dst[dst_index++] =					addr;
+	
+	// Copy src to dst and Escape when necessary
+	for (src_index = 0; src_index < payload_size; src_index++ )
+     268:	cd 01       	movw	r24, r26
+     26a:	8e 19       	sub	r24, r14
+     26c:	9f 09       	sbc	r25, r15
+     26e:	f6 01       	movw	r30, r12
+     270:	e4 0f       	add	r30, r20
+     272:	f5 1f       	adc	r31, r21
+     274:	80 17       	cp	r24, r16
+     276:	91 07       	cpc	r25, r17
+     278:	08 f3       	brcs	.-62     	; 0x23c <Create_VCP_frame+0xa6>
+		if (dst_index >= *dst_size - 1)
+			return VCP_OVR_ERR;
+	}
+	
+	// End the frame with FEND
+	dst[dst_index++] =					FEND;
+     27a:	80 ec       	ldi	r24, 0xC0	; 192
+     27c:	80 83       	st	Z, r24
+     27e:	4f 5f       	subi	r20, 0xFF	; 255
+     280:	5f 4f       	sbci	r21, 0xFF	; 255
+	
+	// Save the frame size
+	*dst_size = dst_index;
+     282:	f5 01       	movw	r30, r10
+     284:	51 83       	std	Z+1, r21	; 0x01
+     286:	40 83       	st	Z, r20
+	
+	// All good
+	return VCP_TERM;
+     288:	81 e0       	ldi	r24, 0x01	; 1
+     28a:	05 c0       	rjmp	.+10     	; 0x296 <Create_VCP_frame+0x100>
+	uint16_t dst_index = 0;
+	uint16_t payload_size;
+	
+	// Check for invalid buffers
+	if (dst == NULL || src == NULL)
+		return VCP_NULL_ERR;
+     28c:	85 e0       	ldi	r24, 0x05	; 5
+     28e:	03 c0       	rjmp	.+6      	; 0x296 <Create_VCP_frame+0x100>
+	// Check for invalid VCP address	
+	if (addr > VCP_FC && addr != VCP_SUN_SENSOR)
+		return VCP_ADDR_ERR;		
+     290:	86 e0       	ldi	r24, 0x06	; 6
+     292:	01 c0       	rjmp	.+2      	; 0x296 <Create_VCP_frame+0x100>
+			dst[dst_index++] =			src[src_index];
+		}
+		
+		// Check if the frame fits in the dst buffer 
+		if (dst_index >= *dst_size - 1)
+			return VCP_OVR_ERR;
+     294:	83 e0       	ldi	r24, 0x03	; 3
+	*dst_size = dst_index;
+	
+	// All good
+	return VCP_TERM;
+
+}
+     296:	0f 90       	pop	r0
+     298:	0f 90       	pop	r0
+     29a:	0f 90       	pop	r0
+     29c:	df 91       	pop	r29
+     29e:	cf 91       	pop	r28
+     2a0:	1f 91       	pop	r17
+     2a2:	0f 91       	pop	r16
+     2a4:	ff 90       	pop	r15
+     2a6:	ef 90       	pop	r14
+     2a8:	df 90       	pop	r13
+     2aa:	cf 90       	pop	r12
+     2ac:	bf 90       	pop	r11
+     2ae:	af 90       	pop	r10
+     2b0:	9f 90       	pop	r9
+     2b2:	8f 90       	pop	r8
+     2b4:	7f 90       	pop	r7
+     2b6:	6f 90       	pop	r6
+     2b8:	5f 90       	pop	r5
+     2ba:	4f 90       	pop	r4
+     2bc:	08 95       	ret
+
+000002be <get_ubrr>:
+#include "uart.h"
+
+uint32 get_ubrr(uint32 baud)
+{
+     2be:	9b 01       	movw	r18, r22
+     2c0:	ac 01       	movw	r20, r24
+	#if defined(ASYNCHRONOUS_NORMAL)
+		return ASYNCHRONOUS_NORMAL/baud - 1;
+     2c2:	60 e0       	ldi	r22, 0x00	; 0
+     2c4:	70 e1       	ldi	r23, 0x10	; 16
+     2c6:	8e e0       	ldi	r24, 0x0E	; 14
+     2c8:	90 e0       	ldi	r25, 0x00	; 0
+     2ca:	0e 94 49 08 	call	0x1092	; 0x1092 <__udivmodsi4>
+     2ce:	21 50       	subi	r18, 0x01	; 1
+     2d0:	31 09       	sbc	r19, r1
+     2d2:	41 09       	sbc	r20, r1
+     2d4:	51 09       	sbc	r21, r1
+	#elif defined(SYNCHRONOUS_MASTER)
+		return SYNCHRONOUS_MASTER/baud - 1;
+	#else // default to asynchronous normal
+		return ASYNCHRONOUS_NORMAL/baud - 1;
+	#endif
+}
+     2d6:	b9 01       	movw	r22, r18
+     2d8:	ca 01       	movw	r24, r20
+     2da:	08 95       	ret
+
+000002dc <usart0_initialize>:
+
+void usart0_initialize(uint32 ubrr)
+{
+     2dc:	0f 93       	push	r16
+     2de:	1f 93       	push	r17
+	// set the baud rate
+	UBRR0H = (uint8)(ubrr>>8);
+     2e0:	07 2f       	mov	r16, r23
+     2e2:	18 2f       	mov	r17, r24
+     2e4:	29 2f       	mov	r18, r25
+     2e6:	33 27       	eor	r19, r19
+     2e8:	00 93 90 00 	sts	0x0090, r16
+	UBRR0L = (uint8)ubrr;
+     2ec:	69 b9       	out	0x09, r22	; 9
+	
+	// enable the transmitter
+	UCSR0B = (1<<TXEN0);
+     2ee:	88 e0       	ldi	r24, 0x08	; 8
+     2f0:	8a b9       	out	0x0a, r24	; 10
+	// enable the receiver
+	//UCSR0B = (1<<RXEN0);
+
+	// set the frame format: 8 bit data, 1 stop bits
+	UCSR0C = (1<<UCSZ01) | (1<<UCSZ00);
+     2f2:	86 e0       	ldi	r24, 0x06	; 6
+     2f4:	80 93 95 00 	sts	0x0095, r24
+}
+     2f8:	1f 91       	pop	r17
+     2fa:	0f 91       	pop	r16
+     2fc:	08 95       	ret
+
+000002fe <usart1_initialize>:
+
+void usart1_initialize(uint32 ubrr)
+{
+     2fe:	0f 93       	push	r16
+     300:	1f 93       	push	r17
+	// set the baud rate
+	UBRR1H = (uint8)(ubrr>>8);
+     302:	07 2f       	mov	r16, r23
+     304:	18 2f       	mov	r17, r24
+     306:	29 2f       	mov	r18, r25
+     308:	33 27       	eor	r19, r19
+     30a:	00 93 98 00 	sts	0x0098, r16
+	UBRR1L = (uint8)ubrr;
+     30e:	60 93 99 00 	sts	0x0099, r22
+	
+	// enable the transmitter
+	//UCSR1B = (1<<TXEN1);
+	// enable the receiver
+	UCSR1B = (1<<RXEN1);
+     312:	80 e1       	ldi	r24, 0x10	; 16
+     314:	80 93 9a 00 	sts	0x009A, r24
+ 
+	// set the frame format: 8 bit data, 1 stop bits
+	UCSR1C = (1<<UCSZ11) | (1<<UCSZ10); 
+     318:	86 e0       	ldi	r24, 0x06	; 6
+     31a:	80 93 9d 00 	sts	0x009D, r24
+}
+     31e:	1f 91       	pop	r17
+     320:	0f 91       	pop	r16
+     322:	08 95       	ret
+
+00000324 <initialize>:
+		DDRC |= (1<<DDC2);
+		PORTC = 0x07;				// LEDs start OFF
+	#endif
+
+	// Init output I/Os
+	DDRA |= (1<<DDA4);				// DISCP	on Pin PA4 as output ???
+     324:	d4 9a       	sbi	0x1a, 4	; 26
+	DDRA |= (1<<DDA3);
+     326:	d3 9a       	sbi	0x1a, 3	; 26
+	PORTA |= (1<<PA3);
+     328:	db 9a       	sbi	0x1b, 3	; 27
+	
+	
+	// UART TX Pins should be automatically configured as outputs when the UART is enabled
+	// regardless of the following DDRx setting
+	DDRD |= (1<<DDD3);	// GPS_TX	on Pin PD3 as output
+     32a:	8b 9a       	sbi	0x11, 3	; 17
+	DDRE |= (1<<DDE1);	// COMM_TX	on Pin PE1 as output 
+     32c:	11 9a       	sbi	0x02, 1	; 2
+	
+	
+		
+	// set up the UART lines
+	usart0_initialize(get_ubrr(CDHIB_BAUD_RATE));		// UART0 is the interface to the CDH IB
+     32e:	60 e8       	ldi	r22, 0x80	; 128
+     330:	75 e2       	ldi	r23, 0x25	; 37
+     332:	80 e0       	ldi	r24, 0x00	; 0
+     334:	90 e0       	ldi	r25, 0x00	; 0
+     336:	0e 94 5f 01 	call	0x2be	; 0x2be <get_ubrr>
+     33a:	0e 94 6e 01 	call	0x2dc	; 0x2dc <usart0_initialize>
+	usart1_initialize(get_ubrr(RECEIVER_BAUD_RATE));	// UART1 is the interface to the GPS receiver
+     33e:	60 e0       	ldi	r22, 0x00	; 0
+     340:	7c e2       	ldi	r23, 0x2C	; 44
+     342:	81 e0       	ldi	r24, 0x01	; 1
+     344:	90 e0       	ldi	r25, 0x00	; 0
+     346:	0e 94 5f 01 	call	0x2be	; 0x2be <get_ubrr>
+     34a:	0e 94 7f 01 	call	0x2fe	; 0x2fe <usart1_initialize>
+
+	usart0_index		= 0;
+     34e:	10 92 ca 02 	sts	0x02CA, r1
+     352:	10 92 c9 02 	sts	0x02C9, r1
+	usart0_complete		= 0;
+     356:	10 92 45 03 	sts	0x0345, r1
+     35a:	10 92 44 03 	sts	0x0344, r1
+	usart0_flags		= 0;
+     35e:	10 92 31 0a 	sts	0x0A31, r1
+
+	usart1_index		= 0;
+     362:	10 92 8f 03 	sts	0x038F, r1
+     366:	10 92 8e 03 	sts	0x038E, r1
+	usart1_complete		= 0;
+     36a:	10 92 ec 01 	sts	0x01EC, r1
+     36e:	10 92 eb 01 	sts	0x01EB, r1
+	usart1_flags		= 0;
+     372:	10 92 98 03 	sts	0x0398, r1
+
+	gpsi_ready			= 0;
+     376:	10 92 cb 09 	sts	0x09CB, r1
+	f00_ready			= 0;
+     37a:	10 92 81 07 	sts	0x0781, r1
+	watchdog_transmit	= 0;
+     37e:	10 92 97 03 	sts	0x0397, r1
+	deadSecs			= 0;
+     382:	10 92 c8 02 	sts	0x02C8, r1
+     386:	10 92 c7 02 	sts	0x02C7, r1
+
+
+	// Init ADC
+    ADMUX	|=  ( (1<<REFS0) | (1<<ADLAR) );				// External AVcc as Ref, Left adjusted result
+     38a:	87 b1       	in	r24, 0x07	; 7
+     38c:	80 66       	ori	r24, 0x60	; 96
+     38e:	87 b9       	out	0x07, r24	; 7
+	ADCSRA	|= 	( (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0) );	// Prescaler 128, conversion clock = CLOCK_SPEED/prescaler
+     390:	86 b1       	in	r24, 0x06	; 6
+     392:	87 60       	ori	r24, 0x07	; 7
+     394:	86 b9       	out	0x06, r24	; 6
+inline void Clear_ADC_MUX()						{ ADMUX  &= ~((1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX0)); }
+     396:	87 b1       	in	r24, 0x07	; 7
+     398:	80 7f       	andi	r24, 0xF0	; 240
+     39a:	87 b9       	out	0x07, r24	; 7
+
+// Functions - see adc.c
+uint8 Sample_ADC_Channel (uint8 channel);
+uint8 Get_ADC_Result (uint8 channel);
+
+inline void Enable_ADC()						{ ADCSRA |=  (1<<ADEN); }	
+     39c:	37 9a       	sbi	0x06, 7	; 6
+inline void Disbale_ADC()						{ ADCSRA &= ~(1<<ADEN); } 
+inline void Start_ADC_Conversion()				{ ADCSRA |=  (1<<ADSC); }
+     39e:	36 9a       	sbi	0x06, 6	; 6
+	Enable_ADC();											// Enable ADC
+	Start_ADC_Conversion();									// Do first dummy conversion on Channel 0
+
+
+	// Init watchdog (use Timer 1 in CTC mode to create 1Hz interrupts)
+	TCCR1A 	= 	0; 							// no I/O connected
+     3a0:	1f bc       	out	0x2f, r1	; 47
+	OCR1A	=	((CLOCK_SPEED / 1024) - 1);	// 1 Hz interrupt	  
+     3a2:	8f e3       	ldi	r24, 0x3F	; 63
+     3a4:	98 e3       	ldi	r25, 0x38	; 56
+     3a6:	9b bd       	out	0x2b, r25	; 43
+     3a8:	8a bd       	out	0x2a, r24	; 42
+	TIMSK 	|=	( (1<< OCIE1A));			// enable interrupt on compare
+     3aa:	87 b7       	in	r24, 0x37	; 55
+     3ac:	80 61       	ori	r24, 0x10	; 16
+     3ae:	87 bf       	out	0x37, r24	; 55
+	TCCR1B 	|= 	( (1<<WGM12));				// CTC mode, OCR1A is top
+     3b0:	8e b5       	in	r24, 0x2e	; 46
+     3b2:	88 60       	ori	r24, 0x08	; 8
+     3b4:	8e bd       	out	0x2e, r24	; 46
+	TCCR1B	|=	( (1<<CS10)  | (1<<CS12)); 	// prescale clock by 1024 and start the timer		
+     3b6:	8e b5       	in	r24, 0x2e	; 46
+     3b8:	85 60       	ori	r24, 0x05	; 5
+     3ba:	8e bd       	out	0x2e, r24	; 46
+		PORTA	|= (1<<PA1);
+	#endif		
+
+
+	// enable interrupts
+	sei();
+     3bc:	78 94       	sei
+     3be:	08 95       	ret
+
+000003c0 <retrieve_gps_data>:
  * If it gets unexpected data at any stage (except in the GPSI_S1,2,3,4,5 stages), it'll
  * throw a general error and go into GPSI_UNKNOWN. If it recognizes a start byte and starts
  * ID'ing the sentence, it'll clear the general error.
  */ 
 void retrieve_gps_data()
 {
- 18c:	1f 93       	push	r17
- 18e:	cf 93       	push	r28
- 190:	df 93       	push	r29
+     3c0:	2f 92       	push	r2
+     3c2:	3f 92       	push	r3
+     3c4:	4f 92       	push	r4
+     3c6:	5f 92       	push	r5
+     3c8:	6f 92       	push	r6
+     3ca:	7f 92       	push	r7
+     3cc:	8f 92       	push	r8
+     3ce:	9f 92       	push	r9
+     3d0:	af 92       	push	r10
+     3d2:	bf 92       	push	r11
+     3d4:	cf 92       	push	r12
+     3d6:	df 92       	push	r13
+     3d8:	ef 92       	push	r14
+     3da:	ff 92       	push	r15
+     3dc:	0f 93       	push	r16
+     3de:	1f 93       	push	r17
+     3e0:	cf 93       	push	r28
+     3e2:	df 93       	push	r29
 
 			case  GPSI_CHKS3B: // F18 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
 				
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
 					memset(&f18, 0x00, sizeof(gps_f18));	// Checksum failed - Write zeros to F18
- 192:	8b e2       	ldi	r24, 0x2B	; 43
- 194:	28 2e       	mov	r2, r24
- 196:	81 e0       	ldi	r24, 0x01	; 1
- 198:	38 2e       	mov	r3, r24
- 19a:	90 ec       	ldi	r25, 0xC0	; 192
+     3e4:	8b e2       	ldi	r24, 0x2B	; 43
+     3e6:	28 2e       	mov	r2, r24
+     3e8:	81 e0       	ldi	r24, 0x01	; 1
+     3ea:	38 2e       	mov	r3, r24
+     3ec:	90 ec       	ldi	r25, 0xC0	; 192
 
 			case  GPSI_CHKS5B: // F23 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
 					memset(&f23, 0x00, sizeof(gps_f23));	// Checksum failed - Write zeros to F23
- 19c:	2c ec       	ldi	r18, 0xCC	; 204
- 19e:	82 2e       	mov	r8, r18
- 1a0:	29 e0       	ldi	r18, 0x09	; 9
- 1a2:	92 2e       	mov	r9, r18
- 1a4:	20 e6       	ldi	r18, 0x60	; 96
+     3ee:	2c ec       	ldi	r18, 0xCC	; 204
+     3f0:	82 2e       	mov	r8, r18
+     3f2:	29 e0       	ldi	r18, 0x09	; 9
+     3f4:	92 2e       	mov	r9, r18
+     3f6:	20 e6       	ldi	r18, 0x60	; 96
 					{
 						if (order == GPSI_ORDER_F22)
 							order = GPSI_ORDER_F23;
 
 						rem_gen_state(error, GPSI_ERR_5); // F23 received ok
 						gpsi_ready = 1;		
- 1a6:	81 e0       	ldi	r24, 0x01	; 1
+     3f8:	81 e0       	ldi	r24, 0x01	; 1
 					}
 					
 					else if (rx_id[2] == '3' && rx_id[1] == '2')
 					{
 						if (order == GPSI_ORDER_F22)
 							order = GPSI_ORDER_F23;
- 1a8:	33 e2       	ldi	r19, 0x23	; 35
+     3fa:	33 e2       	ldi	r19, 0x23	; 35
 					}
 					
 					else if (rx_id[1] == '2' && rx_id[2] == '2')
 					{
 						if (order == GPSI_ORDER_F18)
 							order = GPSI_ORDER_F22;
- 1aa:	42 e2       	ldi	r20, 0x22	; 34
+     3fc:	42 e2       	ldi	r20, 0x22	; 34
 					}
 					
 					else if (rx_id[1] == '1' && rx_id[2] == '8')
 					{
 						if (order == GPSI_ORDER_F03)
 							order = GPSI_ORDER_F18;
- 1ac:	58 e1       	ldi	r21, 0x18	; 24
+     3fe:	58 e1       	ldi	r21, 0x18	; 24
 					}
 
 					else if (rx_id[2] == '3' && rx_id[1] == '0')
 					{
 						if (order == GPSI_ORDER_F00)
 							order = GPSI_ORDER_F03;
- 1ae:	63 e0       	ldi	r22, 0x03	; 3
+     400:	63 e0       	ldi	r22, 0x03	; 3
 
 			case  GPSI_CHKS4B: // F22 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
 					memset(&f22, 0x00, sizeof(gps_f22));	// Checksum failed - Write zeros to F22
- 1b0:	7b ec       	ldi	r23, 0xCB	; 203
- 1b2:	a7 2e       	mov	r10, r23
- 1b4:	72 e0       	ldi	r23, 0x02	; 2
- 1b6:	b7 2e       	mov	r11, r23
- 1b8:	78 e7       	ldi	r23, 0x78	; 120
+     402:	7b ec       	ldi	r23, 0xCB	; 203
+     404:	a7 2e       	mov	r10, r23
+     406:	72 e0       	ldi	r23, 0x02	; 2
+     408:	b7 2e       	mov	r11, r23
+     40a:	78 e7       	ldi	r23, 0x78	; 120
 
 			case  GPSI_CHKS1B: // F00 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
 					memset(&f00, 0x00, sizeof(gps_f00));	// Checksum failed - Write zeros to F00
- 1ba:	a6 e4       	ldi	r26, 0x46	; 70
- 1bc:	b3 e0       	ldi	r27, 0x03	; 3
+     40c:	a6 e4       	ldi	r26, 0x46	; 70
+     40e:	b3 e0       	ldi	r27, 0x03	; 3
 
 			case  GPSI_ID1:
 				if (usart1_buffer[usart1_index] == 'F')
 				{
 					set_usart_state(usart1_flags, GPSI_ID2);
 					rx_id[0] = 'F';
- 1be:	16 e4       	ldi	r17, 0x46	; 70
+     410:	16 e4       	ldi	r17, 0x46	; 70
 void retrieve_gps_data()
 {
 	// The buffer is circular, so when the loop gets to the end, it just
 	// sets back to index 0 and continues until it reaches usart1_snapshot
 	// This helps to prevent unwanted loss of data
 	for (; usart1_index != usart1_snapshot; usart1_index = (usart1_index+1 < usart1_buffer_size ? usart1_index+1 : 0))
- 1c0:	75 c4       	rjmp	.+2282   	; 0xaac <retrieve_gps_data+0x93e>
+     412:	75 c4       	rjmp	.+2282   	; 0xcfe <retrieve_gps_data+0x93e>
 	{
 		switch (get_usart_state(usart1_flags))
- 1c2:	e0 91 98 03 	lds	r30, 0x0398
- 1c6:	ec 7f       	andi	r30, 0xFC	; 252
- 1c8:	e0 33       	cpi	r30, 0x30	; 48
- 1ca:	09 f4       	brne	.+2      	; 0x1ce <retrieve_gps_data+0x60>
- 1cc:	ab c2       	rjmp	.+1366   	; 0x724 <retrieve_gps_data+0x5b6>
- 1ce:	40 f5       	brcc	.+80     	; 0x220 <retrieve_gps_data+0xb2>
- 1d0:	e8 31       	cpi	r30, 0x18	; 24
- 1d2:	09 f4       	brne	.+2      	; 0x1d6 <retrieve_gps_data+0x68>
- 1d4:	a8 c0       	rjmp	.+336    	; 0x326 <retrieve_gps_data+0x1b8>
- 1d6:	90 f4       	brcc	.+36     	; 0x1fc <retrieve_gps_data+0x8e>
- 1d8:	ec 30       	cpi	r30, 0x0C	; 12
- 1da:	09 f4       	brne	.+2      	; 0x1de <retrieve_gps_data+0x70>
- 1dc:	6e c0       	rjmp	.+220    	; 0x2ba <retrieve_gps_data+0x14c>
- 1de:	38 f4       	brcc	.+14     	; 0x1ee <retrieve_gps_data+0x80>
- 1e0:	e4 30       	cpi	r30, 0x04	; 4
- 1e2:	09 f4       	brne	.+2      	; 0x1e6 <retrieve_gps_data+0x78>
- 1e4:	45 c0       	rjmp	.+138    	; 0x270 <retrieve_gps_data+0x102>
- 1e6:	e8 30       	cpi	r30, 0x08	; 8
- 1e8:	09 f0       	breq	.+2      	; 0x1ec <retrieve_gps_data+0x7e>
- 1ea:	31 c4       	rjmp	.+2146   	; 0xa4e <retrieve_gps_data+0x8e0>
- 1ec:	55 c0       	rjmp	.+170    	; 0x298 <retrieve_gps_data+0x12a>
- 1ee:	e0 31       	cpi	r30, 0x10	; 16
- 1f0:	09 f4       	brne	.+2      	; 0x1f4 <retrieve_gps_data+0x86>
- 1f2:	76 c0       	rjmp	.+236    	; 0x2e0 <retrieve_gps_data+0x172>
- 1f4:	e4 31       	cpi	r30, 0x14	; 20
- 1f6:	09 f0       	breq	.+2      	; 0x1fa <retrieve_gps_data+0x8c>
- 1f8:	2a c4       	rjmp	.+2132   	; 0xa4e <retrieve_gps_data+0x8e0>
- 1fa:	7c c0       	rjmp	.+248    	; 0x2f4 <retrieve_gps_data+0x186>
- 1fc:	e4 32       	cpi	r30, 0x24	; 36
- 1fe:	09 f4       	brne	.+2      	; 0x202 <retrieve_gps_data+0x94>
- 200:	7a c1       	rjmp	.+756    	; 0x4f6 <retrieve_gps_data+0x388>
- 202:	38 f4       	brcc	.+14     	; 0x212 <retrieve_gps_data+0xa4>
- 204:	ec 31       	cpi	r30, 0x1C	; 28
- 206:	09 f4       	brne	.+2      	; 0x20a <retrieve_gps_data+0x9c>
- 208:	b0 c0       	rjmp	.+352    	; 0x36a <retrieve_gps_data+0x1fc>
- 20a:	e0 32       	cpi	r30, 0x20	; 32
- 20c:	09 f0       	breq	.+2      	; 0x210 <retrieve_gps_data+0xa2>
- 20e:	1f c4       	rjmp	.+2110   	; 0xa4e <retrieve_gps_data+0x8e0>
- 210:	15 c1       	rjmp	.+554    	; 0x43c <retrieve_gps_data+0x2ce>
- 212:	e8 32       	cpi	r30, 0x28	; 40
- 214:	09 f4       	brne	.+2      	; 0x218 <retrieve_gps_data+0xaa>
- 216:	cc c1       	rjmp	.+920    	; 0x5b0 <retrieve_gps_data+0x442>
- 218:	ec 32       	cpi	r30, 0x2C	; 44
- 21a:	09 f0       	breq	.+2      	; 0x21e <retrieve_gps_data+0xb0>
- 21c:	18 c4       	rjmp	.+2096   	; 0xa4e <retrieve_gps_data+0x8e0>
- 21e:	25 c2       	rjmp	.+1098   	; 0x66a <retrieve_gps_data+0x4fc>
- 220:	e8 34       	cpi	r30, 0x48	; 72
- 222:	09 f4       	brne	.+2      	; 0x226 <retrieve_gps_data+0xb8>
- 224:	3e c3       	rjmp	.+1660   	; 0x8a2 <retrieve_gps_data+0x734>
- 226:	90 f4       	brcc	.+36     	; 0x24c <retrieve_gps_data+0xde>
- 228:	ec 33       	cpi	r30, 0x3C	; 60
- 22a:	09 f4       	brne	.+2      	; 0x22e <retrieve_gps_data+0xc0>
- 22c:	00 c3       	rjmp	.+1536   	; 0x82e <retrieve_gps_data+0x6c0>
- 22e:	38 f4       	brcc	.+14     	; 0x23e <retrieve_gps_data+0xd0>
- 230:	e4 33       	cpi	r30, 0x34	; 52
- 232:	09 f4       	brne	.+2      	; 0x236 <retrieve_gps_data+0xc8>
- 234:	d4 c2       	rjmp	.+1448   	; 0x7de <retrieve_gps_data+0x670>
- 236:	e8 33       	cpi	r30, 0x38	; 56
- 238:	09 f0       	breq	.+2      	; 0x23c <retrieve_gps_data+0xce>
- 23a:	09 c4       	rjmp	.+2066   	; 0xa4e <retrieve_gps_data+0x8e0>
- 23c:	e1 c2       	rjmp	.+1474   	; 0x800 <retrieve_gps_data+0x692>
- 23e:	e0 34       	cpi	r30, 0x40	; 64
- 240:	09 f4       	brne	.+2      	; 0x244 <retrieve_gps_data+0xd6>
- 242:	06 c3       	rjmp	.+1548   	; 0x850 <retrieve_gps_data+0x6e2>
- 244:	e4 34       	cpi	r30, 0x44	; 68
- 246:	09 f0       	breq	.+2      	; 0x24a <retrieve_gps_data+0xdc>
- 248:	02 c4       	rjmp	.+2052   	; 0xa4e <retrieve_gps_data+0x8e0>
- 24a:	1a c3       	rjmp	.+1588   	; 0x880 <retrieve_gps_data+0x712>
- 24c:	e4 35       	cpi	r30, 0x54	; 84
- 24e:	09 f4       	brne	.+2      	; 0x252 <retrieve_gps_data+0xe4>
- 250:	66 c3       	rjmp	.+1740   	; 0x91e <retrieve_gps_data+0x7b0>
- 252:	38 f4       	brcc	.+14     	; 0x262 <retrieve_gps_data+0xf4>
- 254:	ec 34       	cpi	r30, 0x4C	; 76
- 256:	09 f4       	brne	.+2      	; 0x25a <retrieve_gps_data+0xec>
- 258:	3b c3       	rjmp	.+1654   	; 0x8d0 <retrieve_gps_data+0x762>
- 25a:	e0 35       	cpi	r30, 0x50	; 80
- 25c:	09 f0       	breq	.+2      	; 0x260 <retrieve_gps_data+0xf2>
- 25e:	f7 c3       	rjmp	.+2030   	; 0xa4e <retrieve_gps_data+0x8e0>
- 260:	48 c3       	rjmp	.+1680   	; 0x8f2 <retrieve_gps_data+0x784>
- 262:	e8 35       	cpi	r30, 0x58	; 88
- 264:	09 f4       	brne	.+2      	; 0x268 <retrieve_gps_data+0xfa>
- 266:	6c c3       	rjmp	.+1752   	; 0x940 <retrieve_gps_data+0x7d2>
- 268:	ec 35       	cpi	r30, 0x5C	; 92
- 26a:	09 f0       	breq	.+2      	; 0x26e <retrieve_gps_data+0x100>
- 26c:	f0 c3       	rjmp	.+2016   	; 0xa4e <retrieve_gps_data+0x8e0>
- 26e:	88 c3       	rjmp	.+1808   	; 0x980 <retrieve_gps_data+0x812>
+     414:	e0 91 98 03 	lds	r30, 0x0398
+     418:	ec 7f       	andi	r30, 0xFC	; 252
+     41a:	e0 33       	cpi	r30, 0x30	; 48
+     41c:	09 f4       	brne	.+2      	; 0x420 <retrieve_gps_data+0x60>
+     41e:	ab c2       	rjmp	.+1366   	; 0x976 <retrieve_gps_data+0x5b6>
+     420:	40 f5       	brcc	.+80     	; 0x472 <retrieve_gps_data+0xb2>
+     422:	e8 31       	cpi	r30, 0x18	; 24
+     424:	09 f4       	brne	.+2      	; 0x428 <retrieve_gps_data+0x68>
+     426:	a8 c0       	rjmp	.+336    	; 0x578 <retrieve_gps_data+0x1b8>
+     428:	90 f4       	brcc	.+36     	; 0x44e <retrieve_gps_data+0x8e>
+     42a:	ec 30       	cpi	r30, 0x0C	; 12
+     42c:	09 f4       	brne	.+2      	; 0x430 <retrieve_gps_data+0x70>
+     42e:	6e c0       	rjmp	.+220    	; 0x50c <retrieve_gps_data+0x14c>
+     430:	38 f4       	brcc	.+14     	; 0x440 <retrieve_gps_data+0x80>
+     432:	e4 30       	cpi	r30, 0x04	; 4
+     434:	09 f4       	brne	.+2      	; 0x438 <retrieve_gps_data+0x78>
+     436:	45 c0       	rjmp	.+138    	; 0x4c2 <retrieve_gps_data+0x102>
+     438:	e8 30       	cpi	r30, 0x08	; 8
+     43a:	09 f0       	breq	.+2      	; 0x43e <retrieve_gps_data+0x7e>
+     43c:	31 c4       	rjmp	.+2146   	; 0xca0 <retrieve_gps_data+0x8e0>
+     43e:	55 c0       	rjmp	.+170    	; 0x4ea <retrieve_gps_data+0x12a>
+     440:	e0 31       	cpi	r30, 0x10	; 16
+     442:	09 f4       	brne	.+2      	; 0x446 <retrieve_gps_data+0x86>
+     444:	76 c0       	rjmp	.+236    	; 0x532 <retrieve_gps_data+0x172>
+     446:	e4 31       	cpi	r30, 0x14	; 20
+     448:	09 f0       	breq	.+2      	; 0x44c <retrieve_gps_data+0x8c>
+     44a:	2a c4       	rjmp	.+2132   	; 0xca0 <retrieve_gps_data+0x8e0>
+     44c:	7c c0       	rjmp	.+248    	; 0x546 <retrieve_gps_data+0x186>
+     44e:	e4 32       	cpi	r30, 0x24	; 36
+     450:	09 f4       	brne	.+2      	; 0x454 <retrieve_gps_data+0x94>
+     452:	7a c1       	rjmp	.+756    	; 0x748 <retrieve_gps_data+0x388>
+     454:	38 f4       	brcc	.+14     	; 0x464 <retrieve_gps_data+0xa4>
+     456:	ec 31       	cpi	r30, 0x1C	; 28
+     458:	09 f4       	brne	.+2      	; 0x45c <retrieve_gps_data+0x9c>
+     45a:	b0 c0       	rjmp	.+352    	; 0x5bc <retrieve_gps_data+0x1fc>
+     45c:	e0 32       	cpi	r30, 0x20	; 32
+     45e:	09 f0       	breq	.+2      	; 0x462 <retrieve_gps_data+0xa2>
+     460:	1f c4       	rjmp	.+2110   	; 0xca0 <retrieve_gps_data+0x8e0>
+     462:	15 c1       	rjmp	.+554    	; 0x68e <retrieve_gps_data+0x2ce>
+     464:	e8 32       	cpi	r30, 0x28	; 40
+     466:	09 f4       	brne	.+2      	; 0x46a <retrieve_gps_data+0xaa>
+     468:	cc c1       	rjmp	.+920    	; 0x802 <retrieve_gps_data+0x442>
+     46a:	ec 32       	cpi	r30, 0x2C	; 44
+     46c:	09 f0       	breq	.+2      	; 0x470 <retrieve_gps_data+0xb0>
+     46e:	18 c4       	rjmp	.+2096   	; 0xca0 <retrieve_gps_data+0x8e0>
+     470:	25 c2       	rjmp	.+1098   	; 0x8bc <retrieve_gps_data+0x4fc>
+     472:	e8 34       	cpi	r30, 0x48	; 72
+     474:	09 f4       	brne	.+2      	; 0x478 <retrieve_gps_data+0xb8>
+     476:	3e c3       	rjmp	.+1660   	; 0xaf4 <retrieve_gps_data+0x734>
+     478:	90 f4       	brcc	.+36     	; 0x49e <retrieve_gps_data+0xde>
+     47a:	ec 33       	cpi	r30, 0x3C	; 60
+     47c:	09 f4       	brne	.+2      	; 0x480 <retrieve_gps_data+0xc0>
+     47e:	00 c3       	rjmp	.+1536   	; 0xa80 <retrieve_gps_data+0x6c0>
+     480:	38 f4       	brcc	.+14     	; 0x490 <retrieve_gps_data+0xd0>
+     482:	e4 33       	cpi	r30, 0x34	; 52
+     484:	09 f4       	brne	.+2      	; 0x488 <retrieve_gps_data+0xc8>
+     486:	d4 c2       	rjmp	.+1448   	; 0xa30 <retrieve_gps_data+0x670>
+     488:	e8 33       	cpi	r30, 0x38	; 56
+     48a:	09 f0       	breq	.+2      	; 0x48e <retrieve_gps_data+0xce>
+     48c:	09 c4       	rjmp	.+2066   	; 0xca0 <retrieve_gps_data+0x8e0>
+     48e:	e1 c2       	rjmp	.+1474   	; 0xa52 <retrieve_gps_data+0x692>
+     490:	e0 34       	cpi	r30, 0x40	; 64
+     492:	09 f4       	brne	.+2      	; 0x496 <retrieve_gps_data+0xd6>
+     494:	06 c3       	rjmp	.+1548   	; 0xaa2 <retrieve_gps_data+0x6e2>
+     496:	e4 34       	cpi	r30, 0x44	; 68
+     498:	09 f0       	breq	.+2      	; 0x49c <retrieve_gps_data+0xdc>
+     49a:	02 c4       	rjmp	.+2052   	; 0xca0 <retrieve_gps_data+0x8e0>
+     49c:	1a c3       	rjmp	.+1588   	; 0xad2 <retrieve_gps_data+0x712>
+     49e:	e4 35       	cpi	r30, 0x54	; 84
+     4a0:	09 f4       	brne	.+2      	; 0x4a4 <retrieve_gps_data+0xe4>
+     4a2:	66 c3       	rjmp	.+1740   	; 0xb70 <retrieve_gps_data+0x7b0>
+     4a4:	38 f4       	brcc	.+14     	; 0x4b4 <retrieve_gps_data+0xf4>
+     4a6:	ec 34       	cpi	r30, 0x4C	; 76
+     4a8:	09 f4       	brne	.+2      	; 0x4ac <retrieve_gps_data+0xec>
+     4aa:	3b c3       	rjmp	.+1654   	; 0xb22 <retrieve_gps_data+0x762>
+     4ac:	e0 35       	cpi	r30, 0x50	; 80
+     4ae:	09 f0       	breq	.+2      	; 0x4b2 <retrieve_gps_data+0xf2>
+     4b0:	f7 c3       	rjmp	.+2030   	; 0xca0 <retrieve_gps_data+0x8e0>
+     4b2:	48 c3       	rjmp	.+1680   	; 0xb44 <retrieve_gps_data+0x784>
+     4b4:	e8 35       	cpi	r30, 0x58	; 88
+     4b6:	09 f4       	brne	.+2      	; 0x4ba <retrieve_gps_data+0xfa>
+     4b8:	6c c3       	rjmp	.+1752   	; 0xb92 <retrieve_gps_data+0x7d2>
+     4ba:	ec 35       	cpi	r30, 0x5C	; 92
+     4bc:	09 f0       	breq	.+2      	; 0x4c0 <retrieve_gps_data+0x100>
+     4be:	f0 c3       	rjmp	.+2016   	; 0xca0 <retrieve_gps_data+0x8e0>
+     4c0:	88 c3       	rjmp	.+1808   	; 0xbd2 <retrieve_gps_data+0x812>
 		{
 			case  GPSI_UNKNOWN:
 				if (usart1_buffer[usart1_index] == GPSI_START)
- 270:	e0 91 8e 03 	lds	r30, 0x038E
- 274:	f0 91 8f 03 	lds	r31, 0x038F
- 278:	e7 56       	subi	r30, 0x67	; 103
- 27a:	fc 4f       	sbci	r31, 0xFC	; 252
- 27c:	e0 81       	ld	r30, Z
- 27e:	e2 30       	cpi	r30, 0x02	; 2
- 280:	09 f0       	breq	.+2      	; 0x284 <retrieve_gps_data+0x116>
- 282:	ee c3       	rjmp	.+2012   	; 0xa60 <retrieve_gps_data+0x8f2>
+     4c2:	e0 91 8e 03 	lds	r30, 0x038E
+     4c6:	f0 91 8f 03 	lds	r31, 0x038F
+     4ca:	e7 56       	subi	r30, 0x67	; 103
+     4cc:	fc 4f       	sbci	r31, 0xFC	; 252
+     4ce:	e0 81       	ld	r30, Z
+     4d0:	e2 30       	cpi	r30, 0x02	; 2
+     4d2:	09 f0       	breq	.+2      	; 0x4d6 <retrieve_gps_data+0x116>
+     4d4:	ee c3       	rjmp	.+2012   	; 0xcb2 <retrieve_gps_data+0x8f2>
 				{
 					gpsi_ready = 0;
- 284:	10 92 cb 09 	sts	0x09CB, r1
+     4d6:	10 92 cb 09 	sts	0x09CB, r1
 					set_usart_state(usart1_flags, GPSI_ID1);
- 288:	f0 91 98 03 	lds	r31, 0x0398
- 28c:	e0 91 98 03 	lds	r30, 0x0398
- 290:	ec 7f       	andi	r30, 0xFC	; 252
- 292:	ef 27       	eor	r30, r31
- 294:	e4 61       	ori	r30, 0x14	; 20
- 296:	d8 c3       	rjmp	.+1968   	; 0xa48 <retrieve_gps_data+0x8da>
+     4da:	f0 91 98 03 	lds	r31, 0x0398
+     4de:	e0 91 98 03 	lds	r30, 0x0398
+     4e2:	ec 7f       	andi	r30, 0xFC	; 252
+     4e4:	ef 27       	eor	r30, r31
+     4e6:	e4 61       	ori	r30, 0x14	; 20
+     4e8:	d8 c3       	rjmp	.+1968   	; 0xc9a <retrieve_gps_data+0x8da>
 				}
 				break;
 
 
 			case GPSI_PRELIM1:
 				telem.last_command = usart1_buffer[usart1_index];
- 298:	e0 91 8e 03 	lds	r30, 0x038E
- 29c:	f0 91 8f 03 	lds	r31, 0x038F
- 2a0:	e7 56       	subi	r30, 0x67	; 103
- 2a2:	fc 4f       	sbci	r31, 0xFC	; 252
- 2a4:	e0 81       	ld	r30, Z
- 2a6:	e0 93 93 03 	sts	0x0393, r30
+     4ea:	e0 91 8e 03 	lds	r30, 0x038E
+     4ee:	f0 91 8f 03 	lds	r31, 0x038F
+     4f2:	e7 56       	subi	r30, 0x67	; 103
+     4f4:	fc 4f       	sbci	r31, 0xFC	; 252
+     4f6:	e0 81       	ld	r30, Z
+     4f8:	e0 93 93 03 	sts	0x0393, r30
 				set_usart_state(usart1_flags, GPSI_PRELIM2);
- 2aa:	f0 91 98 03 	lds	r31, 0x0398
- 2ae:	e0 91 98 03 	lds	r30, 0x0398
- 2b2:	ec 7f       	andi	r30, 0xFC	; 252
- 2b4:	ef 27       	eor	r30, r31
- 2b6:	ec 60       	ori	r30, 0x0C	; 12
- 2b8:	10 c0       	rjmp	.+32     	; 0x2da <retrieve_gps_data+0x16c>
+     4fc:	f0 91 98 03 	lds	r31, 0x0398
+     500:	e0 91 98 03 	lds	r30, 0x0398
+     504:	ec 7f       	andi	r30, 0xFC	; 252
+     506:	ef 27       	eor	r30, r31
+     508:	ec 60       	ori	r30, 0x0C	; 12
+     50a:	10 c0       	rjmp	.+32     	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case GPSI_PRELIM2:
 				telem.command_success = usart1_buffer[usart1_index];
- 2ba:	e0 91 8e 03 	lds	r30, 0x038E
- 2be:	f0 91 8f 03 	lds	r31, 0x038F
- 2c2:	e7 56       	subi	r30, 0x67	; 103
- 2c4:	fc 4f       	sbci	r31, 0xFC	; 252
- 2c6:	e0 81       	ld	r30, Z
- 2c8:	e0 93 94 03 	sts	0x0394, r30
+     50c:	e0 91 8e 03 	lds	r30, 0x038E
+     510:	f0 91 8f 03 	lds	r31, 0x038F
+     514:	e7 56       	subi	r30, 0x67	; 103
+     516:	fc 4f       	sbci	r31, 0xFC	; 252
+     518:	e0 81       	ld	r30, Z
+     51a:	e0 93 94 03 	sts	0x0394, r30
 				set_usart_state(usart1_flags, GPSI_PRELIM3);
- 2cc:	f0 91 98 03 	lds	r31, 0x0398
- 2d0:	e0 91 98 03 	lds	r30, 0x0398
- 2d4:	ec 7f       	andi	r30, 0xFC	; 252
- 2d6:	ef 27       	eor	r30, r31
- 2d8:	e0 61       	ori	r30, 0x10	; 16
- 2da:	e0 93 98 03 	sts	0x0398, r30
+     51e:	f0 91 98 03 	lds	r31, 0x0398
+     522:	e0 91 98 03 	lds	r30, 0x0398
+     526:	ec 7f       	andi	r30, 0xFC	; 252
+     528:	ef 27       	eor	r30, r31
+     52a:	e0 61       	ori	r30, 0x10	; 16
+     52c:	e0 93 98 03 	sts	0x0398, r30
 				break;
- 2de:	c5 c3       	rjmp	.+1930   	; 0xa6a <retrieve_gps_data+0x8fc>
+     530:	c5 c3       	rjmp	.+1930   	; 0xcbc <retrieve_gps_data+0x8fc>
 
 
 			case GPSI_PRELIM3:
 				telem.last_satellite = usart1_buffer[usart1_index];
- 2e0:	e0 91 8e 03 	lds	r30, 0x038E
- 2e4:	f0 91 8f 03 	lds	r31, 0x038F
- 2e8:	e7 56       	subi	r30, 0x67	; 103
- 2ea:	fc 4f       	sbci	r31, 0xFC	; 252
- 2ec:	e0 81       	ld	r30, Z
- 2ee:	e0 93 95 03 	sts	0x0395, r30
- 2f2:	3e c3       	rjmp	.+1660   	; 0x970 <retrieve_gps_data+0x802>
+     532:	e0 91 8e 03 	lds	r30, 0x038E
+     536:	f0 91 8f 03 	lds	r31, 0x038F
+     53a:	e7 56       	subi	r30, 0x67	; 103
+     53c:	fc 4f       	sbci	r31, 0xFC	; 252
+     53e:	e0 81       	ld	r30, Z
+     540:	e0 93 95 03 	sts	0x0395, r30
+     544:	3e c3       	rjmp	.+1660   	; 0xbc2 <retrieve_gps_data+0x802>
 				set_usart_state(usart1_flags, GPSI_DONE);
 				break;
 
 
 			case  GPSI_ID1:
 				if (usart1_buffer[usart1_index] == 'F')
- 2f4:	e0 91 8e 03 	lds	r30, 0x038E
- 2f8:	f0 91 8f 03 	lds	r31, 0x038F
- 2fc:	e7 56       	subi	r30, 0x67	; 103
- 2fe:	fc 4f       	sbci	r31, 0xFC	; 252
- 300:	e0 81       	ld	r30, Z
+     546:	e0 91 8e 03 	lds	r30, 0x038E
+     54a:	f0 91 8f 03 	lds	r31, 0x038F
+     54e:	e7 56       	subi	r30, 0x67	; 103
+     550:	fc 4f       	sbci	r31, 0xFC	; 252
+     552:	e0 81       	ld	r30, Z
 				{
 					set_usart_state(usart1_flags, GPSI_ID2);
- 302:	f0 91 98 03 	lds	r31, 0x0398
+     554:	f0 91 98 03 	lds	r31, 0x0398
 				set_usart_state(usart1_flags, GPSI_DONE);
 				break;
 
 
 			case  GPSI_ID1:
 				if (usart1_buffer[usart1_index] == 'F')
- 306:	e6 34       	cpi	r30, 0x46	; 70
- 308:	09 f0       	breq	.+2      	; 0x30c <retrieve_gps_data+0x19e>
- 30a:	a3 c3       	rjmp	.+1862   	; 0xa52 <retrieve_gps_data+0x8e4>
+     558:	e6 34       	cpi	r30, 0x46	; 70
+     55a:	09 f0       	breq	.+2      	; 0x55e <retrieve_gps_data+0x19e>
+     55c:	a3 c3       	rjmp	.+1862   	; 0xca4 <retrieve_gps_data+0x8e4>
 				{
 					set_usart_state(usart1_flags, GPSI_ID2);
- 30c:	e0 91 98 03 	lds	r30, 0x0398
- 310:	ec 7f       	andi	r30, 0xFC	; 252
- 312:	ef 27       	eor	r30, r31
- 314:	e8 61       	ori	r30, 0x18	; 24
- 316:	e0 93 98 03 	sts	0x0398, r30
+     55e:	e0 91 98 03 	lds	r30, 0x0398
+     562:	ec 7f       	andi	r30, 0xFC	; 252
+     564:	ef 27       	eor	r30, r31
+     566:	e8 61       	ori	r30, 0x18	; 24
+     568:	e0 93 98 03 	sts	0x0398, r30
 					rx_id[0] = 'F';
- 31a:	10 93 2e 0a 	sts	0x0A2E, r17
+     56c:	10 93 2e 0a 	sts	0x0A2E, r17
 					rem_gen_state(error, GPSI_ERR_GEN);
- 31e:	e0 91 ca 09 	lds	r30, 0x09CA
- 322:	eb 7f       	andi	r30, 0xFB	; 251
- 324:	a0 c3       	rjmp	.+1856   	; 0xa66 <retrieve_gps_data+0x8f8>
+     570:	e0 91 ca 09 	lds	r30, 0x09CA
+     574:	eb 7f       	andi	r30, 0xFB	; 251
+     576:	a0 c3       	rjmp	.+1856   	; 0xcb8 <retrieve_gps_data+0x8f8>
 				}
 				break;
 
 
 			case  GPSI_ID2:
 				switch(usart1_buffer[usart1_index])
- 326:	e0 91 8e 03 	lds	r30, 0x038E
- 32a:	f0 91 8f 03 	lds	r31, 0x038F
- 32e:	e7 56       	subi	r30, 0x67	; 103
- 330:	fc 4f       	sbci	r31, 0xFC	; 252
- 332:	e0 81       	ld	r30, Z
- 334:	e0 33       	cpi	r30, 0x30	; 48
- 336:	08 f4       	brcc	.+2      	; 0x33a <retrieve_gps_data+0x1cc>
- 338:	8a c3       	rjmp	.+1812   	; 0xa4e <retrieve_gps_data+0x8e0>
- 33a:	e3 33       	cpi	r30, 0x33	; 51
- 33c:	18 f0       	brcs	.+6      	; 0x344 <retrieve_gps_data+0x1d6>
- 33e:	e9 33       	cpi	r30, 0x39	; 57
- 340:	09 f0       	breq	.+2      	; 0x344 <retrieve_gps_data+0x1d6>
- 342:	85 c3       	rjmp	.+1802   	; 0xa4e <retrieve_gps_data+0x8e0>
+     578:	e0 91 8e 03 	lds	r30, 0x038E
+     57c:	f0 91 8f 03 	lds	r31, 0x038F
+     580:	e7 56       	subi	r30, 0x67	; 103
+     582:	fc 4f       	sbci	r31, 0xFC	; 252
+     584:	e0 81       	ld	r30, Z
+     586:	e0 33       	cpi	r30, 0x30	; 48
+     588:	08 f4       	brcc	.+2      	; 0x58c <retrieve_gps_data+0x1cc>
+     58a:	8a c3       	rjmp	.+1812   	; 0xca0 <retrieve_gps_data+0x8e0>
+     58c:	e3 33       	cpi	r30, 0x33	; 51
+     58e:	18 f0       	brcs	.+6      	; 0x596 <retrieve_gps_data+0x1d6>
+     590:	e9 33       	cpi	r30, 0x39	; 57
+     592:	09 f0       	breq	.+2      	; 0x596 <retrieve_gps_data+0x1d6>
+     594:	85 c3       	rjmp	.+1802   	; 0xca0 <retrieve_gps_data+0x8e0>
 					// Four possible valid options here
 					case '0':
 					case '1':
 					case '2':
 					case '9':
 						set_usart_state(usart1_flags, GPSI_ID3);
- 344:	f0 91 98 03 	lds	r31, 0x0398
- 348:	e0 91 98 03 	lds	r30, 0x0398
- 34c:	ec 7f       	andi	r30, 0xFC	; 252
- 34e:	ef 27       	eor	r30, r31
- 350:	ec 61       	ori	r30, 0x1C	; 28
- 352:	e0 93 98 03 	sts	0x0398, r30
+     596:	f0 91 98 03 	lds	r31, 0x0398
+     59a:	e0 91 98 03 	lds	r30, 0x0398
+     59e:	ec 7f       	andi	r30, 0xFC	; 252
+     5a0:	ef 27       	eor	r30, r31
+     5a2:	ec 61       	ori	r30, 0x1C	; 28
+     5a4:	e0 93 98 03 	sts	0x0398, r30
 						rx_id[1] = usart1_buffer[usart1_index];
- 356:	e0 91 8e 03 	lds	r30, 0x038E
- 35a:	f0 91 8f 03 	lds	r31, 0x038F
- 35e:	e7 56       	subi	r30, 0x67	; 103
- 360:	fc 4f       	sbci	r31, 0xFC	; 252
- 362:	e0 81       	ld	r30, Z
- 364:	e0 93 2f 0a 	sts	0x0A2F, r30
- 368:	da cf       	rjmp	.-76     	; 0x31e <retrieve_gps_data+0x1b0>
+     5a8:	e0 91 8e 03 	lds	r30, 0x038E
+     5ac:	f0 91 8f 03 	lds	r31, 0x038F
+     5b0:	e7 56       	subi	r30, 0x67	; 103
+     5b2:	fc 4f       	sbci	r31, 0xFC	; 252
+     5b4:	e0 81       	ld	r30, Z
+     5b6:	e0 93 2f 0a 	sts	0x0A2F, r30
+     5ba:	da cf       	rjmp	.-76     	; 0x570 <retrieve_gps_data+0x1b0>
 				}
 				break;
 
 
 			case  GPSI_ID3:
 				rx_id[2] = usart1_buffer[usart1_index];
- 36a:	e0 91 8e 03 	lds	r30, 0x038E
- 36e:	f0 91 8f 03 	lds	r31, 0x038F
- 372:	e7 56       	subi	r30, 0x67	; 103
- 374:	fc 4f       	sbci	r31, 0xFC	; 252
- 376:	e0 81       	ld	r30, Z
- 378:	e0 93 30 0a 	sts	0x0A30, r30
+     5bc:	e0 91 8e 03 	lds	r30, 0x038E
+     5c0:	f0 91 8f 03 	lds	r31, 0x038F
+     5c4:	e7 56       	subi	r30, 0x67	; 103
+     5c6:	fc 4f       	sbci	r31, 0xFC	; 252
+     5c8:	e0 81       	ld	r30, Z
+     5ca:	e0 93 30 0a 	sts	0x0A30, r30
 				rem_gen_state(error, GPSI_ERR_GEN);
- 37c:	f0 91 ca 09 	lds	r31, 0x09CA
- 380:	fb 7f       	andi	r31, 0xFB	; 251
- 382:	f0 93 ca 09 	sts	0x09CA, r31
+     5ce:	f0 91 ca 09 	lds	r31, 0x09CA
+     5d2:	fb 7f       	andi	r31, 0xFB	; 251
+     5d4:	f0 93 ca 09 	sts	0x09CA, r31
 				if (rx_id[1] == '0' && rx_id[2] == '0')			// F00
- 386:	00 91 2f 0a 	lds	r16, 0x0A2F
- 38a:	00 33       	cpi	r16, 0x30	; 48
- 38c:	a9 f4       	brne	.+42     	; 0x3b8 <retrieve_gps_data+0x24a>
- 38e:	e0 33       	cpi	r30, 0x30	; 48
- 390:	09 f0       	breq	.+2      	; 0x394 <retrieve_gps_data+0x226>
- 392:	99 c3       	rjmp	.+1842   	; 0xac6 <retrieve_gps_data+0x958>
+     5d8:	00 91 2f 0a 	lds	r16, 0x0A2F
+     5dc:	00 33       	cpi	r16, 0x30	; 48
+     5de:	a9 f4       	brne	.+42     	; 0x60a <retrieve_gps_data+0x24a>
+     5e0:	e0 33       	cpi	r30, 0x30	; 48
+     5e2:	09 f0       	breq	.+2      	; 0x5e6 <retrieve_gps_data+0x226>
+     5e4:	99 c3       	rjmp	.+1842   	; 0xd18 <retrieve_gps_data+0x958>
 					set_usart_state(usart1_flags, GPSI_S1);
- 394:	f0 91 98 03 	lds	r31, 0x0398
- 398:	e0 91 98 03 	lds	r30, 0x0398
- 39c:	ec 7f       	andi	r30, 0xFC	; 252
- 39e:	ef 27       	eor	r30, r31
- 3a0:	e0 62       	ori	r30, 0x20	; 32
- 3a2:	07 c0       	rjmp	.+14     	; 0x3b2 <retrieve_gps_data+0x244>
+     5e6:	f0 91 98 03 	lds	r31, 0x0398
+     5ea:	e0 91 98 03 	lds	r30, 0x0398
+     5ee:	ec 7f       	andi	r30, 0xFC	; 252
+     5f0:	ef 27       	eor	r30, r31
+     5f2:	e0 62       	ori	r30, 0x20	; 32
+     5f4:	07 c0       	rjmp	.+14     	; 0x604 <retrieve_gps_data+0x244>
 				else if (rx_id[2] == '3' && rx_id[1] == '0')	// F03
 					set_usart_state(usart1_flags, GPSI_S2);
- 3a4:	f0 91 98 03 	lds	r31, 0x0398
- 3a8:	e0 91 98 03 	lds	r30, 0x0398
- 3ac:	ec 7f       	andi	r30, 0xFC	; 252
- 3ae:	ef 27       	eor	r30, r31
- 3b0:	e4 62       	ori	r30, 0x24	; 36
- 3b2:	e0 93 98 03 	sts	0x0398, r30
- 3b6:	39 c0       	rjmp	.+114    	; 0x42a <retrieve_gps_data+0x2bc>
+     5f6:	f0 91 98 03 	lds	r31, 0x0398
+     5fa:	e0 91 98 03 	lds	r30, 0x0398
+     5fe:	ec 7f       	andi	r30, 0xFC	; 252
+     600:	ef 27       	eor	r30, r31
+     602:	e4 62       	ori	r30, 0x24	; 36
+     604:	e0 93 98 03 	sts	0x0398, r30
+     608:	39 c0       	rjmp	.+114    	; 0x67c <retrieve_gps_data+0x2bc>
 				else if (rx_id[1] == '1' && rx_id[2] == '8')	// F18
- 3b8:	01 33       	cpi	r16, 0x31	; 49
- 3ba:	51 f4       	brne	.+20     	; 0x3d0 <retrieve_gps_data+0x262>
- 3bc:	e8 33       	cpi	r30, 0x38	; 56
- 3be:	49 f5       	brne	.+82     	; 0x412 <retrieve_gps_data+0x2a4>
+     60a:	01 33       	cpi	r16, 0x31	; 49
+     60c:	51 f4       	brne	.+20     	; 0x622 <retrieve_gps_data+0x262>
+     60e:	e8 33       	cpi	r30, 0x38	; 56
+     610:	49 f5       	brne	.+82     	; 0x664 <retrieve_gps_data+0x2a4>
 					set_usart_state(usart1_flags, GPSI_S3);
- 3c0:	f0 91 98 03 	lds	r31, 0x0398
- 3c4:	e0 91 98 03 	lds	r30, 0x0398
- 3c8:	ec 7f       	andi	r30, 0xFC	; 252
- 3ca:	ef 27       	eor	r30, r31
- 3cc:	e8 62       	ori	r30, 0x28	; 40
- 3ce:	f1 cf       	rjmp	.-30     	; 0x3b2 <retrieve_gps_data+0x244>
+     612:	f0 91 98 03 	lds	r31, 0x0398
+     616:	e0 91 98 03 	lds	r30, 0x0398
+     61a:	ec 7f       	andi	r30, 0xFC	; 252
+     61c:	ef 27       	eor	r30, r31
+     61e:	e8 62       	ori	r30, 0x28	; 40
+     620:	f1 cf       	rjmp	.-30     	; 0x604 <retrieve_gps_data+0x244>
 				else if (rx_id[1] == '2' && rx_id[2] == '2')	// F22
- 3d0:	02 33       	cpi	r16, 0x32	; 50
- 3d2:	99 f4       	brne	.+38     	; 0x3fa <retrieve_gps_data+0x28c>
- 3d4:	e2 33       	cpi	r30, 0x32	; 50
- 3d6:	09 f0       	breq	.+2      	; 0x3da <retrieve_gps_data+0x26c>
- 3d8:	7a c3       	rjmp	.+1780   	; 0xace <retrieve_gps_data+0x960>
+     622:	02 33       	cpi	r16, 0x32	; 50
+     624:	99 f4       	brne	.+38     	; 0x64c <retrieve_gps_data+0x28c>
+     626:	e2 33       	cpi	r30, 0x32	; 50
+     628:	09 f0       	breq	.+2      	; 0x62c <retrieve_gps_data+0x26c>
+     62a:	7a c3       	rjmp	.+1780   	; 0xd20 <retrieve_gps_data+0x960>
 					set_usart_state(usart1_flags, GPSI_S4);
- 3da:	f0 91 98 03 	lds	r31, 0x0398
- 3de:	e0 91 98 03 	lds	r30, 0x0398
- 3e2:	ec 7f       	andi	r30, 0xFC	; 252
- 3e4:	ef 27       	eor	r30, r31
- 3e6:	ec 62       	ori	r30, 0x2C	; 44
- 3e8:	e4 cf       	rjmp	.-56     	; 0x3b2 <retrieve_gps_data+0x244>
+     62c:	f0 91 98 03 	lds	r31, 0x0398
+     630:	e0 91 98 03 	lds	r30, 0x0398
+     634:	ec 7f       	andi	r30, 0xFC	; 252
+     636:	ef 27       	eor	r30, r31
+     638:	ec 62       	ori	r30, 0x2C	; 44
+     63a:	e4 cf       	rjmp	.-56     	; 0x604 <retrieve_gps_data+0x244>
 				else if (rx_id[2] == '3' && rx_id[1] == '2')	// F23
 					set_usart_state(usart1_flags, GPSI_S5);
- 3ea:	f0 91 98 03 	lds	r31, 0x0398
- 3ee:	e0 91 98 03 	lds	r30, 0x0398
- 3f2:	ec 7f       	andi	r30, 0xFC	; 252
- 3f4:	ef 27       	eor	r30, r31
- 3f6:	e0 63       	ori	r30, 0x30	; 48
- 3f8:	dc cf       	rjmp	.-72     	; 0x3b2 <retrieve_gps_data+0x244>
+     63c:	f0 91 98 03 	lds	r31, 0x0398
+     640:	e0 91 98 03 	lds	r30, 0x0398
+     644:	ec 7f       	andi	r30, 0xFC	; 252
+     646:	ef 27       	eor	r30, r31
+     648:	e0 63       	ori	r30, 0x30	; 48
+     64a:	dc cf       	rjmp	.-72     	; 0x604 <retrieve_gps_data+0x244>
 				else if (rx_id[1] == '9' && rx_id[2] == '9')	// f99
- 3fa:	09 33       	cpi	r16, 0x39	; 57
- 3fc:	51 f4       	brne	.+20     	; 0x412 <retrieve_gps_data+0x2a4>
- 3fe:	e9 33       	cpi	r30, 0x39	; 57
- 400:	41 f4       	brne	.+16     	; 0x412 <retrieve_gps_data+0x2a4>
+     64c:	09 33       	cpi	r16, 0x39	; 57
+     64e:	51 f4       	brne	.+20     	; 0x664 <retrieve_gps_data+0x2a4>
+     650:	e9 33       	cpi	r30, 0x39	; 57
+     652:	41 f4       	brne	.+16     	; 0x664 <retrieve_gps_data+0x2a4>
 					set_usart_state(usart1_flags, GPSI_PRELIM1);
- 402:	f0 91 98 03 	lds	r31, 0x0398
- 406:	e0 91 98 03 	lds	r30, 0x0398
- 40a:	ec 7f       	andi	r30, 0xFC	; 252
- 40c:	ef 27       	eor	r30, r31
- 40e:	e8 60       	ori	r30, 0x08	; 8
- 410:	d0 cf       	rjmp	.-96     	; 0x3b2 <retrieve_gps_data+0x244>
+     654:	f0 91 98 03 	lds	r31, 0x0398
+     658:	e0 91 98 03 	lds	r30, 0x0398
+     65c:	ec 7f       	andi	r30, 0xFC	; 252
+     65e:	ef 27       	eor	r30, r31
+     660:	e8 60       	ori	r30, 0x08	; 8
+     662:	d0 cf       	rjmp	.-96     	; 0x604 <retrieve_gps_data+0x244>
 				else
 				{
 					set_usart_state(usart1_flags, GPSI_UNKNOWN);
- 412:	00 91 98 03 	lds	r16, 0x0398
- 416:	e0 91 98 03 	lds	r30, 0x0398
- 41a:	ec 7f       	andi	r30, 0xFC	; 252
- 41c:	e0 27       	eor	r30, r16
- 41e:	e4 60       	ori	r30, 0x04	; 4
- 420:	e0 93 98 03 	sts	0x0398, r30
+     664:	00 91 98 03 	lds	r16, 0x0398
+     668:	e0 91 98 03 	lds	r30, 0x0398
+     66c:	ec 7f       	andi	r30, 0xFC	; 252
+     66e:	e0 27       	eor	r30, r16
+     670:	e4 60       	ori	r30, 0x04	; 4
+     672:	e0 93 98 03 	sts	0x0398, r30
 					set_gen_state(error, GPSI_ERR_GEN);
- 424:	f4 60       	ori	r31, 0x04	; 4
- 426:	f0 93 ca 09 	sts	0x09CA, r31
+     676:	f4 60       	ori	r31, 0x04	; 4
+     678:	f0 93 ca 09 	sts	0x09CA, r31
 				}
 
 				count = 0;
- 42a:	10 92 82 07 	sts	0x0782, r1
- 42e:	10 92 83 07 	sts	0x0783, r1
- 432:	10 92 84 07 	sts	0x0784, r1
- 436:	10 92 85 07 	sts	0x0785, r1
+     67c:	10 92 82 07 	sts	0x0782, r1
+     680:	10 92 83 07 	sts	0x0783, r1
+     684:	10 92 84 07 	sts	0x0784, r1
+     688:	10 92 85 07 	sts	0x0785, r1
 				break;
- 43a:	17 c3       	rjmp	.+1582   	; 0xa6a <retrieve_gps_data+0x8fc>
+     68c:	17 c3       	rjmp	.+1582   	; 0xcbc <retrieve_gps_data+0x8fc>
 
 
 			case  GPSI_S1: // F00
 				if (count == 0)
- 43c:	40 90 82 07 	lds	r4, 0x0782
- 440:	50 90 83 07 	lds	r5, 0x0783
- 444:	60 90 84 07 	lds	r6, 0x0784
- 448:	70 90 85 07 	lds	r7, 0x0785
- 44c:	41 14       	cp	r4, r1
- 44e:	51 04       	cpc	r5, r1
- 450:	61 04       	cpc	r6, r1
- 452:	71 04       	cpc	r7, r1
- 454:	21 f4       	brne	.+8      	; 0x45e <retrieve_gps_data+0x2f0>
+     68e:	40 90 82 07 	lds	r4, 0x0782
+     692:	50 90 83 07 	lds	r5, 0x0783
+     696:	60 90 84 07 	lds	r6, 0x0784
+     69a:	70 90 85 07 	lds	r7, 0x0785
+     69e:	41 14       	cp	r4, r1
+     6a0:	51 04       	cpc	r5, r1
+     6a2:	61 04       	cpc	r6, r1
+     6a4:	71 04       	cpc	r7, r1
+     6a6:	21 f4       	brne	.+8      	; 0x6b0 <retrieve_gps_data+0x2f0>
 				{
 					checksum[0] = 0;
- 456:	10 92 2c 0a 	sts	0x0A2C, r1
+     6a8:	10 92 2c 0a 	sts	0x0A2C, r1
 					checksum[1] = 0;
- 45a:	10 92 2d 0a 	sts	0x0A2D, r1
+     6ac:	10 92 2d 0a 	sts	0x0A2D, r1
 				}
 
 				((uint8ptr)&f00)[count] = usart1_buffer[usart1_index];
- 45e:	e0 91 8e 03 	lds	r30, 0x038E
- 462:	f0 91 8f 03 	lds	r31, 0x038F
- 466:	c6 e4       	ldi	r28, 0x46	; 70
- 468:	ec 2e       	mov	r14, r28
- 46a:	c3 e0       	ldi	r28, 0x03	; 3
- 46c:	fc 2e       	mov	r15, r28
- 46e:	e4 0c       	add	r14, r4
- 470:	f5 1c       	adc	r15, r5
- 472:	e7 56       	subi	r30, 0x67	; 103
- 474:	fc 4f       	sbci	r31, 0xFC	; 252
- 476:	c0 81       	ld	r28, Z
- 478:	f7 01       	movw	r30, r14
- 47a:	c0 83       	st	Z, r28
+     6b0:	e0 91 8e 03 	lds	r30, 0x038E
+     6b4:	f0 91 8f 03 	lds	r31, 0x038F
+     6b8:	c6 e4       	ldi	r28, 0x46	; 70
+     6ba:	ec 2e       	mov	r14, r28
+     6bc:	c3 e0       	ldi	r28, 0x03	; 3
+     6be:	fc 2e       	mov	r15, r28
+     6c0:	e4 0c       	add	r14, r4
+     6c2:	f5 1c       	adc	r15, r5
+     6c4:	e7 56       	subi	r30, 0x67	; 103
+     6c6:	fc 4f       	sbci	r31, 0xFC	; 252
+     6c8:	c0 81       	ld	r28, Z
+     6ca:	f7 01       	movw	r30, r14
+     6cc:	c0 83       	st	Z, r28
 				checksum[count%2] = checksum[count%2]^usart1_buffer[usart1_index];
- 47c:	c1 2c       	mov	r12, r1
- 47e:	d1 2c       	mov	r13, r1
- 480:	76 01       	movw	r14, r12
- 482:	c3 94       	inc	r12
- 484:	c4 20       	and	r12, r4
- 486:	d5 20       	and	r13, r5
- 488:	e6 20       	and	r14, r6
- 48a:	f7 20       	and	r15, r7
- 48c:	e0 91 8e 03 	lds	r30, 0x038E
- 490:	f0 91 8f 03 	lds	r31, 0x038F
- 494:	0c e2       	ldi	r16, 0x2C	; 44
- 496:	e0 2e       	mov	r14, r16
- 498:	0a e0       	ldi	r16, 0x0A	; 10
- 49a:	f0 2e       	mov	r15, r16
- 49c:	ec 0c       	add	r14, r12
- 49e:	fd 1c       	adc	r15, r13
- 4a0:	e7 56       	subi	r30, 0x67	; 103
- 4a2:	fc 4f       	sbci	r31, 0xFC	; 252
- 4a4:	e7 01       	movw	r28, r14
- 4a6:	08 81       	ld	r16, Y
- 4a8:	e0 81       	ld	r30, Z
- 4aa:	0e 27       	eor	r16, r30
- 4ac:	08 83       	st	Y, r16
+     6ce:	c1 2c       	mov	r12, r1
+     6d0:	d1 2c       	mov	r13, r1
+     6d2:	76 01       	movw	r14, r12
+     6d4:	c3 94       	inc	r12
+     6d6:	c4 20       	and	r12, r4
+     6d8:	d5 20       	and	r13, r5
+     6da:	e6 20       	and	r14, r6
+     6dc:	f7 20       	and	r15, r7
+     6de:	e0 91 8e 03 	lds	r30, 0x038E
+     6e2:	f0 91 8f 03 	lds	r31, 0x038F
+     6e6:	0c e2       	ldi	r16, 0x2C	; 44
+     6e8:	e0 2e       	mov	r14, r16
+     6ea:	0a e0       	ldi	r16, 0x0A	; 10
+     6ec:	f0 2e       	mov	r15, r16
+     6ee:	ec 0c       	add	r14, r12
+     6f0:	fd 1c       	adc	r15, r13
+     6f2:	e7 56       	subi	r30, 0x67	; 103
+     6f4:	fc 4f       	sbci	r31, 0xFC	; 252
+     6f6:	e7 01       	movw	r28, r14
+     6f8:	08 81       	ld	r16, Y
+     6fa:	e0 81       	ld	r30, Z
+     6fc:	0e 27       	eor	r16, r30
+     6fe:	08 83       	st	Y, r16
 				count++;
- 4ae:	df ef       	ldi	r29, 0xFF	; 255
- 4b0:	4d 1a       	sub	r4, r29
- 4b2:	5d 0a       	sbc	r5, r29
- 4b4:	6d 0a       	sbc	r6, r29
- 4b6:	7d 0a       	sbc	r7, r29
- 4b8:	40 92 82 07 	sts	0x0782, r4
- 4bc:	50 92 83 07 	sts	0x0783, r5
- 4c0:	60 92 84 07 	sts	0x0784, r6
- 4c4:	70 92 85 07 	sts	0x0785, r7
+     700:	df ef       	ldi	r29, 0xFF	; 255
+     702:	4d 1a       	sub	r4, r29
+     704:	5d 0a       	sbc	r5, r29
+     706:	6d 0a       	sbc	r6, r29
+     708:	7d 0a       	sbc	r7, r29
+     70a:	40 92 82 07 	sts	0x0782, r4
+     70e:	50 92 83 07 	sts	0x0783, r5
+     712:	60 92 84 07 	sts	0x0784, r6
+     716:	70 92 85 07 	sts	0x0785, r7
 
 				if (count == sizeof(gps_f00))
- 4c8:	e8 e4       	ldi	r30, 0x48	; 72
- 4ca:	4e 16       	cp	r4, r30
- 4cc:	51 04       	cpc	r5, r1
- 4ce:	61 04       	cpc	r6, r1
- 4d0:	71 04       	cpc	r7, r1
- 4d2:	09 f0       	breq	.+2      	; 0x4d6 <retrieve_gps_data+0x368>
- 4d4:	ca c2       	rjmp	.+1428   	; 0xa6a <retrieve_gps_data+0x8fc>
+     71a:	e8 e4       	ldi	r30, 0x48	; 72
+     71c:	4e 16       	cp	r4, r30
+     71e:	51 04       	cpc	r5, r1
+     720:	61 04       	cpc	r6, r1
+     722:	71 04       	cpc	r7, r1
+     724:	09 f0       	breq	.+2      	; 0x728 <retrieve_gps_data+0x368>
+     726:	ca c2       	rjmp	.+1428   	; 0xcbc <retrieve_gps_data+0x8fc>
 				{
 					count = 0;
- 4d6:	10 92 82 07 	sts	0x0782, r1
- 4da:	10 92 83 07 	sts	0x0783, r1
- 4de:	10 92 84 07 	sts	0x0784, r1
- 4e2:	10 92 85 07 	sts	0x0785, r1
+     728:	10 92 82 07 	sts	0x0782, r1
+     72c:	10 92 83 07 	sts	0x0783, r1
+     730:	10 92 84 07 	sts	0x0784, r1
+     734:	10 92 85 07 	sts	0x0785, r1
 					set_usart_state(usart1_flags, GPSI_CHKS1A);
- 4e6:	f0 91 98 03 	lds	r31, 0x0398
- 4ea:	e0 91 98 03 	lds	r30, 0x0398
- 4ee:	ec 7f       	andi	r30, 0xFC	; 252
- 4f0:	ef 27       	eor	r30, r31
- 4f2:	e4 63       	ori	r30, 0x34	; 52
- 4f4:	f2 ce       	rjmp	.-540    	; 0x2da <retrieve_gps_data+0x16c>
+     738:	f0 91 98 03 	lds	r31, 0x0398
+     73c:	e0 91 98 03 	lds	r30, 0x0398
+     740:	ec 7f       	andi	r30, 0xFC	; 252
+     742:	ef 27       	eor	r30, r31
+     744:	e4 63       	ori	r30, 0x34	; 52
+     746:	f2 ce       	rjmp	.-540    	; 0x52c <retrieve_gps_data+0x16c>
 				}
 				break;
 
 
 			case  GPSI_S2: // F03
 				if (count == 0)
- 4f6:	40 90 82 07 	lds	r4, 0x0782
- 4fa:	50 90 83 07 	lds	r5, 0x0783
- 4fe:	60 90 84 07 	lds	r6, 0x0784
- 502:	70 90 85 07 	lds	r7, 0x0785
- 506:	41 14       	cp	r4, r1
- 508:	51 04       	cpc	r5, r1
- 50a:	61 04       	cpc	r6, r1
- 50c:	71 04       	cpc	r7, r1
- 50e:	21 f4       	brne	.+8      	; 0x518 <retrieve_gps_data+0x3aa>
+     748:	40 90 82 07 	lds	r4, 0x0782
+     74c:	50 90 83 07 	lds	r5, 0x0783
+     750:	60 90 84 07 	lds	r6, 0x0784
+     754:	70 90 85 07 	lds	r7, 0x0785
+     758:	41 14       	cp	r4, r1
+     75a:	51 04       	cpc	r5, r1
+     75c:	61 04       	cpc	r6, r1
+     75e:	71 04       	cpc	r7, r1
+     760:	21 f4       	brne	.+8      	; 0x76a <retrieve_gps_data+0x3aa>
 				{
 					checksum[0] = 0;
- 510:	10 92 2c 0a 	sts	0x0A2C, r1
+     762:	10 92 2c 0a 	sts	0x0A2C, r1
 					checksum[1] = 0;
- 514:	10 92 2d 0a 	sts	0x0A2D, r1
+     766:	10 92 2d 0a 	sts	0x0A2D, r1
 				}
 
 				((uint8ptr)&f03)[count] = usart1_buffer[usart1_index];
- 518:	e0 91 8e 03 	lds	r30, 0x038E
- 51c:	f0 91 8f 03 	lds	r31, 0x038F
- 520:	cd ee       	ldi	r28, 0xED	; 237
- 522:	ec 2e       	mov	r14, r28
- 524:	c1 e0       	ldi	r28, 0x01	; 1
- 526:	fc 2e       	mov	r15, r28
- 528:	e4 0c       	add	r14, r4
- 52a:	f5 1c       	adc	r15, r5
- 52c:	e7 56       	subi	r30, 0x67	; 103
- 52e:	fc 4f       	sbci	r31, 0xFC	; 252
- 530:	e0 81       	ld	r30, Z
- 532:	e7 01       	movw	r28, r14
- 534:	e8 83       	st	Y, r30
+     76a:	e0 91 8e 03 	lds	r30, 0x038E
+     76e:	f0 91 8f 03 	lds	r31, 0x038F
+     772:	cd ee       	ldi	r28, 0xED	; 237
+     774:	ec 2e       	mov	r14, r28
+     776:	c1 e0       	ldi	r28, 0x01	; 1
+     778:	fc 2e       	mov	r15, r28
+     77a:	e4 0c       	add	r14, r4
+     77c:	f5 1c       	adc	r15, r5
+     77e:	e7 56       	subi	r30, 0x67	; 103
+     780:	fc 4f       	sbci	r31, 0xFC	; 252
+     782:	e0 81       	ld	r30, Z
+     784:	e7 01       	movw	r28, r14
+     786:	e8 83       	st	Y, r30
 				checksum[count%2] = checksum[count%2]^usart1_buffer[usart1_index];
- 536:	c1 2c       	mov	r12, r1
- 538:	d1 2c       	mov	r13, r1
- 53a:	76 01       	movw	r14, r12
- 53c:	c3 94       	inc	r12
- 53e:	c4 20       	and	r12, r4
- 540:	d5 20       	and	r13, r5
- 542:	e6 20       	and	r14, r6
- 544:	f7 20       	and	r15, r7
- 546:	e0 91 8e 03 	lds	r30, 0x038E
- 54a:	f0 91 8f 03 	lds	r31, 0x038F
- 54e:	0c e2       	ldi	r16, 0x2C	; 44
- 550:	e0 2e       	mov	r14, r16
- 552:	0a e0       	ldi	r16, 0x0A	; 10
- 554:	f0 2e       	mov	r15, r16
- 556:	ec 0c       	add	r14, r12
- 558:	fd 1c       	adc	r15, r13
- 55a:	e7 56       	subi	r30, 0x67	; 103
- 55c:	fc 4f       	sbci	r31, 0xFC	; 252
- 55e:	e7 01       	movw	r28, r14
- 560:	08 81       	ld	r16, Y
- 562:	e0 81       	ld	r30, Z
- 564:	0e 27       	eor	r16, r30
- 566:	08 83       	st	Y, r16
+     788:	c1 2c       	mov	r12, r1
+     78a:	d1 2c       	mov	r13, r1
+     78c:	76 01       	movw	r14, r12
+     78e:	c3 94       	inc	r12
+     790:	c4 20       	and	r12, r4
+     792:	d5 20       	and	r13, r5
+     794:	e6 20       	and	r14, r6
+     796:	f7 20       	and	r15, r7
+     798:	e0 91 8e 03 	lds	r30, 0x038E
+     79c:	f0 91 8f 03 	lds	r31, 0x038F
+     7a0:	0c e2       	ldi	r16, 0x2C	; 44
+     7a2:	e0 2e       	mov	r14, r16
+     7a4:	0a e0       	ldi	r16, 0x0A	; 10
+     7a6:	f0 2e       	mov	r15, r16
+     7a8:	ec 0c       	add	r14, r12
+     7aa:	fd 1c       	adc	r15, r13
+     7ac:	e7 56       	subi	r30, 0x67	; 103
+     7ae:	fc 4f       	sbci	r31, 0xFC	; 252
+     7b0:	e7 01       	movw	r28, r14
+     7b2:	08 81       	ld	r16, Y
+     7b4:	e0 81       	ld	r30, Z
+     7b6:	0e 27       	eor	r16, r30
+     7b8:	08 83       	st	Y, r16
 				count++;
- 568:	df ef       	ldi	r29, 0xFF	; 255
- 56a:	4d 1a       	sub	r4, r29
- 56c:	5d 0a       	sbc	r5, r29
- 56e:	6d 0a       	sbc	r6, r29
- 570:	7d 0a       	sbc	r7, r29
- 572:	40 92 82 07 	sts	0x0782, r4
- 576:	50 92 83 07 	sts	0x0783, r5
- 57a:	60 92 84 07 	sts	0x0784, r6
- 57e:	70 92 85 07 	sts	0x0785, r7
+     7ba:	df ef       	ldi	r29, 0xFF	; 255
+     7bc:	4d 1a       	sub	r4, r29
+     7be:	5d 0a       	sbc	r5, r29
+     7c0:	6d 0a       	sbc	r6, r29
+     7c2:	7d 0a       	sbc	r7, r29
+     7c4:	40 92 82 07 	sts	0x0782, r4
+     7c8:	50 92 83 07 	sts	0x0783, r5
+     7cc:	60 92 84 07 	sts	0x0784, r6
+     7d0:	70 92 85 07 	sts	0x0785, r7
 
 				if (count == sizeof(gps_f03))
- 582:	e8 ed       	ldi	r30, 0xD8	; 216
- 584:	4e 16       	cp	r4, r30
- 586:	51 04       	cpc	r5, r1
- 588:	61 04       	cpc	r6, r1
- 58a:	71 04       	cpc	r7, r1
- 58c:	09 f0       	breq	.+2      	; 0x590 <retrieve_gps_data+0x422>
- 58e:	6d c2       	rjmp	.+1242   	; 0xa6a <retrieve_gps_data+0x8fc>
+     7d4:	e8 ed       	ldi	r30, 0xD8	; 216
+     7d6:	4e 16       	cp	r4, r30
+     7d8:	51 04       	cpc	r5, r1
+     7da:	61 04       	cpc	r6, r1
+     7dc:	71 04       	cpc	r7, r1
+     7de:	09 f0       	breq	.+2      	; 0x7e2 <retrieve_gps_data+0x422>
+     7e0:	6d c2       	rjmp	.+1242   	; 0xcbc <retrieve_gps_data+0x8fc>
 				{
 					count = 0;
- 590:	10 92 82 07 	sts	0x0782, r1
- 594:	10 92 83 07 	sts	0x0783, r1
- 598:	10 92 84 07 	sts	0x0784, r1
- 59c:	10 92 85 07 	sts	0x0785, r1
+     7e2:	10 92 82 07 	sts	0x0782, r1
+     7e6:	10 92 83 07 	sts	0x0783, r1
+     7ea:	10 92 84 07 	sts	0x0784, r1
+     7ee:	10 92 85 07 	sts	0x0785, r1
 					set_usart_state(usart1_flags, GPSI_CHKS2A);
- 5a0:	f0 91 98 03 	lds	r31, 0x0398
- 5a4:	e0 91 98 03 	lds	r30, 0x0398
- 5a8:	ec 7f       	andi	r30, 0xFC	; 252
- 5aa:	ef 27       	eor	r30, r31
- 5ac:	ec 63       	ori	r30, 0x3C	; 60
- 5ae:	95 ce       	rjmp	.-726    	; 0x2da <retrieve_gps_data+0x16c>
+     7f2:	f0 91 98 03 	lds	r31, 0x0398
+     7f6:	e0 91 98 03 	lds	r30, 0x0398
+     7fa:	ec 7f       	andi	r30, 0xFC	; 252
+     7fc:	ef 27       	eor	r30, r31
+     7fe:	ec 63       	ori	r30, 0x3C	; 60
+     800:	95 ce       	rjmp	.-726    	; 0x52c <retrieve_gps_data+0x16c>
 				}
 				break;
 
 
 			case  GPSI_S3: // F18
 				if (count == 0)
- 5b0:	40 90 82 07 	lds	r4, 0x0782
- 5b4:	50 90 83 07 	lds	r5, 0x0783
- 5b8:	60 90 84 07 	lds	r6, 0x0784
- 5bc:	70 90 85 07 	lds	r7, 0x0785
- 5c0:	41 14       	cp	r4, r1
- 5c2:	51 04       	cpc	r5, r1
- 5c4:	61 04       	cpc	r6, r1
- 5c6:	71 04       	cpc	r7, r1
- 5c8:	21 f4       	brne	.+8      	; 0x5d2 <retrieve_gps_data+0x464>
+     802:	40 90 82 07 	lds	r4, 0x0782
+     806:	50 90 83 07 	lds	r5, 0x0783
+     80a:	60 90 84 07 	lds	r6, 0x0784
+     80e:	70 90 85 07 	lds	r7, 0x0785
+     812:	41 14       	cp	r4, r1
+     814:	51 04       	cpc	r5, r1
+     816:	61 04       	cpc	r6, r1
+     818:	71 04       	cpc	r7, r1
+     81a:	21 f4       	brne	.+8      	; 0x824 <retrieve_gps_data+0x464>
 				{
 					checksum[0] = 0;
- 5ca:	10 92 2c 0a 	sts	0x0A2C, r1
+     81c:	10 92 2c 0a 	sts	0x0A2C, r1
 					checksum[1] = 0;
- 5ce:	10 92 2d 0a 	sts	0x0A2D, r1
+     820:	10 92 2d 0a 	sts	0x0A2D, r1
 				}
 
 				((uint8ptr)&f18)[count] = usart1_buffer[usart1_index];
- 5d2:	e0 91 8e 03 	lds	r30, 0x038E
- 5d6:	f0 91 8f 03 	lds	r31, 0x038F
- 5da:	cb e2       	ldi	r28, 0x2B	; 43
- 5dc:	ec 2e       	mov	r14, r28
- 5de:	c1 e0       	ldi	r28, 0x01	; 1
- 5e0:	fc 2e       	mov	r15, r28
- 5e2:	e4 0c       	add	r14, r4
- 5e4:	f5 1c       	adc	r15, r5
- 5e6:	e7 56       	subi	r30, 0x67	; 103
- 5e8:	fc 4f       	sbci	r31, 0xFC	; 252
- 5ea:	e0 81       	ld	r30, Z
- 5ec:	e7 01       	movw	r28, r14
- 5ee:	e8 83       	st	Y, r30
+     824:	e0 91 8e 03 	lds	r30, 0x038E
+     828:	f0 91 8f 03 	lds	r31, 0x038F
+     82c:	cb e2       	ldi	r28, 0x2B	; 43
+     82e:	ec 2e       	mov	r14, r28
+     830:	c1 e0       	ldi	r28, 0x01	; 1
+     832:	fc 2e       	mov	r15, r28
+     834:	e4 0c       	add	r14, r4
+     836:	f5 1c       	adc	r15, r5
+     838:	e7 56       	subi	r30, 0x67	; 103
+     83a:	fc 4f       	sbci	r31, 0xFC	; 252
+     83c:	e0 81       	ld	r30, Z
+     83e:	e7 01       	movw	r28, r14
+     840:	e8 83       	st	Y, r30
 				checksum[count%2] = checksum[count%2]^usart1_buffer[usart1_index];
- 5f0:	c1 2c       	mov	r12, r1
- 5f2:	d1 2c       	mov	r13, r1
- 5f4:	76 01       	movw	r14, r12
- 5f6:	c3 94       	inc	r12
- 5f8:	c4 20       	and	r12, r4
- 5fa:	d5 20       	and	r13, r5
- 5fc:	e6 20       	and	r14, r6
- 5fe:	f7 20       	and	r15, r7
- 600:	e0 91 8e 03 	lds	r30, 0x038E
- 604:	f0 91 8f 03 	lds	r31, 0x038F
- 608:	0c e2       	ldi	r16, 0x2C	; 44
- 60a:	e0 2e       	mov	r14, r16
- 60c:	0a e0       	ldi	r16, 0x0A	; 10
- 60e:	f0 2e       	mov	r15, r16
- 610:	ec 0c       	add	r14, r12
- 612:	fd 1c       	adc	r15, r13
- 614:	e7 56       	subi	r30, 0x67	; 103
- 616:	fc 4f       	sbci	r31, 0xFC	; 252
- 618:	e7 01       	movw	r28, r14
- 61a:	08 81       	ld	r16, Y
- 61c:	e0 81       	ld	r30, Z
- 61e:	0e 27       	eor	r16, r30
- 620:	08 83       	st	Y, r16
+     842:	c1 2c       	mov	r12, r1
+     844:	d1 2c       	mov	r13, r1
+     846:	76 01       	movw	r14, r12
+     848:	c3 94       	inc	r12
+     84a:	c4 20       	and	r12, r4
+     84c:	d5 20       	and	r13, r5
+     84e:	e6 20       	and	r14, r6
+     850:	f7 20       	and	r15, r7
+     852:	e0 91 8e 03 	lds	r30, 0x038E
+     856:	f0 91 8f 03 	lds	r31, 0x038F
+     85a:	0c e2       	ldi	r16, 0x2C	; 44
+     85c:	e0 2e       	mov	r14, r16
+     85e:	0a e0       	ldi	r16, 0x0A	; 10
+     860:	f0 2e       	mov	r15, r16
+     862:	ec 0c       	add	r14, r12
+     864:	fd 1c       	adc	r15, r13
+     866:	e7 56       	subi	r30, 0x67	; 103
+     868:	fc 4f       	sbci	r31, 0xFC	; 252
+     86a:	e7 01       	movw	r28, r14
+     86c:	08 81       	ld	r16, Y
+     86e:	e0 81       	ld	r30, Z
+     870:	0e 27       	eor	r16, r30
+     872:	08 83       	st	Y, r16
 				count++;
- 622:	df ef       	ldi	r29, 0xFF	; 255
- 624:	4d 1a       	sub	r4, r29
- 626:	5d 0a       	sbc	r5, r29
- 628:	6d 0a       	sbc	r6, r29
- 62a:	7d 0a       	sbc	r7, r29
- 62c:	40 92 82 07 	sts	0x0782, r4
- 630:	50 92 83 07 	sts	0x0783, r5
- 634:	60 92 84 07 	sts	0x0784, r6
- 638:	70 92 85 07 	sts	0x0785, r7
+     874:	df ef       	ldi	r29, 0xFF	; 255
+     876:	4d 1a       	sub	r4, r29
+     878:	5d 0a       	sbc	r5, r29
+     87a:	6d 0a       	sbc	r6, r29
+     87c:	7d 0a       	sbc	r7, r29
+     87e:	40 92 82 07 	sts	0x0782, r4
+     882:	50 92 83 07 	sts	0x0783, r5
+     886:	60 92 84 07 	sts	0x0784, r6
+     88a:	70 92 85 07 	sts	0x0785, r7
 
 				if (count == sizeof(gps_f18))
- 63c:	e0 ec       	ldi	r30, 0xC0	; 192
- 63e:	4e 16       	cp	r4, r30
- 640:	51 04       	cpc	r5, r1
- 642:	61 04       	cpc	r6, r1
- 644:	71 04       	cpc	r7, r1
- 646:	09 f0       	breq	.+2      	; 0x64a <retrieve_gps_data+0x4dc>
- 648:	10 c2       	rjmp	.+1056   	; 0xa6a <retrieve_gps_data+0x8fc>
+     88e:	e0 ec       	ldi	r30, 0xC0	; 192
+     890:	4e 16       	cp	r4, r30
+     892:	51 04       	cpc	r5, r1
+     894:	61 04       	cpc	r6, r1
+     896:	71 04       	cpc	r7, r1
+     898:	09 f0       	breq	.+2      	; 0x89c <retrieve_gps_data+0x4dc>
+     89a:	10 c2       	rjmp	.+1056   	; 0xcbc <retrieve_gps_data+0x8fc>
 				{
 					count = 0;
- 64a:	10 92 82 07 	sts	0x0782, r1
- 64e:	10 92 83 07 	sts	0x0783, r1
- 652:	10 92 84 07 	sts	0x0784, r1
- 656:	10 92 85 07 	sts	0x0785, r1
+     89c:	10 92 82 07 	sts	0x0782, r1
+     8a0:	10 92 83 07 	sts	0x0783, r1
+     8a4:	10 92 84 07 	sts	0x0784, r1
+     8a8:	10 92 85 07 	sts	0x0785, r1
 					set_usart_state(usart1_flags, GPSI_CHKS3A);
- 65a:	f0 91 98 03 	lds	r31, 0x0398
- 65e:	e0 91 98 03 	lds	r30, 0x0398
- 662:	ec 7f       	andi	r30, 0xFC	; 252
- 664:	ef 27       	eor	r30, r31
- 666:	e4 64       	ori	r30, 0x44	; 68
- 668:	38 ce       	rjmp	.-912    	; 0x2da <retrieve_gps_data+0x16c>
+     8ac:	f0 91 98 03 	lds	r31, 0x0398
+     8b0:	e0 91 98 03 	lds	r30, 0x0398
+     8b4:	ec 7f       	andi	r30, 0xFC	; 252
+     8b6:	ef 27       	eor	r30, r31
+     8b8:	e4 64       	ori	r30, 0x44	; 68
+     8ba:	38 ce       	rjmp	.-912    	; 0x52c <retrieve_gps_data+0x16c>
 				}
 				break;
 
 
 			case  GPSI_S4: // F22
 				if (count == 0)
- 66a:	40 90 82 07 	lds	r4, 0x0782
- 66e:	50 90 83 07 	lds	r5, 0x0783
- 672:	60 90 84 07 	lds	r6, 0x0784
- 676:	70 90 85 07 	lds	r7, 0x0785
- 67a:	41 14       	cp	r4, r1
- 67c:	51 04       	cpc	r5, r1
- 67e:	61 04       	cpc	r6, r1
- 680:	71 04       	cpc	r7, r1
- 682:	21 f4       	brne	.+8      	; 0x68c <retrieve_gps_data+0x51e>
+     8bc:	40 90 82 07 	lds	r4, 0x0782
+     8c0:	50 90 83 07 	lds	r5, 0x0783
+     8c4:	60 90 84 07 	lds	r6, 0x0784
+     8c8:	70 90 85 07 	lds	r7, 0x0785
+     8cc:	41 14       	cp	r4, r1
+     8ce:	51 04       	cpc	r5, r1
+     8d0:	61 04       	cpc	r6, r1
+     8d2:	71 04       	cpc	r7, r1
+     8d4:	21 f4       	brne	.+8      	; 0x8de <retrieve_gps_data+0x51e>
 				{
 					checksum[0] = 0;
- 684:	10 92 2c 0a 	sts	0x0A2C, r1
+     8d6:	10 92 2c 0a 	sts	0x0A2C, r1
 					checksum[1] = 0;
- 688:	10 92 2d 0a 	sts	0x0A2D, r1
+     8da:	10 92 2d 0a 	sts	0x0A2D, r1
 				}
 
 				((uint8ptr)&f22)[count] = usart1_buffer[usart1_index];
- 68c:	e0 91 8e 03 	lds	r30, 0x038E
- 690:	f0 91 8f 03 	lds	r31, 0x038F
- 694:	cb ec       	ldi	r28, 0xCB	; 203
- 696:	ec 2e       	mov	r14, r28
- 698:	c2 e0       	ldi	r28, 0x02	; 2
- 69a:	fc 2e       	mov	r15, r28
- 69c:	e4 0c       	add	r14, r4
- 69e:	f5 1c       	adc	r15, r5
- 6a0:	e7 56       	subi	r30, 0x67	; 103
- 6a2:	fc 4f       	sbci	r31, 0xFC	; 252
- 6a4:	e0 81       	ld	r30, Z
- 6a6:	e7 01       	movw	r28, r14
- 6a8:	e8 83       	st	Y, r30
+     8de:	e0 91 8e 03 	lds	r30, 0x038E
+     8e2:	f0 91 8f 03 	lds	r31, 0x038F
+     8e6:	cb ec       	ldi	r28, 0xCB	; 203
+     8e8:	ec 2e       	mov	r14, r28
+     8ea:	c2 e0       	ldi	r28, 0x02	; 2
+     8ec:	fc 2e       	mov	r15, r28
+     8ee:	e4 0c       	add	r14, r4
+     8f0:	f5 1c       	adc	r15, r5
+     8f2:	e7 56       	subi	r30, 0x67	; 103
+     8f4:	fc 4f       	sbci	r31, 0xFC	; 252
+     8f6:	e0 81       	ld	r30, Z
+     8f8:	e7 01       	movw	r28, r14
+     8fa:	e8 83       	st	Y, r30
 				checksum[count%2] = checksum[count%2]^usart1_buffer[usart1_index];
- 6aa:	c1 2c       	mov	r12, r1
- 6ac:	d1 2c       	mov	r13, r1
- 6ae:	76 01       	movw	r14, r12
- 6b0:	c3 94       	inc	r12
- 6b2:	c4 20       	and	r12, r4
- 6b4:	d5 20       	and	r13, r5
- 6b6:	e6 20       	and	r14, r6
- 6b8:	f7 20       	and	r15, r7
- 6ba:	e0 91 8e 03 	lds	r30, 0x038E
- 6be:	f0 91 8f 03 	lds	r31, 0x038F
- 6c2:	0c e2       	ldi	r16, 0x2C	; 44
- 6c4:	e0 2e       	mov	r14, r16
- 6c6:	0a e0       	ldi	r16, 0x0A	; 10
- 6c8:	f0 2e       	mov	r15, r16
- 6ca:	ec 0c       	add	r14, r12
- 6cc:	fd 1c       	adc	r15, r13
- 6ce:	e7 56       	subi	r30, 0x67	; 103
- 6d0:	fc 4f       	sbci	r31, 0xFC	; 252
- 6d2:	e7 01       	movw	r28, r14
- 6d4:	08 81       	ld	r16, Y
- 6d6:	e0 81       	ld	r30, Z
- 6d8:	0e 27       	eor	r16, r30
- 6da:	08 83       	st	Y, r16
+     8fc:	c1 2c       	mov	r12, r1
+     8fe:	d1 2c       	mov	r13, r1
+     900:	76 01       	movw	r14, r12
+     902:	c3 94       	inc	r12
+     904:	c4 20       	and	r12, r4
+     906:	d5 20       	and	r13, r5
+     908:	e6 20       	and	r14, r6
+     90a:	f7 20       	and	r15, r7
+     90c:	e0 91 8e 03 	lds	r30, 0x038E
+     910:	f0 91 8f 03 	lds	r31, 0x038F
+     914:	0c e2       	ldi	r16, 0x2C	; 44
+     916:	e0 2e       	mov	r14, r16
+     918:	0a e0       	ldi	r16, 0x0A	; 10
+     91a:	f0 2e       	mov	r15, r16
+     91c:	ec 0c       	add	r14, r12
+     91e:	fd 1c       	adc	r15, r13
+     920:	e7 56       	subi	r30, 0x67	; 103
+     922:	fc 4f       	sbci	r31, 0xFC	; 252
+     924:	e7 01       	movw	r28, r14
+     926:	08 81       	ld	r16, Y
+     928:	e0 81       	ld	r30, Z
+     92a:	0e 27       	eor	r16, r30
+     92c:	08 83       	st	Y, r16
 				count++;
- 6dc:	df ef       	ldi	r29, 0xFF	; 255
- 6de:	4d 1a       	sub	r4, r29
- 6e0:	5d 0a       	sbc	r5, r29
- 6e2:	6d 0a       	sbc	r6, r29
- 6e4:	7d 0a       	sbc	r7, r29
- 6e6:	40 92 82 07 	sts	0x0782, r4
- 6ea:	50 92 83 07 	sts	0x0783, r5
- 6ee:	60 92 84 07 	sts	0x0784, r6
- 6f2:	70 92 85 07 	sts	0x0785, r7
+     92e:	df ef       	ldi	r29, 0xFF	; 255
+     930:	4d 1a       	sub	r4, r29
+     932:	5d 0a       	sbc	r5, r29
+     934:	6d 0a       	sbc	r6, r29
+     936:	7d 0a       	sbc	r7, r29
+     938:	40 92 82 07 	sts	0x0782, r4
+     93c:	50 92 83 07 	sts	0x0783, r5
+     940:	60 92 84 07 	sts	0x0784, r6
+     944:	70 92 85 07 	sts	0x0785, r7
 
 				if (count == sizeof(gps_f22))
- 6f6:	e8 e7       	ldi	r30, 0x78	; 120
- 6f8:	4e 16       	cp	r4, r30
- 6fa:	51 04       	cpc	r5, r1
- 6fc:	61 04       	cpc	r6, r1
- 6fe:	71 04       	cpc	r7, r1
- 700:	09 f0       	breq	.+2      	; 0x704 <retrieve_gps_data+0x596>
- 702:	b3 c1       	rjmp	.+870    	; 0xa6a <retrieve_gps_data+0x8fc>
+     948:	e8 e7       	ldi	r30, 0x78	; 120
+     94a:	4e 16       	cp	r4, r30
+     94c:	51 04       	cpc	r5, r1
+     94e:	61 04       	cpc	r6, r1
+     950:	71 04       	cpc	r7, r1
+     952:	09 f0       	breq	.+2      	; 0x956 <retrieve_gps_data+0x596>
+     954:	b3 c1       	rjmp	.+870    	; 0xcbc <retrieve_gps_data+0x8fc>
 				{
 					count = 0;
- 704:	10 92 82 07 	sts	0x0782, r1
- 708:	10 92 83 07 	sts	0x0783, r1
- 70c:	10 92 84 07 	sts	0x0784, r1
- 710:	10 92 85 07 	sts	0x0785, r1
+     956:	10 92 82 07 	sts	0x0782, r1
+     95a:	10 92 83 07 	sts	0x0783, r1
+     95e:	10 92 84 07 	sts	0x0784, r1
+     962:	10 92 85 07 	sts	0x0785, r1
 					set_usart_state(usart1_flags, GPSI_CHKS4A);
- 714:	f0 91 98 03 	lds	r31, 0x0398
- 718:	e0 91 98 03 	lds	r30, 0x0398
- 71c:	ec 7f       	andi	r30, 0xFC	; 252
- 71e:	ef 27       	eor	r30, r31
- 720:	ec 64       	ori	r30, 0x4C	; 76
- 722:	db cd       	rjmp	.-1098   	; 0x2da <retrieve_gps_data+0x16c>
+     966:	f0 91 98 03 	lds	r31, 0x0398
+     96a:	e0 91 98 03 	lds	r30, 0x0398
+     96e:	ec 7f       	andi	r30, 0xFC	; 252
+     970:	ef 27       	eor	r30, r31
+     972:	ec 64       	ori	r30, 0x4C	; 76
+     974:	db cd       	rjmp	.-1098   	; 0x52c <retrieve_gps_data+0x16c>
 				}
 				break;
 
 
 			case  GPSI_S5: // F23
 				if (count == 0)
- 724:	40 90 82 07 	lds	r4, 0x0782
- 728:	50 90 83 07 	lds	r5, 0x0783
- 72c:	60 90 84 07 	lds	r6, 0x0784
- 730:	70 90 85 07 	lds	r7, 0x0785
- 734:	41 14       	cp	r4, r1
- 736:	51 04       	cpc	r5, r1
- 738:	61 04       	cpc	r6, r1
- 73a:	71 04       	cpc	r7, r1
- 73c:	21 f4       	brne	.+8      	; 0x746 <retrieve_gps_data+0x5d8>
+     976:	40 90 82 07 	lds	r4, 0x0782
+     97a:	50 90 83 07 	lds	r5, 0x0783
+     97e:	60 90 84 07 	lds	r6, 0x0784
+     982:	70 90 85 07 	lds	r7, 0x0785
+     986:	41 14       	cp	r4, r1
+     988:	51 04       	cpc	r5, r1
+     98a:	61 04       	cpc	r6, r1
+     98c:	71 04       	cpc	r7, r1
+     98e:	21 f4       	brne	.+8      	; 0x998 <retrieve_gps_data+0x5d8>
 				{
 					checksum[0] = 0;
- 73e:	10 92 2c 0a 	sts	0x0A2C, r1
+     990:	10 92 2c 0a 	sts	0x0A2C, r1
 					checksum[1] = 0;
- 742:	10 92 2d 0a 	sts	0x0A2D, r1
+     994:	10 92 2d 0a 	sts	0x0A2D, r1
 				}
 
 				((uint8ptr)&f23)[count] = usart1_buffer[usart1_index];
- 746:	e0 91 8e 03 	lds	r30, 0x038E
- 74a:	f0 91 8f 03 	lds	r31, 0x038F
- 74e:	cc ec       	ldi	r28, 0xCC	; 204
- 750:	ec 2e       	mov	r14, r28
- 752:	c9 e0       	ldi	r28, 0x09	; 9
- 754:	fc 2e       	mov	r15, r28
- 756:	e4 0c       	add	r14, r4
- 758:	f5 1c       	adc	r15, r5
- 75a:	e7 56       	subi	r30, 0x67	; 103
- 75c:	fc 4f       	sbci	r31, 0xFC	; 252
- 75e:	e0 81       	ld	r30, Z
- 760:	e7 01       	movw	r28, r14
- 762:	e8 83       	st	Y, r30
+     998:	e0 91 8e 03 	lds	r30, 0x038E
+     99c:	f0 91 8f 03 	lds	r31, 0x038F
+     9a0:	cc ec       	ldi	r28, 0xCC	; 204
+     9a2:	ec 2e       	mov	r14, r28
+     9a4:	c9 e0       	ldi	r28, 0x09	; 9
+     9a6:	fc 2e       	mov	r15, r28
+     9a8:	e4 0c       	add	r14, r4
+     9aa:	f5 1c       	adc	r15, r5
+     9ac:	e7 56       	subi	r30, 0x67	; 103
+     9ae:	fc 4f       	sbci	r31, 0xFC	; 252
+     9b0:	e0 81       	ld	r30, Z
+     9b2:	e7 01       	movw	r28, r14
+     9b4:	e8 83       	st	Y, r30
 				checksum[count%2] = checksum[count%2]^usart1_buffer[usart1_index];
- 764:	c1 2c       	mov	r12, r1
- 766:	d1 2c       	mov	r13, r1
- 768:	76 01       	movw	r14, r12
- 76a:	c3 94       	inc	r12
- 76c:	c4 20       	and	r12, r4
- 76e:	d5 20       	and	r13, r5
- 770:	e6 20       	and	r14, r6
- 772:	f7 20       	and	r15, r7
- 774:	e0 91 8e 03 	lds	r30, 0x038E
- 778:	f0 91 8f 03 	lds	r31, 0x038F
- 77c:	0c e2       	ldi	r16, 0x2C	; 44
- 77e:	e0 2e       	mov	r14, r16
- 780:	0a e0       	ldi	r16, 0x0A	; 10
- 782:	f0 2e       	mov	r15, r16
- 784:	ec 0c       	add	r14, r12
- 786:	fd 1c       	adc	r15, r13
- 788:	e7 56       	subi	r30, 0x67	; 103
- 78a:	fc 4f       	sbci	r31, 0xFC	; 252
- 78c:	e7 01       	movw	r28, r14
- 78e:	08 81       	ld	r16, Y
- 790:	e0 81       	ld	r30, Z
- 792:	0e 27       	eor	r16, r30
- 794:	08 83       	st	Y, r16
+     9b6:	c1 2c       	mov	r12, r1
+     9b8:	d1 2c       	mov	r13, r1
+     9ba:	76 01       	movw	r14, r12
+     9bc:	c3 94       	inc	r12
+     9be:	c4 20       	and	r12, r4
+     9c0:	d5 20       	and	r13, r5
+     9c2:	e6 20       	and	r14, r6
+     9c4:	f7 20       	and	r15, r7
+     9c6:	e0 91 8e 03 	lds	r30, 0x038E
+     9ca:	f0 91 8f 03 	lds	r31, 0x038F
+     9ce:	0c e2       	ldi	r16, 0x2C	; 44
+     9d0:	e0 2e       	mov	r14, r16
+     9d2:	0a e0       	ldi	r16, 0x0A	; 10
+     9d4:	f0 2e       	mov	r15, r16
+     9d6:	ec 0c       	add	r14, r12
+     9d8:	fd 1c       	adc	r15, r13
+     9da:	e7 56       	subi	r30, 0x67	; 103
+     9dc:	fc 4f       	sbci	r31, 0xFC	; 252
+     9de:	e7 01       	movw	r28, r14
+     9e0:	08 81       	ld	r16, Y
+     9e2:	e0 81       	ld	r30, Z
+     9e4:	0e 27       	eor	r16, r30
+     9e6:	08 83       	st	Y, r16
 				count++;
- 796:	df ef       	ldi	r29, 0xFF	; 255
- 798:	4d 1a       	sub	r4, r29
- 79a:	5d 0a       	sbc	r5, r29
- 79c:	6d 0a       	sbc	r6, r29
- 79e:	7d 0a       	sbc	r7, r29
- 7a0:	40 92 82 07 	sts	0x0782, r4
- 7a4:	50 92 83 07 	sts	0x0783, r5
- 7a8:	60 92 84 07 	sts	0x0784, r6
- 7ac:	70 92 85 07 	sts	0x0785, r7
+     9e8:	df ef       	ldi	r29, 0xFF	; 255
+     9ea:	4d 1a       	sub	r4, r29
+     9ec:	5d 0a       	sbc	r5, r29
+     9ee:	6d 0a       	sbc	r6, r29
+     9f0:	7d 0a       	sbc	r7, r29
+     9f2:	40 92 82 07 	sts	0x0782, r4
+     9f6:	50 92 83 07 	sts	0x0783, r5
+     9fa:	60 92 84 07 	sts	0x0784, r6
+     9fe:	70 92 85 07 	sts	0x0785, r7
 
 				if (count == sizeof(gps_f23))
- 7b0:	e0 e6       	ldi	r30, 0x60	; 96
- 7b2:	4e 16       	cp	r4, r30
- 7b4:	51 04       	cpc	r5, r1
- 7b6:	61 04       	cpc	r6, r1
- 7b8:	71 04       	cpc	r7, r1
- 7ba:	09 f0       	breq	.+2      	; 0x7be <retrieve_gps_data+0x650>
- 7bc:	56 c1       	rjmp	.+684    	; 0xa6a <retrieve_gps_data+0x8fc>
+     a02:	e0 e6       	ldi	r30, 0x60	; 96
+     a04:	4e 16       	cp	r4, r30
+     a06:	51 04       	cpc	r5, r1
+     a08:	61 04       	cpc	r6, r1
+     a0a:	71 04       	cpc	r7, r1
+     a0c:	09 f0       	breq	.+2      	; 0xa10 <retrieve_gps_data+0x650>
+     a0e:	56 c1       	rjmp	.+684    	; 0xcbc <retrieve_gps_data+0x8fc>
 				{
 					count = 0;
- 7be:	10 92 82 07 	sts	0x0782, r1
- 7c2:	10 92 83 07 	sts	0x0783, r1
- 7c6:	10 92 84 07 	sts	0x0784, r1
- 7ca:	10 92 85 07 	sts	0x0785, r1
+     a10:	10 92 82 07 	sts	0x0782, r1
+     a14:	10 92 83 07 	sts	0x0783, r1
+     a18:	10 92 84 07 	sts	0x0784, r1
+     a1c:	10 92 85 07 	sts	0x0785, r1
 					set_usart_state(usart1_flags, GPSI_CHKS5A);
- 7ce:	f0 91 98 03 	lds	r31, 0x0398
- 7d2:	e0 91 98 03 	lds	r30, 0x0398
- 7d6:	ec 7f       	andi	r30, 0xFC	; 252
- 7d8:	ef 27       	eor	r30, r31
- 7da:	e4 65       	ori	r30, 0x54	; 84
- 7dc:	7e cd       	rjmp	.-1284   	; 0x2da <retrieve_gps_data+0x16c>
+     a20:	f0 91 98 03 	lds	r31, 0x0398
+     a24:	e0 91 98 03 	lds	r30, 0x0398
+     a28:	ec 7f       	andi	r30, 0xFC	; 252
+     a2a:	ef 27       	eor	r30, r31
+     a2c:	e4 65       	ori	r30, 0x54	; 84
+     a2e:	7e cd       	rjmp	.-1284   	; 0x52c <retrieve_gps_data+0x16c>
 				}
 				break;
 
 
 			case  GPSI_CHKS1A: // F00 Checksum Byte 0
 				rec_checksum[0] = usart1_buffer[usart1_index];
- 7de:	e0 91 8e 03 	lds	r30, 0x038E
- 7e2:	f0 91 8f 03 	lds	r31, 0x038F
- 7e6:	e7 56       	subi	r30, 0x67	; 103
- 7e8:	fc 4f       	sbci	r31, 0xFC	; 252
- 7ea:	e0 81       	ld	r30, Z
- 7ec:	e0 93 c5 02 	sts	0x02C5, r30
+     a30:	e0 91 8e 03 	lds	r30, 0x038E
+     a34:	f0 91 8f 03 	lds	r31, 0x038F
+     a38:	e7 56       	subi	r30, 0x67	; 103
+     a3a:	fc 4f       	sbci	r31, 0xFC	; 252
+     a3c:	e0 81       	ld	r30, Z
+     a3e:	e0 93 c5 02 	sts	0x02C5, r30
 				set_usart_state(usart1_flags, GPSI_CHKS1B);
- 7f0:	f0 91 98 03 	lds	r31, 0x0398
- 7f4:	e0 91 98 03 	lds	r30, 0x0398
- 7f8:	ec 7f       	andi	r30, 0xFC	; 252
- 7fa:	ef 27       	eor	r30, r31
- 7fc:	e8 63       	ori	r30, 0x38	; 56
- 7fe:	6d cd       	rjmp	.-1318   	; 0x2da <retrieve_gps_data+0x16c>
+     a42:	f0 91 98 03 	lds	r31, 0x0398
+     a46:	e0 91 98 03 	lds	r30, 0x0398
+     a4a:	ec 7f       	andi	r30, 0xFC	; 252
+     a4c:	ef 27       	eor	r30, r31
+     a4e:	e8 63       	ori	r30, 0x38	; 56
+     a50:	6d cd       	rjmp	.-1318   	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case  GPSI_CHKS1B: // F00 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
- 800:	e0 91 8e 03 	lds	r30, 0x038E
- 804:	f0 91 8f 03 	lds	r31, 0x038F
- 808:	e7 56       	subi	r30, 0x67	; 103
- 80a:	fc 4f       	sbci	r31, 0xFC	; 252
- 80c:	e0 81       	ld	r30, Z
- 80e:	e0 93 c6 02 	sts	0x02C6, r30
+     a52:	e0 91 8e 03 	lds	r30, 0x038E
+     a56:	f0 91 8f 03 	lds	r31, 0x038F
+     a5a:	e7 56       	subi	r30, 0x67	; 103
+     a5c:	fc 4f       	sbci	r31, 0xFC	; 252
+     a5e:	e0 81       	ld	r30, Z
+     a60:	e0 93 c6 02 	sts	0x02C6, r30
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
- 812:	00 91 c5 02 	lds	r16, 0x02C5
- 816:	f0 91 2c 0a 	lds	r31, 0x0A2C
- 81a:	0f 13       	cpse	r16, r31
- 81c:	05 c0       	rjmp	.+10     	; 0x828 <retrieve_gps_data+0x6ba>
- 81e:	f0 91 2d 0a 	lds	r31, 0x0A2D
- 822:	ef 17       	cp	r30, r31
- 824:	09 f4       	brne	.+2      	; 0x828 <retrieve_gps_data+0x6ba>
- 826:	a4 c0       	rjmp	.+328    	; 0x970 <retrieve_gps_data+0x802>
+     a64:	00 91 c5 02 	lds	r16, 0x02C5
+     a68:	f0 91 2c 0a 	lds	r31, 0x0A2C
+     a6c:	0f 13       	cpse	r16, r31
+     a6e:	05 c0       	rjmp	.+10     	; 0xa7a <retrieve_gps_data+0x6ba>
+     a70:	f0 91 2d 0a 	lds	r31, 0x0A2D
+     a74:	ef 17       	cp	r30, r31
+     a76:	09 f4       	brne	.+2      	; 0xa7a <retrieve_gps_data+0x6ba>
+     a78:	a4 c0       	rjmp	.+328    	; 0xbc2 <retrieve_gps_data+0x802>
 					memset(&f00, 0x00, sizeof(gps_f00));	// Checksum failed - Write zeros to F00
- 828:	ed 01       	movw	r28, r26
- 82a:	e8 e4       	ldi	r30, 0x48	; 72
- 82c:	9e c0       	rjmp	.+316    	; 0x96a <retrieve_gps_data+0x7fc>
+     a7a:	ed 01       	movw	r28, r26
+     a7c:	e8 e4       	ldi	r30, 0x48	; 72
+     a7e:	9e c0       	rjmp	.+316    	; 0xbbc <retrieve_gps_data+0x7fc>
 				set_usart_state(usart1_flags, GPSI_DONE);
 				break;
 
 
 			case  GPSI_CHKS2A: // F03 Checksum Byte 0
 				rec_checksum[0] = usart1_buffer[usart1_index];
- 82e:	e0 91 8e 03 	lds	r30, 0x038E
- 832:	f0 91 8f 03 	lds	r31, 0x038F
- 836:	e7 56       	subi	r30, 0x67	; 103
- 838:	fc 4f       	sbci	r31, 0xFC	; 252
- 83a:	e0 81       	ld	r30, Z
- 83c:	e0 93 c5 02 	sts	0x02C5, r30
+     a80:	e0 91 8e 03 	lds	r30, 0x038E
+     a84:	f0 91 8f 03 	lds	r31, 0x038F
+     a88:	e7 56       	subi	r30, 0x67	; 103
+     a8a:	fc 4f       	sbci	r31, 0xFC	; 252
+     a8c:	e0 81       	ld	r30, Z
+     a8e:	e0 93 c5 02 	sts	0x02C5, r30
 				set_usart_state(usart1_flags, GPSI_CHKS2B);
- 840:	f0 91 98 03 	lds	r31, 0x0398
- 844:	e0 91 98 03 	lds	r30, 0x0398
- 848:	ec 7f       	andi	r30, 0xFC	; 252
- 84a:	ef 27       	eor	r30, r31
- 84c:	e0 64       	ori	r30, 0x40	; 64
- 84e:	45 cd       	rjmp	.-1398   	; 0x2da <retrieve_gps_data+0x16c>
+     a92:	f0 91 98 03 	lds	r31, 0x0398
+     a96:	e0 91 98 03 	lds	r30, 0x0398
+     a9a:	ec 7f       	andi	r30, 0xFC	; 252
+     a9c:	ef 27       	eor	r30, r31
+     a9e:	e0 64       	ori	r30, 0x40	; 64
+     aa0:	45 cd       	rjmp	.-1398   	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case  GPSI_CHKS2B: // F03 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
- 850:	e0 91 8e 03 	lds	r30, 0x038E
- 854:	f0 91 8f 03 	lds	r31, 0x038F
- 858:	e7 56       	subi	r30, 0x67	; 103
- 85a:	fc 4f       	sbci	r31, 0xFC	; 252
- 85c:	e0 81       	ld	r30, Z
- 85e:	e0 93 c6 02 	sts	0x02C6, r30
+     aa2:	e0 91 8e 03 	lds	r30, 0x038E
+     aa6:	f0 91 8f 03 	lds	r31, 0x038F
+     aaa:	e7 56       	subi	r30, 0x67	; 103
+     aac:	fc 4f       	sbci	r31, 0xFC	; 252
+     aae:	e0 81       	ld	r30, Z
+     ab0:	e0 93 c6 02 	sts	0x02C6, r30
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
- 862:	00 91 c5 02 	lds	r16, 0x02C5
- 866:	f0 91 2c 0a 	lds	r31, 0x0A2C
- 86a:	0f 13       	cpse	r16, r31
- 86c:	05 c0       	rjmp	.+10     	; 0x878 <retrieve_gps_data+0x70a>
- 86e:	f0 91 2d 0a 	lds	r31, 0x0A2D
- 872:	ef 17       	cp	r30, r31
- 874:	09 f4       	brne	.+2      	; 0x878 <retrieve_gps_data+0x70a>
- 876:	7c c0       	rjmp	.+248    	; 0x970 <retrieve_gps_data+0x802>
+     ab4:	00 91 c5 02 	lds	r16, 0x02C5
+     ab8:	f0 91 2c 0a 	lds	r31, 0x0A2C
+     abc:	0f 13       	cpse	r16, r31
+     abe:	05 c0       	rjmp	.+10     	; 0xaca <retrieve_gps_data+0x70a>
+     ac0:	f0 91 2d 0a 	lds	r31, 0x0A2D
+     ac4:	ef 17       	cp	r30, r31
+     ac6:	09 f4       	brne	.+2      	; 0xaca <retrieve_gps_data+0x70a>
+     ac8:	7c c0       	rjmp	.+248    	; 0xbc2 <retrieve_gps_data+0x802>
 					memset(&f03, 0x00, sizeof(gps_f03));	// Checksum failed - Write zeros to F03
- 878:	cd ee       	ldi	r28, 0xED	; 237
- 87a:	d1 e0       	ldi	r29, 0x01	; 1
- 87c:	e8 ed       	ldi	r30, 0xD8	; 216
- 87e:	75 c0       	rjmp	.+234    	; 0x96a <retrieve_gps_data+0x7fc>
+     aca:	cd ee       	ldi	r28, 0xED	; 237
+     acc:	d1 e0       	ldi	r29, 0x01	; 1
+     ace:	e8 ed       	ldi	r30, 0xD8	; 216
+     ad0:	75 c0       	rjmp	.+234    	; 0xbbc <retrieve_gps_data+0x7fc>
 				set_usart_state(usart1_flags, GPSI_DONE);
 				break;
 
 
 			case  GPSI_CHKS3A: // F18 Checksum Byte 0
 				rec_checksum[0] = usart1_buffer[usart1_index];
- 880:	e0 91 8e 03 	lds	r30, 0x038E
- 884:	f0 91 8f 03 	lds	r31, 0x038F
- 888:	e7 56       	subi	r30, 0x67	; 103
- 88a:	fc 4f       	sbci	r31, 0xFC	; 252
- 88c:	e0 81       	ld	r30, Z
- 88e:	e0 93 c5 02 	sts	0x02C5, r30
+     ad2:	e0 91 8e 03 	lds	r30, 0x038E
+     ad6:	f0 91 8f 03 	lds	r31, 0x038F
+     ada:	e7 56       	subi	r30, 0x67	; 103
+     adc:	fc 4f       	sbci	r31, 0xFC	; 252
+     ade:	e0 81       	ld	r30, Z
+     ae0:	e0 93 c5 02 	sts	0x02C5, r30
 				set_usart_state(usart1_flags, GPSI_CHKS3B);
- 892:	f0 91 98 03 	lds	r31, 0x0398
- 896:	e0 91 98 03 	lds	r30, 0x0398
- 89a:	ec 7f       	andi	r30, 0xFC	; 252
- 89c:	ef 27       	eor	r30, r31
- 89e:	e8 64       	ori	r30, 0x48	; 72
- 8a0:	1c cd       	rjmp	.-1480   	; 0x2da <retrieve_gps_data+0x16c>
+     ae4:	f0 91 98 03 	lds	r31, 0x0398
+     ae8:	e0 91 98 03 	lds	r30, 0x0398
+     aec:	ec 7f       	andi	r30, 0xFC	; 252
+     aee:	ef 27       	eor	r30, r31
+     af0:	e8 64       	ori	r30, 0x48	; 72
+     af2:	1c cd       	rjmp	.-1480   	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case  GPSI_CHKS3B: // F18 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
- 8a2:	e0 91 8e 03 	lds	r30, 0x038E
- 8a6:	f0 91 8f 03 	lds	r31, 0x038F
- 8aa:	e7 56       	subi	r30, 0x67	; 103
- 8ac:	fc 4f       	sbci	r31, 0xFC	; 252
- 8ae:	e0 81       	ld	r30, Z
- 8b0:	e0 93 c6 02 	sts	0x02C6, r30
+     af4:	e0 91 8e 03 	lds	r30, 0x038E
+     af8:	f0 91 8f 03 	lds	r31, 0x038F
+     afc:	e7 56       	subi	r30, 0x67	; 103
+     afe:	fc 4f       	sbci	r31, 0xFC	; 252
+     b00:	e0 81       	ld	r30, Z
+     b02:	e0 93 c6 02 	sts	0x02C6, r30
 				
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
- 8b4:	00 91 c5 02 	lds	r16, 0x02C5
- 8b8:	f0 91 2c 0a 	lds	r31, 0x0A2C
- 8bc:	0f 13       	cpse	r16, r31
- 8be:	05 c0       	rjmp	.+10     	; 0x8ca <retrieve_gps_data+0x75c>
- 8c0:	f0 91 2d 0a 	lds	r31, 0x0A2D
- 8c4:	ef 17       	cp	r30, r31
- 8c6:	09 f4       	brne	.+2      	; 0x8ca <retrieve_gps_data+0x75c>
- 8c8:	53 c0       	rjmp	.+166    	; 0x970 <retrieve_gps_data+0x802>
+     b06:	00 91 c5 02 	lds	r16, 0x02C5
+     b0a:	f0 91 2c 0a 	lds	r31, 0x0A2C
+     b0e:	0f 13       	cpse	r16, r31
+     b10:	05 c0       	rjmp	.+10     	; 0xb1c <retrieve_gps_data+0x75c>
+     b12:	f0 91 2d 0a 	lds	r31, 0x0A2D
+     b16:	ef 17       	cp	r30, r31
+     b18:	09 f4       	brne	.+2      	; 0xb1c <retrieve_gps_data+0x75c>
+     b1a:	53 c0       	rjmp	.+166    	; 0xbc2 <retrieve_gps_data+0x802>
 					memset(&f18, 0x00, sizeof(gps_f18));	// Checksum failed - Write zeros to F18
- 8ca:	e1 01       	movw	r28, r2
- 8cc:	e9 2f       	mov	r30, r25
- 8ce:	4d c0       	rjmp	.+154    	; 0x96a <retrieve_gps_data+0x7fc>
+     b1c:	e1 01       	movw	r28, r2
+     b1e:	e9 2f       	mov	r30, r25
+     b20:	4d c0       	rjmp	.+154    	; 0xbbc <retrieve_gps_data+0x7fc>
 				set_usart_state(usart1_flags, GPSI_DONE);
 				break;
 
 
 			case  GPSI_CHKS4A: // F22 Checksum Byte 0
 				rec_checksum[0] = usart1_buffer[usart1_index];
- 8d0:	e0 91 8e 03 	lds	r30, 0x038E
- 8d4:	f0 91 8f 03 	lds	r31, 0x038F
- 8d8:	e7 56       	subi	r30, 0x67	; 103
- 8da:	fc 4f       	sbci	r31, 0xFC	; 252
- 8dc:	e0 81       	ld	r30, Z
- 8de:	e0 93 c5 02 	sts	0x02C5, r30
+     b22:	e0 91 8e 03 	lds	r30, 0x038E
+     b26:	f0 91 8f 03 	lds	r31, 0x038F
+     b2a:	e7 56       	subi	r30, 0x67	; 103
+     b2c:	fc 4f       	sbci	r31, 0xFC	; 252
+     b2e:	e0 81       	ld	r30, Z
+     b30:	e0 93 c5 02 	sts	0x02C5, r30
 				set_usart_state(usart1_flags, GPSI_CHKS4B);
- 8e2:	f0 91 98 03 	lds	r31, 0x0398
- 8e6:	e0 91 98 03 	lds	r30, 0x0398
- 8ea:	ec 7f       	andi	r30, 0xFC	; 252
- 8ec:	ef 27       	eor	r30, r31
- 8ee:	e0 65       	ori	r30, 0x50	; 80
- 8f0:	f4 cc       	rjmp	.-1560   	; 0x2da <retrieve_gps_data+0x16c>
+     b34:	f0 91 98 03 	lds	r31, 0x0398
+     b38:	e0 91 98 03 	lds	r30, 0x0398
+     b3c:	ec 7f       	andi	r30, 0xFC	; 252
+     b3e:	ef 27       	eor	r30, r31
+     b40:	e0 65       	ori	r30, 0x50	; 80
+     b42:	f4 cc       	rjmp	.-1560   	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case  GPSI_CHKS4B: // F22 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
- 8f2:	e0 91 8e 03 	lds	r30, 0x038E
- 8f6:	f0 91 8f 03 	lds	r31, 0x038F
- 8fa:	e7 56       	subi	r30, 0x67	; 103
- 8fc:	fc 4f       	sbci	r31, 0xFC	; 252
- 8fe:	e0 81       	ld	r30, Z
- 900:	e0 93 c6 02 	sts	0x02C6, r30
+     b44:	e0 91 8e 03 	lds	r30, 0x038E
+     b48:	f0 91 8f 03 	lds	r31, 0x038F
+     b4c:	e7 56       	subi	r30, 0x67	; 103
+     b4e:	fc 4f       	sbci	r31, 0xFC	; 252
+     b50:	e0 81       	ld	r30, Z
+     b52:	e0 93 c6 02 	sts	0x02C6, r30
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
- 904:	00 91 c5 02 	lds	r16, 0x02C5
- 908:	f0 91 2c 0a 	lds	r31, 0x0A2C
- 90c:	0f 13       	cpse	r16, r31
- 90e:	04 c0       	rjmp	.+8      	; 0x918 <retrieve_gps_data+0x7aa>
- 910:	f0 91 2d 0a 	lds	r31, 0x0A2D
- 914:	ef 17       	cp	r30, r31
- 916:	61 f1       	breq	.+88     	; 0x970 <retrieve_gps_data+0x802>
+     b56:	00 91 c5 02 	lds	r16, 0x02C5
+     b5a:	f0 91 2c 0a 	lds	r31, 0x0A2C
+     b5e:	0f 13       	cpse	r16, r31
+     b60:	04 c0       	rjmp	.+8      	; 0xb6a <retrieve_gps_data+0x7aa>
+     b62:	f0 91 2d 0a 	lds	r31, 0x0A2D
+     b66:	ef 17       	cp	r30, r31
+     b68:	61 f1       	breq	.+88     	; 0xbc2 <retrieve_gps_data+0x802>
 					memset(&f22, 0x00, sizeof(gps_f22));	// Checksum failed - Write zeros to F22
- 918:	e5 01       	movw	r28, r10
- 91a:	e7 2f       	mov	r30, r23
- 91c:	26 c0       	rjmp	.+76     	; 0x96a <retrieve_gps_data+0x7fc>
+     b6a:	e5 01       	movw	r28, r10
+     b6c:	e7 2f       	mov	r30, r23
+     b6e:	26 c0       	rjmp	.+76     	; 0xbbc <retrieve_gps_data+0x7fc>
 				set_usart_state(usart1_flags, GPSI_DONE);
 				break;
 
 
 			case  GPSI_CHKS5A: // F23 Checksum Byte 0
 				rec_checksum[0] = usart1_buffer[usart1_index];
- 91e:	e0 91 8e 03 	lds	r30, 0x038E
- 922:	f0 91 8f 03 	lds	r31, 0x038F
- 926:	e7 56       	subi	r30, 0x67	; 103
- 928:	fc 4f       	sbci	r31, 0xFC	; 252
- 92a:	e0 81       	ld	r30, Z
- 92c:	e0 93 c5 02 	sts	0x02C5, r30
+     b70:	e0 91 8e 03 	lds	r30, 0x038E
+     b74:	f0 91 8f 03 	lds	r31, 0x038F
+     b78:	e7 56       	subi	r30, 0x67	; 103
+     b7a:	fc 4f       	sbci	r31, 0xFC	; 252
+     b7c:	e0 81       	ld	r30, Z
+     b7e:	e0 93 c5 02 	sts	0x02C5, r30
 				set_usart_state(usart1_flags, GPSI_CHKS5B);
- 930:	f0 91 98 03 	lds	r31, 0x0398
- 934:	e0 91 98 03 	lds	r30, 0x0398
- 938:	ec 7f       	andi	r30, 0xFC	; 252
- 93a:	ef 27       	eor	r30, r31
- 93c:	e8 65       	ori	r30, 0x58	; 88
- 93e:	cd cc       	rjmp	.-1638   	; 0x2da <retrieve_gps_data+0x16c>
+     b82:	f0 91 98 03 	lds	r31, 0x0398
+     b86:	e0 91 98 03 	lds	r30, 0x0398
+     b8a:	ec 7f       	andi	r30, 0xFC	; 252
+     b8c:	ef 27       	eor	r30, r31
+     b8e:	e8 65       	ori	r30, 0x58	; 88
+     b90:	cd cc       	rjmp	.-1638   	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case  GPSI_CHKS5B: // F23 Checksum Byte 1
 				rec_checksum[1] = usart1_buffer[usart1_index];
- 940:	e0 91 8e 03 	lds	r30, 0x038E
- 944:	f0 91 8f 03 	lds	r31, 0x038F
- 948:	e7 56       	subi	r30, 0x67	; 103
- 94a:	fc 4f       	sbci	r31, 0xFC	; 252
- 94c:	e0 81       	ld	r30, Z
- 94e:	e0 93 c6 02 	sts	0x02C6, r30
+     b92:	e0 91 8e 03 	lds	r30, 0x038E
+     b96:	f0 91 8f 03 	lds	r31, 0x038F
+     b9a:	e7 56       	subi	r30, 0x67	; 103
+     b9c:	fc 4f       	sbci	r31, 0xFC	; 252
+     b9e:	e0 81       	ld	r30, Z
+     ba0:	e0 93 c6 02 	sts	0x02C6, r30
 
 				if (rec_checksum[0] != checksum[0] || rec_checksum[1] != checksum[1])
- 952:	00 91 c5 02 	lds	r16, 0x02C5
- 956:	f0 91 2c 0a 	lds	r31, 0x0A2C
- 95a:	0f 13       	cpse	r16, r31
- 95c:	04 c0       	rjmp	.+8      	; 0x966 <retrieve_gps_data+0x7f8>
- 95e:	f0 91 2d 0a 	lds	r31, 0x0A2D
- 962:	ef 17       	cp	r30, r31
- 964:	29 f0       	breq	.+10     	; 0x970 <retrieve_gps_data+0x802>
+     ba4:	00 91 c5 02 	lds	r16, 0x02C5
+     ba8:	f0 91 2c 0a 	lds	r31, 0x0A2C
+     bac:	0f 13       	cpse	r16, r31
+     bae:	04 c0       	rjmp	.+8      	; 0xbb8 <retrieve_gps_data+0x7f8>
+     bb0:	f0 91 2d 0a 	lds	r31, 0x0A2D
+     bb4:	ef 17       	cp	r30, r31
+     bb6:	29 f0       	breq	.+10     	; 0xbc2 <retrieve_gps_data+0x802>
 					memset(&f23, 0x00, sizeof(gps_f23));	// Checksum failed - Write zeros to F23
- 966:	e4 01       	movw	r28, r8
- 968:	e2 2f       	mov	r30, r18
- 96a:	19 92       	st	Y+, r1
- 96c:	ea 95       	dec	r30
- 96e:	e9 f7       	brne	.-6      	; 0x96a <retrieve_gps_data+0x7fc>
+     bb8:	e4 01       	movw	r28, r8
+     bba:	e2 2f       	mov	r30, r18
+     bbc:	19 92       	st	Y+, r1
+     bbe:	ea 95       	dec	r30
+     bc0:	e9 f7       	brne	.-6      	; 0xbbc <retrieve_gps_data+0x7fc>
 
 				set_usart_state(usart1_flags, GPSI_DONE);
- 970:	f0 91 98 03 	lds	r31, 0x0398
- 974:	e0 91 98 03 	lds	r30, 0x0398
- 978:	ec 7f       	andi	r30, 0xFC	; 252
- 97a:	ef 27       	eor	r30, r31
- 97c:	ec 65       	ori	r30, 0x5C	; 92
- 97e:	ad cc       	rjmp	.-1702   	; 0x2da <retrieve_gps_data+0x16c>
+     bc2:	f0 91 98 03 	lds	r31, 0x0398
+     bc6:	e0 91 98 03 	lds	r30, 0x0398
+     bca:	ec 7f       	andi	r30, 0xFC	; 252
+     bcc:	ef 27       	eor	r30, r31
+     bce:	ec 65       	ori	r30, 0x5C	; 92
+     bd0:	ad cc       	rjmp	.-1702   	; 0x52c <retrieve_gps_data+0x16c>
 				break;
 
 
 			case  GPSI_DONE:
 				if (usart1_buffer[usart1_index] == GPSI_END)
- 980:	e0 91 8e 03 	lds	r30, 0x038E
- 984:	f0 91 8f 03 	lds	r31, 0x038F
- 988:	e7 56       	subi	r30, 0x67	; 103
- 98a:	fc 4f       	sbci	r31, 0xFC	; 252
- 98c:	e0 81       	ld	r30, Z
- 98e:	e3 30       	cpi	r30, 0x03	; 3
- 990:	09 f0       	breq	.+2      	; 0x994 <retrieve_gps_data+0x826>
- 992:	5d c0       	rjmp	.+186    	; 0xa4e <retrieve_gps_data+0x8e0>
+     bd2:	e0 91 8e 03 	lds	r30, 0x038E
+     bd6:	f0 91 8f 03 	lds	r31, 0x038F
+     bda:	e7 56       	subi	r30, 0x67	; 103
+     bdc:	fc 4f       	sbci	r31, 0xFC	; 252
+     bde:	e0 81       	ld	r30, Z
+     be0:	e3 30       	cpi	r30, 0x03	; 3
+     be2:	09 f0       	breq	.+2      	; 0xbe6 <retrieve_gps_data+0x826>
+     be4:	5d c0       	rjmp	.+186    	; 0xca0 <retrieve_gps_data+0x8e0>
 				{
 					
 
 					
 					if (rx_id[1] == '0' && rx_id[2] == '0')
- 994:	e0 91 2f 0a 	lds	r30, 0x0A2F
- 998:	f0 91 30 0a 	lds	r31, 0x0A30
- 99c:	e0 33       	cpi	r30, 0x30	; 48
- 99e:	61 f4       	brne	.+24     	; 0x9b8 <retrieve_gps_data+0x84a>
- 9a0:	f0 33       	cpi	r31, 0x30	; 48
- 9a2:	51 f4       	brne	.+20     	; 0x9b8 <retrieve_gps_data+0x84a>
+     be6:	e0 91 2f 0a 	lds	r30, 0x0A2F
+     bea:	f0 91 30 0a 	lds	r31, 0x0A30
+     bee:	e0 33       	cpi	r30, 0x30	; 48
+     bf0:	61 f4       	brne	.+24     	; 0xc0a <retrieve_gps_data+0x84a>
+     bf2:	f0 33       	cpi	r31, 0x30	; 48
+     bf4:	51 f4       	brne	.+20     	; 0xc0a <retrieve_gps_data+0x84a>
 					{
 						order = GPSI_ORDER_F00;
- 9a4:	10 92 00 01 	sts	0x0100, r1
+     bf6:	10 92 00 01 	sts	0x0100, r1
 
 						rem_gen_state(error, GPSI_ERR_1); // F00 received ok
- 9a8:	e0 91 ca 09 	lds	r30, 0x09CA
- 9ac:	e7 7f       	andi	r30, 0xF7	; 247
- 9ae:	e0 93 ca 09 	sts	0x09CA, r30
+     bfa:	e0 91 ca 09 	lds	r30, 0x09CA
+     bfe:	e7 7f       	andi	r30, 0xF7	; 247
+     c00:	e0 93 ca 09 	sts	0x09CA, r30
 						f00_ready = 1;
- 9b2:	80 93 81 07 	sts	0x0781, r24
- 9b6:	41 c0       	rjmp	.+130    	; 0xa3a <retrieve_gps_data+0x8cc>
+     c04:	80 93 81 07 	sts	0x0781, r24
+     c08:	41 c0       	rjmp	.+130    	; 0xc8c <retrieve_gps_data+0x8cc>
 						#endif
 
 
 					}
 
 					else if (rx_id[2] == '3' && rx_id[1] == '0')
- 9b8:	f3 33       	cpi	r31, 0x33	; 51
- 9ba:	69 f4       	brne	.+26     	; 0x9d6 <retrieve_gps_data+0x868>
- 9bc:	e0 33       	cpi	r30, 0x30	; 48
- 9be:	09 f0       	breq	.+2      	; 0x9c2 <retrieve_gps_data+0x854>
- 9c0:	8a c0       	rjmp	.+276    	; 0xad6 <retrieve_gps_data+0x968>
+     c0a:	f3 33       	cpi	r31, 0x33	; 51
+     c0c:	69 f4       	brne	.+26     	; 0xc28 <retrieve_gps_data+0x868>
+     c0e:	e0 33       	cpi	r30, 0x30	; 48
+     c10:	09 f0       	breq	.+2      	; 0xc14 <retrieve_gps_data+0x854>
+     c12:	8a c0       	rjmp	.+276    	; 0xd28 <retrieve_gps_data+0x968>
 					{
 						if (order == GPSI_ORDER_F00)
- 9c2:	e0 91 00 01 	lds	r30, 0x0100
- 9c6:	e1 11       	cpse	r30, r1
- 9c8:	02 c0       	rjmp	.+4      	; 0x9ce <retrieve_gps_data+0x860>
+     c14:	e0 91 00 01 	lds	r30, 0x0100
+     c18:	e1 11       	cpse	r30, r1
+     c1a:	02 c0       	rjmp	.+4      	; 0xc20 <retrieve_gps_data+0x860>
 							order = GPSI_ORDER_F03;
- 9ca:	60 93 00 01 	sts	0x0100, r22
+     c1c:	60 93 00 01 	sts	0x0100, r22
 
 						rem_gen_state(error, GPSI_ERR_2); // F03 received ok
- 9ce:	e0 91 ca 09 	lds	r30, 0x09CA
- 9d2:	ef 7e       	andi	r30, 0xEF	; 239
- 9d4:	0d c0       	rjmp	.+26     	; 0x9f0 <retrieve_gps_data+0x882>
+     c20:	e0 91 ca 09 	lds	r30, 0x09CA
+     c24:	ef 7e       	andi	r30, 0xEF	; 239
+     c26:	0d c0       	rjmp	.+26     	; 0xc42 <retrieve_gps_data+0x882>
 					}
 					
 					else if (rx_id[1] == '1' && rx_id[2] == '8')
- 9d6:	e1 33       	cpi	r30, 0x31	; 49
- 9d8:	71 f4       	brne	.+28     	; 0x9f6 <retrieve_gps_data+0x888>
- 9da:	f8 33       	cpi	r31, 0x38	; 56
- 9dc:	c1 f5       	brne	.+112    	; 0xa4e <retrieve_gps_data+0x8e0>
+     c28:	e1 33       	cpi	r30, 0x31	; 49
+     c2a:	71 f4       	brne	.+28     	; 0xc48 <retrieve_gps_data+0x888>
+     c2c:	f8 33       	cpi	r31, 0x38	; 56
+     c2e:	c1 f5       	brne	.+112    	; 0xca0 <retrieve_gps_data+0x8e0>
 					{
 						if (order == GPSI_ORDER_F03)
- 9de:	e0 91 00 01 	lds	r30, 0x0100
- 9e2:	e3 30       	cpi	r30, 0x03	; 3
- 9e4:	11 f4       	brne	.+4      	; 0x9ea <retrieve_gps_data+0x87c>
+     c30:	e0 91 00 01 	lds	r30, 0x0100
+     c34:	e3 30       	cpi	r30, 0x03	; 3
+     c36:	11 f4       	brne	.+4      	; 0xc3c <retrieve_gps_data+0x87c>
 							order = GPSI_ORDER_F18;
- 9e6:	50 93 00 01 	sts	0x0100, r21
+     c38:	50 93 00 01 	sts	0x0100, r21
 
 						rem_gen_state(error, GPSI_ERR_3); // F18 received ok
- 9ea:	e0 91 ca 09 	lds	r30, 0x09CA
- 9ee:	ef 7d       	andi	r30, 0xDF	; 223
- 9f0:	e0 93 ca 09 	sts	0x09CA, r30
- 9f4:	22 c0       	rjmp	.+68     	; 0xa3a <retrieve_gps_data+0x8cc>
+     c3c:	e0 91 ca 09 	lds	r30, 0x09CA
+     c40:	ef 7d       	andi	r30, 0xDF	; 223
+     c42:	e0 93 ca 09 	sts	0x09CA, r30
+     c46:	22 c0       	rjmp	.+68     	; 0xc8c <retrieve_gps_data+0x8cc>
 					}
 					
 					else if (rx_id[1] == '2' && rx_id[2] == '2')
- 9f6:	e2 33       	cpi	r30, 0x32	; 50
- 9f8:	d9 f4       	brne	.+54     	; 0xa30 <retrieve_gps_data+0x8c2>
- 9fa:	f2 33       	cpi	r31, 0x32	; 50
- 9fc:	09 f0       	breq	.+2      	; 0xa00 <retrieve_gps_data+0x892>
- 9fe:	6e c0       	rjmp	.+220    	; 0xadc <retrieve_gps_data+0x96e>
+     c48:	e2 33       	cpi	r30, 0x32	; 50
+     c4a:	d9 f4       	brne	.+54     	; 0xc82 <retrieve_gps_data+0x8c2>
+     c4c:	f2 33       	cpi	r31, 0x32	; 50
+     c4e:	09 f0       	breq	.+2      	; 0xc52 <retrieve_gps_data+0x892>
+     c50:	6e c0       	rjmp	.+220    	; 0xd2e <retrieve_gps_data+0x96e>
 					{
 						if (order == GPSI_ORDER_F18)
- a00:	e0 91 00 01 	lds	r30, 0x0100
- a04:	e8 31       	cpi	r30, 0x18	; 24
- a06:	11 f4       	brne	.+4      	; 0xa0c <retrieve_gps_data+0x89e>
+     c52:	e0 91 00 01 	lds	r30, 0x0100
+     c56:	e8 31       	cpi	r30, 0x18	; 24
+     c58:	11 f4       	brne	.+4      	; 0xc5e <retrieve_gps_data+0x89e>
 							order = GPSI_ORDER_F22;
- a08:	40 93 00 01 	sts	0x0100, r20
+     c5a:	40 93 00 01 	sts	0x0100, r20
 
 						rem_gen_state(error, GPSI_ERR_4); // F22 received ok
- a0c:	e0 91 ca 09 	lds	r30, 0x09CA
- a10:	ef 7b       	andi	r30, 0xBF	; 191
- a12:	ee cf       	rjmp	.-36     	; 0x9f0 <retrieve_gps_data+0x882>
+     c5e:	e0 91 ca 09 	lds	r30, 0x09CA
+     c62:	ef 7b       	andi	r30, 0xBF	; 191
+     c64:	ee cf       	rjmp	.-36     	; 0xc42 <retrieve_gps_data+0x882>
 					}
 					
 					else if (rx_id[2] == '3' && rx_id[1] == '2')
 					{
 						if (order == GPSI_ORDER_F22)
- a14:	e0 91 00 01 	lds	r30, 0x0100
- a18:	e2 32       	cpi	r30, 0x22	; 34
- a1a:	11 f4       	brne	.+4      	; 0xa20 <retrieve_gps_data+0x8b2>
+     c66:	e0 91 00 01 	lds	r30, 0x0100
+     c6a:	e2 32       	cpi	r30, 0x22	; 34
+     c6c:	11 f4       	brne	.+4      	; 0xc72 <retrieve_gps_data+0x8b2>
 							order = GPSI_ORDER_F23;
- a1c:	30 93 00 01 	sts	0x0100, r19
+     c6e:	30 93 00 01 	sts	0x0100, r19
 
 						rem_gen_state(error, GPSI_ERR_5); // F23 received ok
- a20:	e0 91 ca 09 	lds	r30, 0x09CA
- a24:	ef 77       	andi	r30, 0x7F	; 127
- a26:	e0 93 ca 09 	sts	0x09CA, r30
+     c72:	e0 91 ca 09 	lds	r30, 0x09CA
+     c76:	ef 77       	andi	r30, 0x7F	; 127
+     c78:	e0 93 ca 09 	sts	0x09CA, r30
 						gpsi_ready = 1;		
- a2a:	80 93 cb 09 	sts	0x09CB, r24
- a2e:	05 c0       	rjmp	.+10     	; 0xa3a <retrieve_gps_data+0x8cc>
+     c7c:	80 93 cb 09 	sts	0x09CB, r24
+     c80:	05 c0       	rjmp	.+10     	; 0xc8c <retrieve_gps_data+0x8cc>
 
 					}
 					
 					
 					else if (rx_id[1] == '9' && rx_id[2] == '9') {} // preliminary sentence
- a30:	e9 33       	cpi	r30, 0x39	; 57
- a32:	69 f4       	brne	.+26     	; 0xa4e <retrieve_gps_data+0x8e0>
- a34:	f9 33       	cpi	r31, 0x39	; 57
- a36:	09 f0       	breq	.+2      	; 0xa3a <retrieve_gps_data+0x8cc>
- a38:	0a c0       	rjmp	.+20     	; 0xa4e <retrieve_gps_data+0x8e0>
+     c82:	e9 33       	cpi	r30, 0x39	; 57
+     c84:	69 f4       	brne	.+26     	; 0xca0 <retrieve_gps_data+0x8e0>
+     c86:	f9 33       	cpi	r31, 0x39	; 57
+     c88:	09 f0       	breq	.+2      	; 0xc8c <retrieve_gps_data+0x8cc>
+     c8a:	0a c0       	rjmp	.+20     	; 0xca0 <retrieve_gps_data+0x8e0>
 						set_usart_state(usart1_flags, GPSI_UNKNOWN);
 						set_gen_state(error, GPSI_ERR_GEN);
 						break;
 					}
 
 					set_usart_state(usart1_flags, GPSI_UNKNOWN);
- a3a:	f0 91 98 03 	lds	r31, 0x0398
- a3e:	e0 91 98 03 	lds	r30, 0x0398
- a42:	ec 7f       	andi	r30, 0xFC	; 252
- a44:	ef 27       	eor	r30, r31
- a46:	e4 60       	ori	r30, 0x04	; 4
- a48:	e0 93 98 03 	sts	0x0398, r30
- a4c:	68 cc       	rjmp	.-1840   	; 0x31e <retrieve_gps_data+0x1b0>
+     c8c:	f0 91 98 03 	lds	r31, 0x0398
+     c90:	e0 91 98 03 	lds	r30, 0x0398
+     c94:	ec 7f       	andi	r30, 0xFC	; 252
+     c96:	ef 27       	eor	r30, r31
+     c98:	e4 60       	ori	r30, 0x04	; 4
+     c9a:	e0 93 98 03 	sts	0x0398, r30
+     c9e:	68 cc       	rjmp	.-1840   	; 0x570 <retrieve_gps_data+0x1b0>
 				}
 				break;
 
 
 			default:
 				set_usart_state(usart1_flags, GPSI_UNKNOWN);
- a4e:	f0 91 98 03 	lds	r31, 0x0398
- a52:	e0 91 98 03 	lds	r30, 0x0398
- a56:	ec 7f       	andi	r30, 0xFC	; 252
- a58:	ef 27       	eor	r30, r31
- a5a:	e4 60       	ori	r30, 0x04	; 4
- a5c:	e0 93 98 03 	sts	0x0398, r30
+     ca0:	f0 91 98 03 	lds	r31, 0x0398
+     ca4:	e0 91 98 03 	lds	r30, 0x0398
+     ca8:	ec 7f       	andi	r30, 0xFC	; 252
+     caa:	ef 27       	eor	r30, r31
+     cac:	e4 60       	ori	r30, 0x04	; 4
+     cae:	e0 93 98 03 	sts	0x0398, r30
 				set_gen_state(error, GPSI_ERR_GEN);
- a60:	e0 91 ca 09 	lds	r30, 0x09CA
- a64:	e4 60       	ori	r30, 0x04	; 4
- a66:	e0 93 ca 09 	sts	0x09CA, r30
+     cb2:	e0 91 ca 09 	lds	r30, 0x09CA
+     cb6:	e4 60       	ori	r30, 0x04	; 4
+     cb8:	e0 93 ca 09 	sts	0x09CA, r30
 				break;
 		}
 
 		if (order == GPSI_ORDER_F23)	// All sentences received successfully
- a6a:	e0 91 00 01 	lds	r30, 0x0100
- a6e:	e3 32       	cpi	r30, 0x23	; 35
- a70:	49 f4       	brne	.+18     	; 0xa84 <retrieve_gps_data+0x916>
+     cbc:	e0 91 00 01 	lds	r30, 0x0100
+     cc0:	e3 32       	cpi	r30, 0x23	; 35
+     cc2:	49 f4       	brne	.+18     	; 0xcd6 <retrieve_gps_data+0x916>
 		{
 			
 			deadSecs		= 0;	// It's alive
- a72:	10 92 c8 02 	sts	0x02C8, r1
- a76:	10 92 c7 02 	sts	0x02C7, r1
+     cc4:	10 92 c8 02 	sts	0x02C8, r1
+     cc8:	10 92 c7 02 	sts	0x02C7, r1
 			rem_gen_state(error, GPSI_ERR_DEAD);
- a7a:	e0 91 ca 09 	lds	r30, 0x09CA
- a7e:	ee 7f       	andi	r30, 0xFE	; 254
- a80:	e0 93 ca 09 	sts	0x09CA, r30
+     ccc:	e0 91 ca 09 	lds	r30, 0x09CA
+     cd0:	ee 7f       	andi	r30, 0xFE	; 254
+     cd2:	e0 93 ca 09 	sts	0x09CA, r30
 void retrieve_gps_data()
 {
 	// The buffer is circular, so when the loop gets to the end, it just
 	// sets back to index 0 and continues until it reaches usart1_snapshot
 	// This helps to prevent unwanted loss of data
 	for (; usart1_index != usart1_snapshot; usart1_index = (usart1_index+1 < usart1_buffer_size ? usart1_index+1 : 0))
- a84:	e0 91 8e 03 	lds	r30, 0x038E
- a88:	f0 91 8f 03 	lds	r31, 0x038F
- a8c:	31 96       	adiw	r30, 0x01	; 1
- a8e:	e8 3e       	cpi	r30, 0xE8	; 232
- a90:	f3 40       	sbci	r31, 0x03	; 3
- a92:	30 f4       	brcc	.+12     	; 0xaa0 <retrieve_gps_data+0x932>
- a94:	e0 91 8e 03 	lds	r30, 0x038E
- a98:	f0 91 8f 03 	lds	r31, 0x038F
- a9c:	31 96       	adiw	r30, 0x01	; 1
- a9e:	02 c0       	rjmp	.+4      	; 0xaa4 <retrieve_gps_data+0x936>
- aa0:	e0 e0       	ldi	r30, 0x00	; 0
- aa2:	f0 e0       	ldi	r31, 0x00	; 0
- aa4:	f0 93 8f 03 	sts	0x038F, r31
- aa8:	e0 93 8e 03 	sts	0x038E, r30
- aac:	e0 90 8e 03 	lds	r14, 0x038E
- ab0:	f0 90 8f 03 	lds	r15, 0x038F
- ab4:	e0 91 01 01 	lds	r30, 0x0101
- ab8:	f0 91 02 01 	lds	r31, 0x0102
- abc:	ee 16       	cp	r14, r30
- abe:	ff 06       	cpc	r15, r31
- ac0:	09 f0       	breq	.+2      	; 0xac4 <retrieve_gps_data+0x956>
- ac2:	7f cb       	rjmp	.-2306   	; 0x1c2 <retrieve_gps_data+0x54>
- ac4:	13 c0       	rjmp	.+38     	; 0xaec <retrieve_gps_data+0x97e>
+     cd6:	e0 91 8e 03 	lds	r30, 0x038E
+     cda:	f0 91 8f 03 	lds	r31, 0x038F
+     cde:	31 96       	adiw	r30, 0x01	; 1
+     ce0:	e8 3e       	cpi	r30, 0xE8	; 232
+     ce2:	f3 40       	sbci	r31, 0x03	; 3
+     ce4:	30 f4       	brcc	.+12     	; 0xcf2 <retrieve_gps_data+0x932>
+     ce6:	e0 91 8e 03 	lds	r30, 0x038E
+     cea:	f0 91 8f 03 	lds	r31, 0x038F
+     cee:	31 96       	adiw	r30, 0x01	; 1
+     cf0:	02 c0       	rjmp	.+4      	; 0xcf6 <retrieve_gps_data+0x936>
+     cf2:	e0 e0       	ldi	r30, 0x00	; 0
+     cf4:	f0 e0       	ldi	r31, 0x00	; 0
+     cf6:	f0 93 8f 03 	sts	0x038F, r31
+     cfa:	e0 93 8e 03 	sts	0x038E, r30
+     cfe:	e0 90 8e 03 	lds	r14, 0x038E
+     d02:	f0 90 8f 03 	lds	r15, 0x038F
+     d06:	e0 91 01 01 	lds	r30, 0x0101
+     d0a:	f0 91 02 01 	lds	r31, 0x0102
+     d0e:	ee 16       	cp	r14, r30
+     d10:	ff 06       	cpc	r15, r31
+     d12:	09 f0       	breq	.+2      	; 0xd16 <retrieve_gps_data+0x956>
+     d14:	7f cb       	rjmp	.-2306   	; 0x414 <retrieve_gps_data+0x54>
+     d16:	13 c0       	rjmp	.+38     	; 0xd3e <retrieve_gps_data+0x97e>
 			case  GPSI_ID3:
 				rx_id[2] = usart1_buffer[usart1_index];
 				rem_gen_state(error, GPSI_ERR_GEN);
 				if (rx_id[1] == '0' && rx_id[2] == '0')			// F00
 					set_usart_state(usart1_flags, GPSI_S1);
 				else if (rx_id[2] == '3' && rx_id[1] == '0')	// F03
- ac6:	e3 33       	cpi	r30, 0x33	; 51
- ac8:	09 f0       	breq	.+2      	; 0xacc <retrieve_gps_data+0x95e>
- aca:	a3 cc       	rjmp	.-1722   	; 0x412 <retrieve_gps_data+0x2a4>
- acc:	6b cc       	rjmp	.-1834   	; 0x3a4 <retrieve_gps_data+0x236>
+     d18:	e3 33       	cpi	r30, 0x33	; 51
+     d1a:	09 f0       	breq	.+2      	; 0xd1e <retrieve_gps_data+0x95e>
+     d1c:	a3 cc       	rjmp	.-1722   	; 0x664 <retrieve_gps_data+0x2a4>
+     d1e:	6b cc       	rjmp	.-1834   	; 0x5f6 <retrieve_gps_data+0x236>
 					set_usart_state(usart1_flags, GPSI_S2);
 				else if (rx_id[1] == '1' && rx_id[2] == '8')	// F18
 					set_usart_state(usart1_flags, GPSI_S3);
 				else if (rx_id[1] == '2' && rx_id[2] == '2')	// F22
 					set_usart_state(usart1_flags, GPSI_S4);
 				else if (rx_id[2] == '3' && rx_id[1] == '2')	// F23
- ace:	e3 33       	cpi	r30, 0x33	; 51
- ad0:	09 f0       	breq	.+2      	; 0xad4 <retrieve_gps_data+0x966>
- ad2:	9f cc       	rjmp	.-1730   	; 0x412 <retrieve_gps_data+0x2a4>
- ad4:	8a cc       	rjmp	.-1772   	; 0x3ea <retrieve_gps_data+0x27c>
+     d20:	e3 33       	cpi	r30, 0x33	; 51
+     d22:	09 f0       	breq	.+2      	; 0xd26 <retrieve_gps_data+0x966>
+     d24:	9f cc       	rjmp	.-1730   	; 0x664 <retrieve_gps_data+0x2a4>
+     d26:	8a cc       	rjmp	.-1772   	; 0x63c <retrieve_gps_data+0x27c>
 							order = GPSI_ORDER_F03;
 
 						rem_gen_state(error, GPSI_ERR_2); // F03 received ok
 					}
 					
 					else if (rx_id[1] == '1' && rx_id[2] == '8')
- ad6:	e1 33       	cpi	r30, 0x31	; 49
- ad8:	29 f4       	brne	.+10     	; 0xae4 <retrieve_gps_data+0x976>
- ada:	b9 cf       	rjmp	.-142    	; 0xa4e <retrieve_gps_data+0x8e0>
+     d28:	e1 33       	cpi	r30, 0x31	; 49
+     d2a:	29 f4       	brne	.+10     	; 0xd36 <retrieve_gps_data+0x976>
+     d2c:	b9 cf       	rjmp	.-142    	; 0xca0 <retrieve_gps_data+0x8e0>
 							order = GPSI_ORDER_F22;
 
 						rem_gen_state(error, GPSI_ERR_4); // F22 received ok
 					}
 					
 					else if (rx_id[2] == '3' && rx_id[1] == '2')
- adc:	f3 33       	cpi	r31, 0x33	; 51
- ade:	09 f0       	breq	.+2      	; 0xae2 <retrieve_gps_data+0x974>
- ae0:	b6 cf       	rjmp	.-148    	; 0xa4e <retrieve_gps_data+0x8e0>
- ae2:	98 cf       	rjmp	.-208    	; 0xa14 <retrieve_gps_data+0x8a6>
+     d2e:	f3 33       	cpi	r31, 0x33	; 51
+     d30:	09 f0       	breq	.+2      	; 0xd34 <retrieve_gps_data+0x974>
+     d32:	b6 cf       	rjmp	.-148    	; 0xca0 <retrieve_gps_data+0x8e0>
+     d34:	98 cf       	rjmp	.-208    	; 0xc66 <retrieve_gps_data+0x8a6>
 							order = GPSI_ORDER_F18;
 
 						rem_gen_state(error, GPSI_ERR_3); // F18 received ok
 					}
 					
 					else if (rx_id[1] == '2' && rx_id[2] == '2')
- ae4:	e2 33       	cpi	r30, 0x32	; 50
- ae6:	09 f0       	breq	.+2      	; 0xaea <retrieve_gps_data+0x97c>
- ae8:	a3 cf       	rjmp	.-186    	; 0xa30 <retrieve_gps_data+0x8c2>
- aea:	94 cf       	rjmp	.-216    	; 0xa14 <retrieve_gps_data+0x8a6>
+     d36:	e2 33       	cpi	r30, 0x32	; 50
+     d38:	09 f0       	breq	.+2      	; 0xd3c <retrieve_gps_data+0x97c>
+     d3a:	a3 cf       	rjmp	.-186    	; 0xc82 <retrieve_gps_data+0x8c2>
+     d3c:	94 cf       	rjmp	.-216    	; 0xc66 <retrieve_gps_data+0x8a6>
 			deadSecs		= 0;	// It's alive
 			rem_gen_state(error, GPSI_ERR_DEAD);
 			
 		}
 	}
 }
- aec:	df 91       	pop	r29
- aee:	cf 91       	pop	r28
- af0:	1f 91       	pop	r17
- af2:	0f 91       	pop	r16
- af4:	ff 90       	pop	r15
- af6:	ef 90       	pop	r14
- af8:	df 90       	pop	r13
- afa:	cf 90       	pop	r12
- afc:	bf 90       	pop	r11
- afe:	af 90       	pop	r10
- b00:	9f 90       	pop	r9
- b02:	8f 90       	pop	r8
- b04:	7f 90       	pop	r7
- b06:	6f 90       	pop	r6
- b08:	5f 90       	pop	r5
- b0a:	4f 90       	pop	r4
- b0c:	3f 90       	pop	r3
- b0e:	2f 90       	pop	r2
- b10:	08 95       	ret
+     d3e:	df 91       	pop	r29
+     d40:	cf 91       	pop	r28
+     d42:	1f 91       	pop	r17
+     d44:	0f 91       	pop	r16
+     d46:	ff 90       	pop	r15
+     d48:	ef 90       	pop	r14
+     d4a:	df 90       	pop	r13
+     d4c:	cf 90       	pop	r12
+     d4e:	bf 90       	pop	r11
+     d50:	af 90       	pop	r10
+     d52:	9f 90       	pop	r9
+     d54:	8f 90       	pop	r8
+     d56:	7f 90       	pop	r7
+     d58:	6f 90       	pop	r6
+     d5a:	5f 90       	pop	r5
+     d5c:	4f 90       	pop	r4
+     d5e:	3f 90       	pop	r3
+     d60:	2f 90       	pop	r2
+     d62:	08 95       	ret
 
-00000b12 <check_pgood>:
+00000d64 <check_pgood>:
 
 // PGOOD is an input from the receiver on pin PA3
 void check_pgood()
 {
 
 	if (getbit(PINA, PINA3)) // PGOOD pin HIGH
- b12:	89 b3       	in	r24, 0x19	; 25
- b14:	63 e0       	ldi	r22, 0x03	; 3
- b16:	0e 94 a5 00 	call	0x14a	; 0x14a <getbit>
- b1a:	90 91 ca 09 	lds	r25, 0x09CA
- b1e:	88 23       	and	r24, r24
- b20:	11 f0       	breq	.+4      	; 0xb26 <check_pgood+0x14>
+     d64:	89 b3       	in	r24, 0x19	; 25
+     d66:	63 e0       	ldi	r22, 0x03	; 3
+     d68:	0e 94 a5 00 	call	0x14a	; 0x14a <getbit>
+     d6c:	90 91 ca 09 	lds	r25, 0x09CA
+     d70:	88 23       	and	r24, r24
+     d72:	11 f0       	breq	.+4      	; 0xd78 <check_pgood+0x14>
 		rem_gen_state(error, GPSI_ERR_PGOOD);
- b22:	9d 7f       	andi	r25, 0xFD	; 253
- b24:	01 c0       	rjmp	.+2      	; 0xb28 <check_pgood+0x16>
+     d74:	9d 7f       	andi	r25, 0xFD	; 253
+     d76:	01 c0       	rjmp	.+2      	; 0xd7a <check_pgood+0x16>
 	else
 		set_gen_state(error, GPSI_ERR_PGOOD);
- b26:	92 60       	ori	r25, 0x02	; 2
- b28:	90 93 ca 09 	sts	0x09CA, r25
- b2c:	08 95       	ret
+     d78:	92 60       	ori	r25, 0x02	; 2
+     d7a:	90 93 ca 09 	sts	0x09CA, r25
+     d7e:	08 95       	ret
 
-00000b2e <check_time>:
+00000d80 <check_time>:
 }
 
 // Check time since last sync with receiver 
 void check_time()
 {
 	if (deadSecs >= RECEIVER_DEAD_TIME) 	// Receiver is dead after DEAD_TIME seconds
- b2e:	80 91 c7 02 	lds	r24, 0x02C7
- b32:	90 91 c8 02 	lds	r25, 0x02C8
- b36:	20 91 ca 09 	lds	r18, 0x09CA
- b3a:	8c 32       	cpi	r24, 0x2C	; 44
- b3c:	91 40       	sbci	r25, 0x01	; 1
- b3e:	40 f0       	brcs	.+16     	; 0xb50 <check_time+0x22>
+     d80:	80 91 c7 02 	lds	r24, 0x02C7
+     d84:	90 91 c8 02 	lds	r25, 0x02C8
+     d88:	20 91 ca 09 	lds	r18, 0x09CA
+     d8c:	8c 32       	cpi	r24, 0x2C	; 44
+     d8e:	91 40       	sbci	r25, 0x01	; 1
+     d90:	40 f0       	brcs	.+16     	; 0xda2 <check_time+0x22>
 	{
 		deadSecs = 100*RECEIVER_DEAD_TIME;		// avoid overflow on deadSecs
- b40:	80 e3       	ldi	r24, 0x30	; 48
- b42:	95 e7       	ldi	r25, 0x75	; 117
- b44:	90 93 c8 02 	sts	0x02C8, r25
- b48:	80 93 c7 02 	sts	0x02C7, r24
+     d92:	80 e3       	ldi	r24, 0x30	; 48
+     d94:	95 e7       	ldi	r25, 0x75	; 117
+     d96:	90 93 c8 02 	sts	0x02C8, r25
+     d9a:	80 93 c7 02 	sts	0x02C7, r24
 		set_gen_state(error, GPSI_ERR_DEAD);
- b4c:	21 60       	ori	r18, 0x01	; 1
- b4e:	01 c0       	rjmp	.+2      	; 0xb52 <check_time+0x24>
+     d9e:	21 60       	ori	r18, 0x01	; 1
+     da0:	01 c0       	rjmp	.+2      	; 0xda4 <check_time+0x24>
 	}
 	else
 		rem_gen_state(error, GPSI_ERR_DEAD);
- b50:	2e 7f       	andi	r18, 0xFE	; 254
- b52:	20 93 ca 09 	sts	0x09CA, r18
- b56:	08 95       	ret
+     da2:	2e 7f       	andi	r18, 0xFE	; 254
+     da4:	20 93 ca 09 	sts	0x09CA, r18
+     da8:	08 95       	ret
 
-00000b58 <send>:
-	}			
+00000daa <send_VCP_data>:
 }
 
 
-void send(char *str, int len)	// No VCP
+void send_VCP_data()	// VCP
 {
- b58:	cf 93       	push	r28
- b5a:	df 93       	push	r29
- b5c:	57 2f       	mov	r21, r23
-	memcpy(usart0_buffer, str, len);	// copy packet to transmit buffer
- b5e:	c6 2f       	mov	r28, r22
- b60:	d7 2f       	mov	r29, r23
- b62:	26 e8       	ldi	r18, 0x86	; 134
- b64:	37 e0       	ldi	r19, 0x07	; 7
- b66:	46 2f       	mov	r20, r22
- b68:	bc 01       	movw	r22, r24
- b6a:	c9 01       	movw	r24, r18
- b6c:	0e 94 0e 07 	call	0xe1c	; 0xe1c <memcpy>
-	usart0_index = 0;					// reset index
- b70:	10 92 ca 02 	sts	0x02CA, r1
- b74:	10 92 c9 02 	sts	0x02C9, r1
-	usart0_complete = len;				// packet length
- b78:	d0 93 45 03 	sts	0x0345, r29
- b7c:	c0 93 44 03 	sts	0x0344, r28
+     daa:	0f 93       	push	r16
+     dac:	1f 93       	push	r17
+     dae:	cf 93       	push	r28
+     db0:	df 93       	push	r29
+     db2:	00 d0       	rcall	.+0      	; 0xdb4 <send_VCP_data+0xa>
+     db4:	00 d0       	rcall	.+0      	; 0xdb6 <send_VCP_data+0xc>
+     db6:	cd b7       	in	r28, 0x3d	; 61
+     db8:	de b7       	in	r29, 0x3e	; 62
+	uint32 size = usart0_buffer_size;
+     dba:	84 ef       	ldi	r24, 0xF4	; 244
+     dbc:	91 e0       	ldi	r25, 0x01	; 1
+     dbe:	a0 e0       	ldi	r26, 0x00	; 0
+     dc0:	b0 e0       	ldi	r27, 0x00	; 0
+     dc2:	89 83       	std	Y+1, r24	; 0x01
+     dc4:	9a 83       	std	Y+2, r25	; 0x02
+     dc6:	ab 83       	std	Y+3, r26	; 0x03
+     dc8:	bc 83       	std	Y+4, r27	; 0x04
+	
+	// create VCP frame in the transmit buffer
+	uint8_t VCP_tx_status = Create_VCP_frame(	usart0_buffer, 
+     dca:	00 e5       	ldi	r16, 0x50	; 80
+     dcc:	10 e0       	ldi	r17, 0x00	; 0
+     dce:	2a e7       	ldi	r18, 0x7A	; 122
+     dd0:	39 e0       	ldi	r19, 0x09	; 9
+     dd2:	43 e0       	ldi	r20, 0x03	; 3
+     dd4:	be 01       	movw	r22, r28
+     dd6:	6f 5f       	subi	r22, 0xFF	; 255
+     dd8:	7f 4f       	sbci	r23, 0xFF	; 255
+     dda:	86 e8       	ldi	r24, 0x86	; 134
+     ddc:	97 e0       	ldi	r25, 0x07	; 7
+     dde:	0e 94 cb 00 	call	0x196	; 0x196 <Create_VCP_frame>
+												sizeof(gps_packet));
+
+	if (VCP_tx_status == VCP_OVR_ERR)	{}
+	if (VCP_tx_status == VCP_NULL_ERR)	{}
+	if (VCP_tx_status == VCP_ADDR_ERR)	{}
+	if (VCP_tx_status == VCP_TERM)			// Done with no errors
+     de2:	81 30       	cpi	r24, 0x01	; 1
+     de4:	59 f4       	brne	.+22     	; 0xdfc <send_VCP_data+0x52>
+	{
+		usart0_index = 0;				// reset index
+     de6:	10 92 ca 02 	sts	0x02CA, r1
+     dea:	10 92 c9 02 	sts	0x02C9, r1
+		usart0_complete = size;			// packet length
+     dee:	89 81       	ldd	r24, Y+1	; 0x01
+     df0:	9a 81       	ldd	r25, Y+2	; 0x02
+     df2:	90 93 45 03 	sts	0x0345, r25
+     df6:	80 93 44 03 	sts	0x0344, r24
 // usart0
 void usart0_initialize(uint32 ubrr);
 
 inline void usart0_rx_interrupt_enable()  { UCSR0B |= (1<<RXCIE0);	}
 inline void usart0_rx_interrupt_disable() { UCSR0B &= ~(1<<RXCIE0);	}
 inline void usart0_tx_interrupt_enable()  { UCSR0B |= (1<<UDRIE0);	}
- b80:	55 9a       	sbi	0x0a, 5	; 10
-	usart0_tx_interrupt_enable();		// enable interrupt to start transmission
+     dfa:	55 9a       	sbi	0x0a, 5	; 10
+		usart0_tx_interrupt_enable();	// enable interrupt to start transmission
+	}			
 }
- b82:	df 91       	pop	r29
- b84:	cf 91       	pop	r28
- b86:	08 95       	ret
+     dfc:	0f 90       	pop	r0
+     dfe:	0f 90       	pop	r0
+     e00:	0f 90       	pop	r0
+     e02:	0f 90       	pop	r0
+     e04:	df 91       	pop	r29
+     e06:	cf 91       	pop	r28
+     e08:	1f 91       	pop	r17
+     e0a:	0f 91       	pop	r16
+     e0c:	08 95       	ret
 
-00000b88 <main>:
+00000e0e <main>:
+
+
+// Main
+int main()
+{
+	initialize();
+     e0e:	0e 94 92 01 	call	0x324	; 0x324 <initialize>
 
 
 // usart1
 void usart1_initialize(uint32 ubrr);
 
 inline void usart1_rx_interrupt_enable()  { UCSR1B |= (1<<RXCIE1);	}
- b88:	80 91 9a 00 	lds	r24, 0x009A
- b8c:	80 68       	ori	r24, 0x80	; 128
- b8e:	80 93 9a 00 	sts	0x009A, r24
-{
-	//initialize();
+     e12:	80 91 9a 00 	lds	r24, 0x009A
+     e16:	80 68       	ori	r24, 0x80	; 128
+     e18:	80 93 9a 00 	sts	0x009A, r24
 
 	usart1_rx_interrupt_enable();
 
 	set_usart_state(usart1_flags, GPSI_UNKNOWN);
- b92:	90 91 98 03 	lds	r25, 0x0398
- b96:	80 91 98 03 	lds	r24, 0x0398
- b9a:	8c 7f       	andi	r24, 0xFC	; 252
- b9c:	89 27       	eor	r24, r25
- b9e:	84 60       	ori	r24, 0x04	; 4
- ba0:	80 93 98 03 	sts	0x0398, r24
+     e1c:	90 91 98 03 	lds	r25, 0x0398
+     e20:	80 91 98 03 	lds	r24, 0x0398
+     e24:	8c 7f       	andi	r24, 0xFC	; 252
+     e26:	89 27       	eor	r24, r25
+     e28:	84 60       	ori	r24, 0x04	; 4
+     e2a:	80 93 98 03 	sts	0x0398, r24
 
 	for (;;)	// Loooooop
 	{
 		if (usart0_flags & USART_TX_COMPLETE)
 		{
 			usart0_flags ^= USART_TX_COMPLETE;
- ba4:	02 e0       	ldi	r16, 0x02	; 2
+     e2e:	12 e0       	ldi	r17, 0x02	; 2
 			check_time();
 			
 
 			// pack
 			tx_packet.packet_status = error;
 			tx_packet.packet_telem = telem;
- ba6:	e7 e0       	ldi	r30, 0x07	; 7
- ba8:	fe 2e       	mov	r15, r30
-			f00_ready = 0;
-			watchdog_transmit = 0;
-					
-			// Transmit data
-			#ifdef COMM_DEBUG
-				tx_packet.packet_status = 0xFF;						// start comm byte for debug
- baa:	cf ef       	ldi	r28, 0xFF	; 255
+     e30:	07 e0       	ldi	r16, 0x07	; 7
 			set_gen_state(error, GPSI_ERR_3);
 			set_gen_state(error, GPSI_ERR_4);
 			set_gen_state(error, GPSI_ERR_5);
 			
 			// trigger ADC sampling
 			sample_ADC = 1;				
- bac:	d1 e0       	ldi	r29, 0x01	; 1
+     e32:	c1 e0       	ldi	r28, 0x01	; 1
 			tx_packet.packet_status = error;
 			tx_packet.packet_telem = telem;
 			if (watchdog_transmit)	// No sync with receiver - Write zeros to F00
 				memset(&tx_packet.packet_f00, 0x00, sizeof(gps_f00));	
 			else
 				tx_packet.packet_f00 = f00;
- bae:	18 e4       	ldi	r17, 0x48	; 72
+     e34:	d8 e4       	ldi	r29, 0x48	; 72
 
 	set_usart_state(usart1_flags, GPSI_UNKNOWN);
 
 	for (;;)	// Loooooop
 	{
 		if (usart0_flags & USART_TX_COMPLETE)
- bb0:	80 91 31 0a 	lds	r24, 0x0A31
- bb4:	81 ff       	sbrs	r24, 1
- bb6:	05 c0       	rjmp	.+10     	; 0xbc2 <main+0x3a>
+     e36:	80 91 31 0a 	lds	r24, 0x0A31
+     e3a:	81 ff       	sbrs	r24, 1
+     e3c:	05 c0       	rjmp	.+10     	; 0xe48 <main+0x3a>
 		{
 			usart0_flags ^= USART_TX_COMPLETE;
- bb8:	80 91 31 0a 	lds	r24, 0x0A31
- bbc:	80 27       	eor	r24, r16
- bbe:	80 93 31 0a 	sts	0x0A31, r24
+     e3e:	80 91 31 0a 	lds	r24, 0x0A31
+     e42:	81 27       	eor	r24, r17
+     e44:	80 93 31 0a 	sts	0x0A31, r24
 		}
 		
 		if (f00_ready || watchdog_transmit)
- bc2:	80 91 81 07 	lds	r24, 0x0781
- bc6:	81 11       	cpse	r24, r1
- bc8:	04 c0       	rjmp	.+8      	; 0xbd2 <main+0x4a>
- bca:	80 91 97 03 	lds	r24, 0x0397
- bce:	88 23       	and	r24, r24
- bd0:	d9 f1       	breq	.+118    	; 0xc48 <main+0xc0>
+     e48:	80 91 81 07 	lds	r24, 0x0781
+     e4c:	81 11       	cpse	r24, r1
+     e4e:	04 c0       	rjmp	.+8      	; 0xe58 <main+0x4a>
+     e50:	80 91 97 03 	lds	r24, 0x0397
+     e54:	88 23       	and	r24, r24
+     e56:	99 f1       	breq	.+102    	; 0xebe <main+0xb0>
 		{
 			
 			check_pgood();
- bd2:	0e 94 89 05 	call	0xb12	; 0xb12 <check_pgood>
+     e58:	0e 94 b2 06 	call	0xd64	; 0xd64 <check_pgood>
 			check_time();
- bd6:	0e 94 97 05 	call	0xb2e	; 0xb2e <check_time>
+     e5c:	0e 94 c0 06 	call	0xd80	; 0xd80 <check_time>
 			
 
 			// pack
 			tx_packet.packet_status = error;
- bda:	80 91 ca 09 	lds	r24, 0x09CA
- bde:	80 93 7a 09 	sts	0x097A, r24
+     e60:	80 91 ca 09 	lds	r24, 0x09CA
+     e64:	80 93 7a 09 	sts	0x097A, r24
 			tx_packet.packet_telem = telem;
- be2:	e0 e9       	ldi	r30, 0x90	; 144
- be4:	f3 e0       	ldi	r31, 0x03	; 3
- be6:	ab e7       	ldi	r26, 0x7B	; 123
- be8:	b9 e0       	ldi	r27, 0x09	; 9
- bea:	8f 2d       	mov	r24, r15
- bec:	01 90       	ld	r0, Z+
- bee:	0d 92       	st	X+, r0
- bf0:	8a 95       	dec	r24
- bf2:	e1 f7       	brne	.-8      	; 0xbec <main+0x64>
+     e68:	e0 e9       	ldi	r30, 0x90	; 144
+     e6a:	f3 e0       	ldi	r31, 0x03	; 3
+     e6c:	ab e7       	ldi	r26, 0x7B	; 123
+     e6e:	b9 e0       	ldi	r27, 0x09	; 9
+     e70:	80 2f       	mov	r24, r16
+     e72:	01 90       	ld	r0, Z+
+     e74:	0d 92       	st	X+, r0
+     e76:	8a 95       	dec	r24
+     e78:	e1 f7       	brne	.-8      	; 0xe72 <main+0x64>
 			if (watchdog_transmit)	// No sync with receiver - Write zeros to F00
- bf4:	80 91 97 03 	lds	r24, 0x0397
- bf8:	88 23       	and	r24, r24
- bfa:	41 f0       	breq	.+16     	; 0xc0c <main+0x84>
+     e7a:	80 91 97 03 	lds	r24, 0x0397
+     e7e:	88 23       	and	r24, r24
+     e80:	41 f0       	breq	.+16     	; 0xe92 <main+0x84>
 				memset(&tx_packet.packet_f00, 0x00, sizeof(gps_f00));	
- bfc:	e2 e8       	ldi	r30, 0x82	; 130
- bfe:	f9 e0       	ldi	r31, 0x09	; 9
- c00:	df 01       	movw	r26, r30
- c02:	81 2f       	mov	r24, r17
- c04:	1d 92       	st	X+, r1
- c06:	8a 95       	dec	r24
- c08:	e9 f7       	brne	.-6      	; 0xc04 <main+0x7c>
- c0a:	09 c0       	rjmp	.+18     	; 0xc1e <main+0x96>
+     e82:	e2 e8       	ldi	r30, 0x82	; 130
+     e84:	f9 e0       	ldi	r31, 0x09	; 9
+     e86:	df 01       	movw	r26, r30
+     e88:	8d 2f       	mov	r24, r29
+     e8a:	1d 92       	st	X+, r1
+     e8c:	8a 95       	dec	r24
+     e8e:	e9 f7       	brne	.-6      	; 0xe8a <main+0x7c>
+     e90:	09 c0       	rjmp	.+18     	; 0xea4 <main+0x96>
 			else
 				tx_packet.packet_f00 = f00;
- c0c:	e6 e4       	ldi	r30, 0x46	; 70
- c0e:	f3 e0       	ldi	r31, 0x03	; 3
- c10:	a2 e8       	ldi	r26, 0x82	; 130
- c12:	b9 e0       	ldi	r27, 0x09	; 9
- c14:	81 2f       	mov	r24, r17
- c16:	01 90       	ld	r0, Z+
- c18:	0d 92       	st	X+, r0
- c1a:	8a 95       	dec	r24
- c1c:	e1 f7       	brne	.-8      	; 0xc16 <main+0x8e>
+     e92:	e6 e4       	ldi	r30, 0x46	; 70
+     e94:	f3 e0       	ldi	r31, 0x03	; 3
+     e96:	a2 e8       	ldi	r26, 0x82	; 130
+     e98:	b9 e0       	ldi	r27, 0x09	; 9
+     e9a:	8d 2f       	mov	r24, r29
+     e9c:	01 90       	ld	r0, Z+
+     e9e:	0d 92       	st	X+, r0
+     ea0:	8a 95       	dec	r24
+     ea2:	e1 f7       	brne	.-8      	; 0xe9c <main+0x8e>
 
 			// reset all the triggers
 			f00_ready = 0;
- c1e:	10 92 81 07 	sts	0x0781, r1
+     ea4:	10 92 81 07 	sts	0x0781, r1
 			watchdog_transmit = 0;
- c22:	10 92 97 03 	sts	0x0397, r1
-					
-			// Transmit data
-			#ifdef COMM_DEBUG
-				tx_packet.packet_status = 0xFF;						// start comm byte for debug
- c26:	c0 93 7a 09 	sts	0x097A, r28
+     ea8:	10 92 97 03 	sts	0x0397, r1
 				((uint8ptr)&tx_packet.packet_f00)[71] = 0xFF;		// end comm byte for debug
- c2a:	c0 93 c9 09 	sts	0x09C9, r28
 				send( (char*)&tx_packet, sizeof(tx_packet) );		// Transmit without VCP frame
- c2e:	60 e5       	ldi	r22, 0x50	; 80
- c30:	70 e0       	ldi	r23, 0x00	; 0
- c32:	8a e7       	ldi	r24, 0x7A	; 122
- c34:	99 e0       	ldi	r25, 0x09	; 9
- c36:	0e 94 ac 05 	call	0xb58	; 0xb58 <send>
+				//send( (char*)&telem, sizeof(telem) );				// Debug - transmit only telem
+				//send( (char*)&tx_packet.packet_f00, sizeof(f00) );	// Debug - transmit only f00
+			#else
+				send_VCP_data();								// Transmit with VCP frame
+     eac:	0e 94 d5 06 	call	0xdaa	; 0xdaa <send_VCP_data>
 			// set all sentence receive errors for next receive cycle
 			set_gen_state(error, GPSI_ERR_1);
 			set_gen_state(error, GPSI_ERR_2);
 			set_gen_state(error, GPSI_ERR_3);
 			set_gen_state(error, GPSI_ERR_4);
 			set_gen_state(error, GPSI_ERR_5);
- c3a:	80 91 ca 09 	lds	r24, 0x09CA
- c3e:	88 6f       	ori	r24, 0xF8	; 248
- c40:	80 93 ca 09 	sts	0x09CA, r24
+     eb0:	80 91 ca 09 	lds	r24, 0x09CA
+     eb4:	88 6f       	ori	r24, 0xF8	; 248
+     eb6:	80 93 ca 09 	sts	0x09CA, r24
 			
 			// trigger ADC sampling
 			sample_ADC = 1;				
- c44:	d0 93 43 03 	sts	0x0343, r29
+     eba:	c0 93 43 03 	sts	0x0343, r28
 
 		}
 		
 		
 		if (usart1_flags & USART_RX_READY)
- c48:	80 91 98 03 	lds	r24, 0x0398
- c4c:	80 ff       	sbrs	r24, 0
- c4e:	0f c0       	rjmp	.+30     	; 0xc6e <main+0xe6>
+     ebe:	80 91 98 03 	lds	r24, 0x0398
+     ec2:	80 ff       	sbrs	r24, 0
+     ec4:	0f c0       	rjmp	.+30     	; 0xee4 <main+0xd6>
 		{
 			usart1_flags ^= USART_RX_READY;		// signal received
- c50:	80 91 98 03 	lds	r24, 0x0398
- c54:	8d 27       	eor	r24, r29
- c56:	80 93 98 03 	sts	0x0398, r24
+     ec6:	80 91 98 03 	lds	r24, 0x0398
+     eca:	8c 27       	eor	r24, r28
+     ecc:	80 93 98 03 	sts	0x0398, r24
 			usart1_snapshot = usart1_complete;	// grab a snapshot of the current usart state in case it changes
- c5a:	80 91 eb 01 	lds	r24, 0x01EB
- c5e:	90 91 ec 01 	lds	r25, 0x01EC
- c62:	90 93 02 01 	sts	0x0102, r25
- c66:	80 93 01 01 	sts	0x0101, r24
+     ed0:	80 91 eb 01 	lds	r24, 0x01EB
+     ed4:	90 91 ec 01 	lds	r25, 0x01EC
+     ed8:	90 93 02 01 	sts	0x0102, r25
+     edc:	80 93 01 01 	sts	0x0101, r24
 			
 			// extract the data from the buffer
 			retrieve_gps_data();
- c6a:	0e 94 b7 00 	call	0x16e	; 0x16e <retrieve_gps_data>
+     ee0:	0e 94 e0 01 	call	0x3c0	; 0x3c0 <retrieve_gps_data>
 		}
 		
 		if (sample_ADC)
- c6e:	80 91 43 03 	lds	r24, 0x0343
- c72:	88 23       	and	r24, r24
- c74:	09 f4       	brne	.+2      	; 0xc78 <main+0xf0>
- c76:	9c cf       	rjmp	.-200    	; 0xbb0 <main+0x28>
+     ee4:	80 91 43 03 	lds	r24, 0x0343
+     ee8:	88 23       	and	r24, r24
+     eea:	09 f4       	brne	.+2      	; 0xeee <main+0xe0>
+     eec:	a4 cf       	rjmp	.-184    	; 0xe36 <main+0x28>
 		{
 			sample_ADC			= 0;
- c78:	10 92 43 03 	sts	0x0343, r1
+     eee:	10 92 43 03 	sts	0x0343, r1
 			telem.gps_temp		= Get_ADC_Result(ADC_THERM_GPS_CHANNEL);
- c7c:	80 e0       	ldi	r24, 0x00	; 0
- c7e:	0e 94 65 00 	call	0xca	; 0xca <Get_ADC_Result>
- c82:	80 93 90 03 	sts	0x0390, r24
+     ef2:	80 e0       	ldi	r24, 0x00	; 0
+     ef4:	0e 94 65 00 	call	0xca	; 0xca <Get_ADC_Result>
+     ef8:	80 93 90 03 	sts	0x0390, r24
 			telem.gpsib_temp	= Get_ADC_Result(ADC_THERM_GPSIB_CHANNEL);
- c86:	82 e0       	ldi	r24, 0x02	; 2
- c88:	0e 94 65 00 	call	0xca	; 0xca <Get_ADC_Result>
- c8c:	80 93 91 03 	sts	0x0391, r24
+     efc:	82 e0       	ldi	r24, 0x02	; 2
+     efe:	0e 94 65 00 	call	0xca	; 0xca <Get_ADC_Result>
+     f02:	80 93 91 03 	sts	0x0391, r24
 			telem.radio_temp	= Get_ADC_Result(ADC_THERM_RADIO_CHANNEL);
- c90:	81 e0       	ldi	r24, 0x01	; 1
- c92:	0e 94 65 00 	call	0xca	; 0xca <Get_ADC_Result>
- c96:	80 93 92 03 	sts	0x0392, r24
- c9a:	8a cf       	rjmp	.-236    	; 0xbb0 <main+0x28>
+     f06:	81 e0       	ldi	r24, 0x01	; 1
+     f08:	0e 94 65 00 	call	0xca	; 0xca <Get_ADC_Result>
+     f0c:	80 93 92 03 	sts	0x0392, r24
+     f10:	92 cf       	rjmp	.-220    	; 0xe36 <main+0x28>
 
-00000c9c <__vector_default>:
+00000f12 <__vector_default>:
 	}
 }
 
 // Catch interrupts without ISR - should never happen 
 ISR(BADISR_vect)
 {
- c9c:	1f 92       	push	r1
- c9e:	0f 92       	push	r0
- ca0:	0f b6       	in	r0, 0x3f	; 63
- ca2:	0f 92       	push	r0
- ca4:	11 24       	eor	r1, r1
+     f12:	1f 92       	push	r1
+     f14:	0f 92       	push	r0
+     f16:	0f b6       	in	r0, 0x3f	; 63
+     f18:	0f 92       	push	r0
+     f1a:	11 24       	eor	r1, r1
     // user code here
 }
- ca6:	0f 90       	pop	r0
- ca8:	0f be       	out	0x3f, r0	; 63
- caa:	0f 90       	pop	r0
- cac:	1f 90       	pop	r1
- cae:	18 95       	reti
+     f1c:	0f 90       	pop	r0
+     f1e:	0f be       	out	0x3f, r0	; 63
+     f20:	0f 90       	pop	r0
+     f22:	1f 90       	pop	r1
+     f24:	18 95       	reti
 
-00000cb0 <__vector_12>:
+00000f26 <__vector_12>:
 
 // Timer1 compare interrupt service routine
 ISR(TIMER1_COMPA_vect)
 {
- cb0:	1f 92       	push	r1
- cb2:	0f 92       	push	r0
- cb4:	0f b6       	in	r0, 0x3f	; 63
- cb6:	0f 92       	push	r0
- cb8:	11 24       	eor	r1, r1
- cba:	5f 93       	push	r21
- cbc:	6f 93       	push	r22
- cbe:	7f 93       	push	r23
- cc0:	8f 93       	push	r24
- cc2:	9f 93       	push	r25
- cc4:	af 93       	push	r26
- cc6:	bf 93       	push	r27
+     f26:	1f 92       	push	r1
+     f28:	0f 92       	push	r0
+     f2a:	0f b6       	in	r0, 0x3f	; 63
+     f2c:	0f 92       	push	r0
+     f2e:	11 24       	eor	r1, r1
+     f30:	5f 93       	push	r21
+     f32:	6f 93       	push	r22
+     f34:	7f 93       	push	r23
+     f36:	8f 93       	push	r24
+     f38:	9f 93       	push	r25
+     f3a:	af 93       	push	r26
+     f3c:	bf 93       	push	r27
 	deadSecs++;					// count seconds between time syncs
- cc8:	80 91 c7 02 	lds	r24, 0x02C7
- ccc:	90 91 c8 02 	lds	r25, 0x02C8
- cd0:	01 96       	adiw	r24, 0x01	; 1
- cd2:	90 93 c8 02 	sts	0x02C8, r25
- cd6:	80 93 c7 02 	sts	0x02C7, r24
+     f3e:	80 91 c7 02 	lds	r24, 0x02C7
+     f42:	90 91 c8 02 	lds	r25, 0x02C8
+     f46:	01 96       	adiw	r24, 0x01	; 1
+     f48:	90 93 c8 02 	sts	0x02C8, r25
+     f4c:	80 93 c7 02 	sts	0x02C7, r24
 	
 	if (deadSecs % IB_TRANSMIT_TRIGGER_TIME == 2)	// trigger transmit every <IB_TRANSMIT_TRIGGER_TIME> seconds
- cda:	80 91 c7 02 	lds	r24, 0x02C7
- cde:	90 91 c8 02 	lds	r25, 0x02C8
- ce2:	63 e0       	ldi	r22, 0x03	; 3
- ce4:	70 e0       	ldi	r23, 0x00	; 0
- ce6:	0e 94 fa 06 	call	0xdf4	; 0xdf4 <__udivmodhi4>
- cea:	02 97       	sbiw	r24, 0x02	; 2
- cec:	19 f4       	brne	.+6      	; 0xcf4 <__vector_12+0x44>
+     f50:	80 91 c7 02 	lds	r24, 0x02C7
+     f54:	90 91 c8 02 	lds	r25, 0x02C8
+     f58:	63 e0       	ldi	r22, 0x03	; 3
+     f5a:	70 e0       	ldi	r23, 0x00	; 0
+     f5c:	0e 94 35 08 	call	0x106a	; 0x106a <__udivmodhi4>
+     f60:	02 97       	sbiw	r24, 0x02	; 2
+     f62:	19 f4       	brne	.+6      	; 0xf6a <__vector_12+0x44>
 		watchdog_transmit = 1;
- cee:	81 e0       	ldi	r24, 0x01	; 1
- cf0:	80 93 97 03 	sts	0x0397, r24
+     f64:	81 e0       	ldi	r24, 0x01	; 1
+     f66:	80 93 97 03 	sts	0x0397, r24
 		if (watchdog_transmit)	
 			PORTC &= ~(1<<PC1);		// led 1 ON
 		else
 			PORTC |= (1<<PC1);		// led 1 OFF
 	#endif
 }
- cf4:	bf 91       	pop	r27
- cf6:	af 91       	pop	r26
- cf8:	9f 91       	pop	r25
- cfa:	8f 91       	pop	r24
- cfc:	7f 91       	pop	r23
- cfe:	6f 91       	pop	r22
- d00:	5f 91       	pop	r21
- d02:	0f 90       	pop	r0
- d04:	0f be       	out	0x3f, r0	; 63
- d06:	0f 90       	pop	r0
- d08:	1f 90       	pop	r1
- d0a:	18 95       	reti
+     f6a:	bf 91       	pop	r27
+     f6c:	af 91       	pop	r26
+     f6e:	9f 91       	pop	r25
+     f70:	8f 91       	pop	r24
+     f72:	7f 91       	pop	r23
+     f74:	6f 91       	pop	r22
+     f76:	5f 91       	pop	r21
+     f78:	0f 90       	pop	r0
+     f7a:	0f be       	out	0x3f, r0	; 63
+     f7c:	0f 90       	pop	r0
+     f7e:	1f 90       	pop	r1
+     f80:	18 95       	reti
 
-00000d0c <__vector_19>:
+00000f82 <__vector_19>:
 
 // uart0 transmit interrupt service routine
 ISR (USART0_UDRE_vect)
 {		
- d0c:	1f 92       	push	r1
- d0e:	0f 92       	push	r0
- d10:	0f b6       	in	r0, 0x3f	; 63
- d12:	0f 92       	push	r0
- d14:	11 24       	eor	r1, r1
- d16:	0b b6       	in	r0, 0x3b	; 59
- d18:	0f 92       	push	r0
- d1a:	2f 93       	push	r18
- d1c:	3f 93       	push	r19
- d1e:	8f 93       	push	r24
- d20:	9f 93       	push	r25
- d22:	ef 93       	push	r30
- d24:	ff 93       	push	r31
+     f82:	1f 92       	push	r1
+     f84:	0f 92       	push	r0
+     f86:	0f b6       	in	r0, 0x3f	; 63
+     f88:	0f 92       	push	r0
+     f8a:	11 24       	eor	r1, r1
+     f8c:	0b b6       	in	r0, 0x3b	; 59
+     f8e:	0f 92       	push	r0
+     f90:	2f 93       	push	r18
+     f92:	3f 93       	push	r19
+     f94:	8f 93       	push	r24
+     f96:	9f 93       	push	r25
+     f98:	ef 93       	push	r30
+     f9a:	ff 93       	push	r31
 	if (usart0_index != usart0_complete)
- d26:	20 91 c9 02 	lds	r18, 0x02C9
- d2a:	30 91 ca 02 	lds	r19, 0x02CA
- d2e:	80 91 44 03 	lds	r24, 0x0344
- d32:	90 91 45 03 	lds	r25, 0x0345
- d36:	28 17       	cp	r18, r24
- d38:	39 07       	cpc	r19, r25
- d3a:	79 f0       	breq	.+30     	; 0xd5a <__vector_19+0x4e>
+     f9c:	20 91 c9 02 	lds	r18, 0x02C9
+     fa0:	30 91 ca 02 	lds	r19, 0x02CA
+     fa4:	80 91 44 03 	lds	r24, 0x0344
+     fa8:	90 91 45 03 	lds	r25, 0x0345
+     fac:	28 17       	cp	r18, r24
+     fae:	39 07       	cpc	r19, r25
+     fb0:	79 f0       	breq	.+30     	; 0xfd0 <__vector_19+0x4e>
 	{
 		UDR0 = usart0_buffer[usart0_index++];
- d3c:	80 91 c9 02 	lds	r24, 0x02C9
- d40:	90 91 ca 02 	lds	r25, 0x02CA
- d44:	fc 01       	movw	r30, r24
- d46:	ea 57       	subi	r30, 0x7A	; 122
- d48:	f8 4f       	sbci	r31, 0xF8	; 248
- d4a:	20 81       	ld	r18, Z
- d4c:	2c b9       	out	0x0c, r18	; 12
- d4e:	01 96       	adiw	r24, 0x01	; 1
- d50:	90 93 ca 02 	sts	0x02CA, r25
- d54:	80 93 c9 02 	sts	0x02C9, r24
- d58:	06 c0       	rjmp	.+12     	; 0xd66 <__vector_19+0x5a>
+     fb2:	80 91 c9 02 	lds	r24, 0x02C9
+     fb6:	90 91 ca 02 	lds	r25, 0x02CA
+     fba:	fc 01       	movw	r30, r24
+     fbc:	ea 57       	subi	r30, 0x7A	; 122
+     fbe:	f8 4f       	sbci	r31, 0xF8	; 248
+     fc0:	20 81       	ld	r18, Z
+     fc2:	2c b9       	out	0x0c, r18	; 12
+     fc4:	01 96       	adiw	r24, 0x01	; 1
+     fc6:	90 93 ca 02 	sts	0x02CA, r25
+     fca:	80 93 c9 02 	sts	0x02C9, r24
+     fce:	06 c0       	rjmp	.+12     	; 0xfdc <__vector_19+0x5a>
 void usart0_initialize(uint32 ubrr);
 
 inline void usart0_rx_interrupt_enable()  { UCSR0B |= (1<<RXCIE0);	}
 inline void usart0_rx_interrupt_disable() { UCSR0B &= ~(1<<RXCIE0);	}
 inline void usart0_tx_interrupt_enable()  { UCSR0B |= (1<<UDRIE0);	}
 inline void usart0_tx_interrupt_disable() { UCSR0B &= ~(1<<UDRIE0);	}
- d5a:	55 98       	cbi	0x0a, 5	; 10
+     fd0:	55 98       	cbi	0x0a, 5	; 10
 	}
 	else
 	{
 		usart0_tx_interrupt_disable();
 		usart0_flags |= USART_TX_COMPLETE;
- d5c:	80 91 31 0a 	lds	r24, 0x0A31
- d60:	82 60       	ori	r24, 0x02	; 2
- d62:	80 93 31 0a 	sts	0x0A31, r24
+     fd2:	80 91 31 0a 	lds	r24, 0x0A31
+     fd6:	82 60       	ori	r24, 0x02	; 2
+     fd8:	80 93 31 0a 	sts	0x0A31, r24
 	}
 }
- d66:	ff 91       	pop	r31
- d68:	ef 91       	pop	r30
- d6a:	9f 91       	pop	r25
- d6c:	8f 91       	pop	r24
- d6e:	3f 91       	pop	r19
- d70:	2f 91       	pop	r18
- d72:	0f 90       	pop	r0
- d74:	0b be       	out	0x3b, r0	; 59
- d76:	0f 90       	pop	r0
- d78:	0f be       	out	0x3f, r0	; 63
- d7a:	0f 90       	pop	r0
- d7c:	1f 90       	pop	r1
- d7e:	18 95       	reti
+     fdc:	ff 91       	pop	r31
+     fde:	ef 91       	pop	r30
+     fe0:	9f 91       	pop	r25
+     fe2:	8f 91       	pop	r24
+     fe4:	3f 91       	pop	r19
+     fe6:	2f 91       	pop	r18
+     fe8:	0f 90       	pop	r0
+     fea:	0b be       	out	0x3b, r0	; 59
+     fec:	0f 90       	pop	r0
+     fee:	0f be       	out	0x3f, r0	; 63
+     ff0:	0f 90       	pop	r0
+     ff2:	1f 90       	pop	r1
+     ff4:	18 95       	reti
 
-00000d80 <__vector_30>:
+00000ff6 <__vector_30>:
 
 // uart1 receive interrupt service routine
 ISR (USART1_RX_vect)
 {
- d80:	1f 92       	push	r1
- d82:	0f 92       	push	r0
- d84:	0f b6       	in	r0, 0x3f	; 63
- d86:	0f 92       	push	r0
- d88:	11 24       	eor	r1, r1
- d8a:	0b b6       	in	r0, 0x3b	; 59
- d8c:	0f 92       	push	r0
- d8e:	2f 93       	push	r18
- d90:	8f 93       	push	r24
- d92:	9f 93       	push	r25
- d94:	ef 93       	push	r30
- d96:	ff 93       	push	r31
+     ff6:	1f 92       	push	r1
+     ff8:	0f 92       	push	r0
+     ffa:	0f b6       	in	r0, 0x3f	; 63
+     ffc:	0f 92       	push	r0
+     ffe:	11 24       	eor	r1, r1
+    1000:	0b b6       	in	r0, 0x3b	; 59
+    1002:	0f 92       	push	r0
+    1004:	2f 93       	push	r18
+    1006:	8f 93       	push	r24
+    1008:	9f 93       	push	r25
+    100a:	ef 93       	push	r30
+    100c:	ff 93       	push	r31
 	usart1_buffer[usart1_complete] = UDR1;
- d98:	e0 91 eb 01 	lds	r30, 0x01EB
- d9c:	f0 91 ec 01 	lds	r31, 0x01EC
- da0:	80 91 9c 00 	lds	r24, 0x009C
- da4:	e7 56       	subi	r30, 0x67	; 103
- da6:	fc 4f       	sbci	r31, 0xFC	; 252
- da8:	80 83       	st	Z, r24
+    100e:	e0 91 eb 01 	lds	r30, 0x01EB
+    1012:	f0 91 ec 01 	lds	r31, 0x01EC
+    1016:	80 91 9c 00 	lds	r24, 0x009C
+    101a:	e7 56       	subi	r30, 0x67	; 103
+    101c:	fc 4f       	sbci	r31, 0xFC	; 252
+    101e:	80 83       	st	Z, r24
 	usart1_complete = ((usart1_complete+1) < usart1_buffer_size ? (usart1_complete+1) : 0);
- daa:	80 91 eb 01 	lds	r24, 0x01EB
- dae:	90 91 ec 01 	lds	r25, 0x01EC
- db2:	01 96       	adiw	r24, 0x01	; 1
- db4:	88 3e       	cpi	r24, 0xE8	; 232
- db6:	93 40       	sbci	r25, 0x03	; 3
- db8:	30 f4       	brcc	.+12     	; 0xdc6 <__vector_30+0x46>
- dba:	80 91 eb 01 	lds	r24, 0x01EB
- dbe:	90 91 ec 01 	lds	r25, 0x01EC
- dc2:	01 96       	adiw	r24, 0x01	; 1
- dc4:	02 c0       	rjmp	.+4      	; 0xdca <__vector_30+0x4a>
- dc6:	80 e0       	ldi	r24, 0x00	; 0
- dc8:	90 e0       	ldi	r25, 0x00	; 0
- dca:	90 93 ec 01 	sts	0x01EC, r25
- dce:	80 93 eb 01 	sts	0x01EB, r24
+    1020:	80 91 eb 01 	lds	r24, 0x01EB
+    1024:	90 91 ec 01 	lds	r25, 0x01EC
+    1028:	01 96       	adiw	r24, 0x01	; 1
+    102a:	88 3e       	cpi	r24, 0xE8	; 232
+    102c:	93 40       	sbci	r25, 0x03	; 3
+    102e:	30 f4       	brcc	.+12     	; 0x103c <__vector_30+0x46>
+    1030:	80 91 eb 01 	lds	r24, 0x01EB
+    1034:	90 91 ec 01 	lds	r25, 0x01EC
+    1038:	01 96       	adiw	r24, 0x01	; 1
+    103a:	02 c0       	rjmp	.+4      	; 0x1040 <__vector_30+0x4a>
+    103c:	80 e0       	ldi	r24, 0x00	; 0
+    103e:	90 e0       	ldi	r25, 0x00	; 0
+    1040:	90 93 ec 01 	sts	0x01EC, r25
+    1044:	80 93 eb 01 	sts	0x01EB, r24
 	
 	usart1_flags |= USART_RX_READY;
- dd2:	80 91 98 03 	lds	r24, 0x0398
- dd6:	81 60       	ori	r24, 0x01	; 1
- dd8:	80 93 98 03 	sts	0x0398, r24
+    1048:	80 91 98 03 	lds	r24, 0x0398
+    104c:	81 60       	ori	r24, 0x01	; 1
+    104e:	80 93 98 03 	sts	0x0398, r24
 }
- ddc:	ff 91       	pop	r31
- dde:	ef 91       	pop	r30
- de0:	9f 91       	pop	r25
- de2:	8f 91       	pop	r24
- de4:	2f 91       	pop	r18
- de6:	0f 90       	pop	r0
- de8:	0b be       	out	0x3b, r0	; 59
- dea:	0f 90       	pop	r0
- dec:	0f be       	out	0x3f, r0	; 63
- dee:	0f 90       	pop	r0
- df0:	1f 90       	pop	r1
- df2:	18 95       	reti
+    1052:	ff 91       	pop	r31
+    1054:	ef 91       	pop	r30
+    1056:	9f 91       	pop	r25
+    1058:	8f 91       	pop	r24
+    105a:	2f 91       	pop	r18
+    105c:	0f 90       	pop	r0
+    105e:	0b be       	out	0x3b, r0	; 59
+    1060:	0f 90       	pop	r0
+    1062:	0f be       	out	0x3f, r0	; 63
+    1064:	0f 90       	pop	r0
+    1066:	1f 90       	pop	r1
+    1068:	18 95       	reti
 
-00000df4 <__udivmodhi4>:
- df4:	aa 1b       	sub	r26, r26
- df6:	bb 1b       	sub	r27, r27
- df8:	51 e1       	ldi	r21, 0x11	; 17
- dfa:	07 c0       	rjmp	.+14     	; 0xe0a <__udivmodhi4_ep>
+0000106a <__udivmodhi4>:
+    106a:	aa 1b       	sub	r26, r26
+    106c:	bb 1b       	sub	r27, r27
+    106e:	51 e1       	ldi	r21, 0x11	; 17
+    1070:	07 c0       	rjmp	.+14     	; 0x1080 <__udivmodhi4_ep>
 
-00000dfc <__udivmodhi4_loop>:
- dfc:	aa 1f       	adc	r26, r26
- dfe:	bb 1f       	adc	r27, r27
- e00:	a6 17       	cp	r26, r22
- e02:	b7 07       	cpc	r27, r23
- e04:	10 f0       	brcs	.+4      	; 0xe0a <__udivmodhi4_ep>
- e06:	a6 1b       	sub	r26, r22
- e08:	b7 0b       	sbc	r27, r23
+00001072 <__udivmodhi4_loop>:
+    1072:	aa 1f       	adc	r26, r26
+    1074:	bb 1f       	adc	r27, r27
+    1076:	a6 17       	cp	r26, r22
+    1078:	b7 07       	cpc	r27, r23
+    107a:	10 f0       	brcs	.+4      	; 0x1080 <__udivmodhi4_ep>
+    107c:	a6 1b       	sub	r26, r22
+    107e:	b7 0b       	sbc	r27, r23
 
-00000e0a <__udivmodhi4_ep>:
- e0a:	88 1f       	adc	r24, r24
- e0c:	99 1f       	adc	r25, r25
- e0e:	5a 95       	dec	r21
- e10:	a9 f7       	brne	.-22     	; 0xdfc <__udivmodhi4_loop>
- e12:	80 95       	com	r24
- e14:	90 95       	com	r25
- e16:	bc 01       	movw	r22, r24
- e18:	cd 01       	movw	r24, r26
- e1a:	08 95       	ret
+00001080 <__udivmodhi4_ep>:
+    1080:	88 1f       	adc	r24, r24
+    1082:	99 1f       	adc	r25, r25
+    1084:	5a 95       	dec	r21
+    1086:	a9 f7       	brne	.-22     	; 0x1072 <__udivmodhi4_loop>
+    1088:	80 95       	com	r24
+    108a:	90 95       	com	r25
+    108c:	bc 01       	movw	r22, r24
+    108e:	cd 01       	movw	r24, r26
+    1090:	08 95       	ret
 
-00000e1c <memcpy>:
- e1c:	fb 01       	movw	r30, r22
- e1e:	dc 01       	movw	r26, r24
- e20:	02 c0       	rjmp	.+4      	; 0xe26 <memcpy+0xa>
- e22:	01 90       	ld	r0, Z+
- e24:	0d 92       	st	X+, r0
- e26:	41 50       	subi	r20, 0x01	; 1
- e28:	50 40       	sbci	r21, 0x00	; 0
- e2a:	d8 f7       	brcc	.-10     	; 0xe22 <memcpy+0x6>
- e2c:	08 95       	ret
+00001092 <__udivmodsi4>:
+    1092:	a1 e2       	ldi	r26, 0x21	; 33
+    1094:	1a 2e       	mov	r1, r26
+    1096:	aa 1b       	sub	r26, r26
+    1098:	bb 1b       	sub	r27, r27
+    109a:	fd 01       	movw	r30, r26
+    109c:	0d c0       	rjmp	.+26     	; 0x10b8 <__udivmodsi4_ep>
 
-00000e2e <_exit>:
- e2e:	f8 94       	cli
+0000109e <__udivmodsi4_loop>:
+    109e:	aa 1f       	adc	r26, r26
+    10a0:	bb 1f       	adc	r27, r27
+    10a2:	ee 1f       	adc	r30, r30
+    10a4:	ff 1f       	adc	r31, r31
+    10a6:	a2 17       	cp	r26, r18
+    10a8:	b3 07       	cpc	r27, r19
+    10aa:	e4 07       	cpc	r30, r20
+    10ac:	f5 07       	cpc	r31, r21
+    10ae:	20 f0       	brcs	.+8      	; 0x10b8 <__udivmodsi4_ep>
+    10b0:	a2 1b       	sub	r26, r18
+    10b2:	b3 0b       	sbc	r27, r19
+    10b4:	e4 0b       	sbc	r30, r20
+    10b6:	f5 0b       	sbc	r31, r21
 
-00000e30 <__stop_program>:
- e30:	ff cf       	rjmp	.-2      	; 0xe30 <__stop_program>
+000010b8 <__udivmodsi4_ep>:
+    10b8:	66 1f       	adc	r22, r22
+    10ba:	77 1f       	adc	r23, r23
+    10bc:	88 1f       	adc	r24, r24
+    10be:	99 1f       	adc	r25, r25
+    10c0:	1a 94       	dec	r1
+    10c2:	69 f7       	brne	.-38     	; 0x109e <__udivmodsi4_loop>
+    10c4:	60 95       	com	r22
+    10c6:	70 95       	com	r23
+    10c8:	80 95       	com	r24
+    10ca:	90 95       	com	r25
+    10cc:	9b 01       	movw	r18, r22
+    10ce:	ac 01       	movw	r20, r24
+    10d0:	bd 01       	movw	r22, r26
+    10d2:	cf 01       	movw	r24, r30
+    10d4:	08 95       	ret
+
+000010d6 <_exit>:
+    10d6:	f8 94       	cli
+
+000010d8 <__stop_program>:
+    10d8:	ff cf       	rjmp	.-2      	; 0x10d8 <__stop_program>

@@ -325,7 +325,7 @@ void timers_init (void)
 void cdhib_init	(void)
 {
 	// THS
-	THS_interval_seconds =				DEFAULT_THS_INTERVAL_SECONDS;
+	//THS_interval_seconds =				DEFAULT_THS_INTERVAL_SECONDS;
 	Commanded_THS_interval_seconds =	DEFAULT_THS_INTERVAL_SECONDS;
 	External_THS_trigger =				true;	// set to true to trigger beacon on power up
 	

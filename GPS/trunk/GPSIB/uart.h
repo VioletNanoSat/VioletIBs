@@ -8,7 +8,7 @@
 
 #define ASYNCHRONOUS_NORMAL CLOCK_SPEED/16
 #define RECEIVER_BAUD_RATE	76800
-#define CDHIB_BAUD_RATE		9600
+#define CDHIB_BAUD_RATE		9600//115200//9600
 
 uint32 get_ubrr(uint32 baud);
 

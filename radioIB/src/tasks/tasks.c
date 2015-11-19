@@ -2,7 +2,7 @@
  * tasks.c
  * \brief Tasks source file
  *
- *  Author: Liran
+ *  Author: William Voge, Liran
  */ 
 
 #include <asf.h>

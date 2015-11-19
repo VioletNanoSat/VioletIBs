@@ -6,7 +6,7 @@
 
 // Define COMM_DEBUG when transmitting to a computer
 // When not defined, the IB will transmit in VCP 
-#define COMM_DEBUG
+//#define COMM_DEBUG
 
 // Define the MCU target board - GPSIB Rev.2, GPSIB Rev.3, or STK500
 //#define STK500

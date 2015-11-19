@@ -22,6 +22,9 @@ uint16_t	num_of_debug_packets;
 #endif
 
 
+const uint16_t		        THS_interval_seconds = 2;			///< Actual THS interval
+
+
 #ifdef DEBUG
 /**
  * Name         : debug_task
@@ -39,12 +42,12 @@ void debug_task	(void)
 		radio_task();
 		fc_task();
 		//cdhib_task();
-		//ths_task();
+		ths_task();
 		//mag_task();
 		//star_task();
 		sun_task();
-		//gps_task();
-		//power_task();
+		gps_task();
+		power_task();
 	}
 
 	
@@ -270,7 +273,7 @@ void fc_task	(void)
 		
 		if (source_vcp_address == VCP_BAD_ADDRESS) {}	// Do something
 		else
-		{
+		{			
 			VCP_DMA_transmit(&source_peripheral, &fc);	// build VCP frame and transmit with DMA 
 			source_peripheral.rx_byte_count = 0;
 			#ifdef DEBUG
@@ -471,10 +474,10 @@ void ths_task	(void)
 		if ((THS_Seconds_counter >= THS_interval_seconds) || External_THS_trigger )
 		{
 			THS_Seconds_counter =	0;										// Reset the seconds counter
-			THS_interval_seconds =	Commanded_THS_interval_seconds;			// Reload the interval
+			//THS_interval_seconds =	Commanded_THS_interval_seconds;			// Reload the interval
 			External_THS_trigger =	false;									// Turn off the trigger
 			
-			Collect_THS_data();												// collect THS data into THS_Beacon
+			//Collect_THS_data();												// collect THS data into THS_Beacon
 			Queue_RingBuffer_Insert(&radio_queue_ringbuff,VCP_CDHIB);		// Insert to radio transmit queue
 		}	
 													
@@ -486,12 +489,12 @@ void ths_task	(void)
 			
 			if (External_THS_trigger)										// In MCU2, the first interval is divided by 2
 			{																// to create a half-interval phase shift
-				THS_interval_seconds =	Commanded_THS_interval_seconds/2;	// between the two beacons
+				//THS_interval_seconds =	2;//Commanded_THS_interval_seconds/*/2*/;	// between the two beacons
 				External_THS_trigger =	false;								// Turn off the trigger
 			}
 			else
 			{
-				THS_interval_seconds =	Commanded_THS_interval_seconds;		// Reload the interval
+				//THS_interval_seconds =	2;//Commanded_THS_interval_seconds;		// Reload the interval
 				
 				//Collect_THS_data();											// collect THS data into THS_Beacon
 				Queue_RingBuffer_Insert(&radio_queue_ringbuff,VCP_CDHIB);	// Insert to radio transmit queue

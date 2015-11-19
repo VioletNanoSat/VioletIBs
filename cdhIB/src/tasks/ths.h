@@ -13,7 +13,7 @@
 #include "../config/conf_usart_serial.h"
 #include "cdhib.h"
 
-#define		DEFAULT_THS_INTERVAL_SECONDS	15				///< Default time interval between THS beacon transmissions (in Seconds)
+#define		DEFAULT_THS_INTERVAL_SECONDS	2				///< Default time interval between THS beacon transmissions (in Seconds)
 #define		MINIMUM_THS_INTERVAL_SECONDS	1				///< Minimum time interval between THS beacon transmissions (in Seconds)
 #define		MAXIMUM_THS_INTERVAL_SECONDS	300				///< Maximum time interval between THS beacon transmissions (in Seconds)
 
@@ -89,7 +89,7 @@ typedef struct {
 
 THS_Beacon_t THS_Beacon;					///< Buffer to hold the THS data
 
-uint16_t					THS_interval_seconds;			///< Actual THS interval
+
 uint16_t					Commanded_THS_interval_seconds;	///< Interval recieved by command packet 
 Bool						External_THS_trigger;			///< Trigger to force THS beacon transmission
 volatile extern uint16_t	THS_Seconds_counter;			///< Count seconds in Timer ISR

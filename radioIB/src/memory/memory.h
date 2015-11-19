@@ -2,7 +2,7 @@
  * memory.h
  * \brief Memory header file
  *
- *  Author: Liran
+ *  Author: Liran, William Voge
  */ 
 
 
