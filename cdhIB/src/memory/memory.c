@@ -429,16 +429,3 @@ void VCP_DMA_transmit(peripheral_t* source, peripheral_t* destination)
 
 }
 
-/**
- * Name         : Collect_THS_data
- *
- * Synopsis     : void Collect_THS_data(void)
- *
- * Description  : Collect THS data from different locations into THS_Beacon
- * 
- */
-void Collect_THS_data(void)
-{
-	// Complete updating THS Beacon...
-	// FC, Power and GPS data is updated every time those telemetries are received
-}

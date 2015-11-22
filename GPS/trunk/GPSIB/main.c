@@ -61,9 +61,7 @@ void initialize()
 
 	// Init output I/Os
 	DDRA |= (1<<DDA4);				// DISCP	on Pin PA4 as output ???
-	DDRA |= (1<<DDA3);
-	PORTA |= (1<<PA3);
-	
+	DDRA &= ~(1<<DDA3);	
 	
 	// UART TX Pins should be automatically configured as outputs when the UART is enabled
 	// regardless of the following DDRx setting

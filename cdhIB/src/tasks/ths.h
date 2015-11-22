@@ -92,8 +92,9 @@ THS_Beacon_t THS_Beacon;					///< Buffer to hold the THS data
 
 uint16_t					Commanded_THS_interval_seconds;	///< Interval recieved by command packet 
 Bool						External_THS_trigger;			///< Trigger to force THS beacon transmission
-volatile extern uint16_t	THS_Seconds_counter;			///< Count seconds in Timer ISR
+const volatile uint16_t		        THS_interval_seconds = 5;			///< Actual THS interval
+volatile uint16_t	THS_Seconds_counter;			///< Count seconds in Timer ISR
 
-void Collect_THS_data(void); 								///< See memory.c
+
 
 #endif /* THS_H_ */

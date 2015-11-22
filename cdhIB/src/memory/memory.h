@@ -15,7 +15,7 @@
 #include "dma_driver.h"
 #include "../tasks/tasks.h"
 #include "config/conf_usart_serial.h"
-#include "../tasks/ths.h"
+//#include "../tasks/ths.h"
 #include "../tasks/cdhib.h"
 #include "../vcp/vcp_library.h"
 

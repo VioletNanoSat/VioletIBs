@@ -7,6 +7,7 @@
 
 #include <asf.h>
 #include "tasks.h"
+#include "ths.h"
 #include "adc_driver.h"
 
 
@@ -22,7 +23,8 @@ uint16_t	num_of_debug_packets;
 #endif
 
 
-const uint16_t		        THS_interval_seconds = 2;			///< Actual THS interval
+
+uint8_t frogger;
 
 
 #ifdef DEBUG
@@ -42,12 +44,12 @@ void debug_task	(void)
 		radio_task();
 		fc_task();
 		//cdhib_task();
-		ths_task();
+		//ths_task();
 		//mag_task();
 		//star_task();
 		sun_task();
-		gps_task();
-		power_task();
+		//gps_task();
+		//power_task();
 	}
 
 	
@@ -426,8 +428,13 @@ void radio_task	(void)
 
 		if (source_vcp_address == VCP_FC)		
 		{
+			frogger++;
+			if(frogger == 2){
+				frogger = 0;
+			}
 			// source is fc buffer
 			VCP_DMA_transmit(&fc, &radio);	// build VCP frame and transmit with DMA
+			
 		}			
 		else if (source_vcp_address == VCP_CDHIB)
 		{
@@ -537,7 +544,8 @@ void sun_task	(void)
 {
 	// check if the buffer is free before writing to it
 	//if (sun.rx_byte_count == 0)
-		read_Non_VCP_receive_buff(&sun);
+		//read_Non_VCP_receive_buff(&sun);
+		read_VCP_receive_buff(&sun);
 		
 }
 #endif

@@ -46,8 +46,10 @@ ISR(TCC0_OVF_vect)
 /// Power USART Receive interrupt handler
 ISR(POWER_UART_RXC_vect)
 {
+	//flag++;
 	if (RingBuffer_IsFull(&power.rx_ringbuff))
 	{
+		
 		volatile uint8_t temp = power.USART->DATA;					// clear interrupt flag
 		temp++;														// Remove unused variable compiler warning
 		power.rx_ringbuff_overflow++;								// buffer overflow
@@ -55,6 +57,9 @@ ISR(POWER_UART_RXC_vect)
 	else
 	{
 		RingBuffer_Insert(&power.rx_ringbuff, power.USART->DATA);	// read received byte into the ring buffer
+	}
+	if (flag==50){
+//		flag=0;
 	}
 }
 
@@ -101,7 +106,7 @@ ISR(RADIO_UART_RXC_vect)
 /// FC USART Receive interrupt handler
 ISR(FC_UART_RXC_vect)
 {
-  	flag++;
+  	//flag++;
 	uint8_t data;
 	if (RingBuffer_IsFull(&fc.rx_ringbuff))
 	{
@@ -122,8 +127,8 @@ ISR(FC_UART_RXC_vect)
 		//}
 		//data = fc.USART->DATA;
 	}
-	if(flag == 300){
-		flag = 10;
+	if(flag == 16){
+		//flag = 10;
 	}
 	
 	
@@ -167,7 +172,7 @@ ISR(FC_UART_RXC_vect)
 		{
 			RingBuffer_Insert(&sun.rx_ringbuff, sun.USART->DATA);	// read received byte into the ring buffer
 		}	
-		if(flag == 11){
+		if(flag == 16){
 			//flag = 10;	
 		}
 	}

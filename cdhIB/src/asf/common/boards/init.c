@@ -9,6 +9,7 @@
 #include "../src/config/conf_board.h"
 #include "../src/memory/memory.h"
 #include "adc_driver.h"
+//#include "../tasks/ths.h"
 
 //ADC Defines
 #define ADCACAL0_offset 0x20
@@ -227,7 +228,7 @@ void interrupts_init (void)
 void io_init (void)
 {
 
-	PORTA.DIRSET = PIN1_bm;
+	PORTA.DIRCLR = PIN1_bm;
 	PORTA.DIRCLR = PIN2_bm;
 	PORTA.DIRCLR = PIN3_bm;
 	PORTB.DIRCLR = PIN0_bm;
@@ -250,7 +251,7 @@ void io_init (void)
 	
 	#ifdef DEBUG
 		// Debug STK600 LEDs, set pins to output
-		PORTA.DIRCLR =	PIN0_bm;		// LED0 - 1Hz "running" toggle
+		/*PORTA.DIRCLR =	PIN0_bm;		// LED0 - 1Hz "running" toggle
 		PORTA.DIRCLR =	PIN1_bm;		// LED1 
 		PORTA.DIRCLR =	PIN2_bm;		// LED2 
 		PORTA.DIRCLR =	PIN3_bm;		// LED3 
@@ -267,9 +268,9 @@ void io_init (void)
 		PORTA.OUTSET =	PIN5_bm;		// LED5
 		PORTA.OUTSET =	PIN6_bm;		// LED6
 		PORTA.OUTSET =	PIN7_bm;		// LED7
-
+        */
 		// peripheral structure LED pin assignment
-		power.tx_LED_pin =	PIN1_bm; 
+		/*power.tx_LED_pin =	PIN1_bm; 
 		power.rx_LED_pin =	PIN2_bm; 
 		fc.tx_LED_pin =		PIN3_bm; 
 		fc.rx_LED_pin =		PIN4_bm; 
@@ -285,6 +286,7 @@ void io_init (void)
 
 		PORTD.DIRSET = PIN7_bm;		// Clock out
 		PORTCFG.CLKEVOUT = 0x02;
+      */	
 	#endif
 	
 }
@@ -326,8 +328,8 @@ void cdhib_init	(void)
 {
 	// THS
 	//THS_interval_seconds =				DEFAULT_THS_INTERVAL_SECONDS;
-	Commanded_THS_interval_seconds =	DEFAULT_THS_INTERVAL_SECONDS;
-	External_THS_trigger =				true;	// set to true to trigger beacon on power up
+	//Commanded_THS_interval_seconds =	DEFAULT_THS_INTERVAL_SECONDS;
+	//External_THS_trigger =				true;	// set to true to trigger beacon on power up
 	
 	// ACK packet
 	ACK[0] = 0x41;
