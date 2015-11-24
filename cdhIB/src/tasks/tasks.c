@@ -2,7 +2,7 @@
  * tasks.c
  * \brief Tasks source file
  *
- *  Author: Liran, William Voge
+ *  Author: William Voge
  */ 
 
 #include <asf.h>
@@ -44,12 +44,12 @@ void debug_task	(void)
 		radio_task();
 		fc_task();
 		//cdhib_task();
-		//ths_task();
+		ths_task();
 		//mag_task();
 		//star_task();
-		sun_task();
-		//gps_task();
-		//power_task();
+		//sun_task();
+		gps_task();
+		power_task();
 	}
 
 	
@@ -344,12 +344,6 @@ void cdhib_task	(void)
 		}
 	}
 	
-	// In case internal oscillator is used - try to switch to external oscillator
-	/*if (xosc_recovey)
-	{
-		switch_to_ext_osc ();
-	}*/
-	
 	// If need to transmit a noop command to the power board	
 	if (PWR_WDOG_Seconds_counter >= PWR_WDOG_TX_INTERVAL)
 	{
@@ -475,6 +469,8 @@ void radio_task	(void)
 void ths_task	(void)
 {
 	// THS broadcast is triggered from timer interrupt or from external trigger (FC or Radio)
+	
+	THS_Beacon.mid = 0xFFFF;
 	
 	#ifdef MCU_CDH_1	
 	

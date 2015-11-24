@@ -2,8 +2,8 @@
  * tasks.h
  * \brief Tasks header file
  *
- * Created: 12/13/2011
- *  Author: Liran
+ * 
+ *  Author: William Voge
  */ 
 
 #ifndef TASKS_H_

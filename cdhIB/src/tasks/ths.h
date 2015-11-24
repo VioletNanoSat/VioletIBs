@@ -80,6 +80,7 @@ typedef struct {
 /// THS beacon structure
 typedef struct {
 
+    uint16_t            mid;       ///< Message ID
 	// Fill this up with beacon structure
 	GPS_packet_t		GPS_Packet;			///< Holds Telemetry packet from the GPS  
 	FC_telemetry_t		FC_Telemetry;		///< Holds Telemetry packet from the FC

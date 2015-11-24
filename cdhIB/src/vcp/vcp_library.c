@@ -2,9 +2,9 @@
  * vcp_library.c
  * \brief VCP Library source file
  *
- * Created: 3/8/2012
+ * 
  *
- * Author: Liran, William Voge
+ * Author: Liran, William Voge, Akshay
  */ 
 
 #include "vcp_library.h"
